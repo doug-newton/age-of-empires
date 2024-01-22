@@ -2,7 +2,19 @@
 #include <GLFW/glfw3.h>
 #include "driver.h"
 
+void Driver::run() {
+	while (!glfwWindowShouldClose(s_window)) {
+		glfwPollEvents();
+		onUpdate(1.0);
+		onRender();
+		glfwSwapBuffers(s_window);
+	}
+}
+
 void Driver::onInit() {
+	if (!initGL()) {
+		return;
+	}
 	s_game.onInit();
 }
 
@@ -18,4 +30,32 @@ void Driver::onKeyEvent(GLFWwindow* window, int key, int scanCode, int action, i
 	s_game.onKeyEvent(key, scanCode, action, mods);
 }
 
+bool Driver::initGL() {
+	glfwInit();
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+
+	int width = 1280;
+	int height = 960;
+
+	s_window = glfwCreateWindow(width, height, "Age of Empires", NULL, NULL);
+	if (s_window == nullptr) {
+		glfwTerminate();
+		return false;
+	}
+	glfwMakeContextCurrent(s_window);
+
+	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
+		return false;
+	}
+
+	glViewport(0, 0, width, height);
+	glEnable(GL_DEPTH_TEST);
+	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+
+	glfwSetKeyCallback(s_window, onKeyEvent);
+}
+
 Game Driver::s_game;
+GLFWwindow* Driver::s_window = nullptr;
