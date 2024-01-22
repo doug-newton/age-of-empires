@@ -10,10 +10,12 @@ Entity::~Entity() {
 	}
 }
 
-void Entity::onInit() {
+bool Entity::onInit() {
+	bool success = true;
 	for (auto it = m_components.begin(); it != m_components.end(); ++it) {
-		(*it).second->onInit();
+		success = success && (*it).second->onInit();
 	}
+	return success;
 }
 
 void Entity::onUpdate(float delta) {

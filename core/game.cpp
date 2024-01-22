@@ -10,10 +10,12 @@ Game::~Game() {
 	}
 }
 
-void Game::onInit() {
+bool Game::onInit() {
+	bool success = true;
 	for (auto it = entities.begin(); it != entities.end(); ++it) {
-		(*it)->onInit();
+		success = success && (*it)->onInit();
 	}
+	return success;
 }
 
 void Game::onUpdate(float delta) {

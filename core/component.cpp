@@ -10,7 +10,8 @@ Component::Component(const std::string& name) :
 Component::~Component() {
 }
 
-void Component::onInit() {
+bool Component::onInit() {
+	return true;
 }
 
 void Component::onUpdate(float delta) {

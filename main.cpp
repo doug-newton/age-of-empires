@@ -4,8 +4,13 @@ using namespace std;
 
 int main (int argc, char ** argv)
 {
-	Driver::onInit();
-	Driver::run();
+	bool init_success = Driver::onInit();
+
+	if (init_success) {
+		Driver::run();
+	}
+
+	Driver::onCleanUp();
 
 	return 0;
 }

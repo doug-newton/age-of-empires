@@ -9,7 +9,7 @@ public:
 
 	Entity();
 	~Entity();
-	void onInit();
+	bool onInit();
 	void onUpdate(float delta);
 	void onRender();
 	void onKeyEvent(int key, int scanCode, int action, int mods);

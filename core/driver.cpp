@@ -11,11 +11,11 @@ void Driver::run() {
 	}
 }
 
-void Driver::onInit() {
+bool Driver::onInit() {
 	if (!initGL()) {
-		return;
+		return false;
 	}
-	s_game.onInit();
+	return s_game.onInit();
 }
 
 void Driver::onUpdate(float delta) {
@@ -28,6 +28,10 @@ void Driver::onRender() {
 
 void Driver::onKeyEvent(GLFWwindow* window, int key, int scanCode, int action, int mods) {
 	s_game.onKeyEvent(key, scanCode, action, mods);
+}
+
+void Driver::onCleanUp() {
+	glfwTerminate();
 }
 
 bool Driver::initGL() {
