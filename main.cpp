@@ -3,7 +3,7 @@
 
 using namespace std;
 
-void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
+void key_callback(GLFWwindow* window, int key, int scanCode, int action, int mods);
 void render();
 
 int main (int argc, char ** argv)
@@ -46,7 +46,7 @@ void render() {
 
 }
 
-void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods) {
+void key_callback(GLFWwindow* window, int key, int scanCode, int action, int mods) {
 	if (action == GLFW_PRESS) {
 		switch (key) {
 		case GLFW_KEY_ESCAPE:
