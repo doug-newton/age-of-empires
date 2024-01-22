@@ -139,6 +139,7 @@
     <ClCompile Include="core\game.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="util\file_util.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core\component.h" />
@@ -146,6 +147,7 @@
     <ClInclude Include="core\driver.h" />
     <ClInclude Include="core\entity.h" />
     <ClInclude Include="core\game.h" />
+    <ClInclude Include="util\file_util.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
