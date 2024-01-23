@@ -1,6 +1,7 @@
 #include "core/driver.h"
 #include "graphics/shader_program.h"
 #include "core/resource_manager.h"
+#include "graphics/quad_vao.h";
 
 using namespace std;
 
@@ -17,6 +18,21 @@ bool load_resources(ResourceManager* manager) {
 	}
 	catch (resource_exists_exception ex) {
 		delete shader;
+		return false;
+	}
+
+	Vao* quad = new QuadVao();
+
+	if (!shader->onInit()) {
+		delete quad;
+		return false;
+	}
+
+	try {
+		manager->registerVao("quad", quad);
+	}
+	catch (resource_exists_exception ex) {
+		delete quad;
 		return false;
 	}
 
