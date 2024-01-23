@@ -17,14 +17,14 @@ bool Driver::onInit() {
 		return false;
 	}
 
-	if (!s_game.onInit()) {
-		return false;
-	}
-
 	if (s_resource_loader_callback != nullptr) {
 		if (!s_resource_loader_callback(s_game.getResourceManager())) {
 			return false;
 		}
+	}
+
+	if (!s_game.onInit()) {
+		return false;
 	}
 
 	return true;
