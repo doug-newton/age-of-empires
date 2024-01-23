@@ -9,6 +9,9 @@ Shader::Shader(const std::string& vertexPath, const std::string& fragmentPath) :
 }
 
 Shader::~Shader() {
+	if (this->m_id == 0) {
+		return;
+	}
 	glDeleteProgram(m_id);
 }
 
@@ -46,6 +49,10 @@ bool Shader::onInit() {
 	glDeleteShader(fragment_shader_id);
 
 	return success != 0;
+}
+
+GLuint Shader::getID() {
+	return this->m_id;
 }
 
 GLuint Shader::compileShader(const char* source, GLuint type) {

@@ -13,6 +13,7 @@ public:
 	~Shader();
 
 	bool onInit();
+	GLuint getID();
 
 private:
 
