@@ -133,6 +133,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="components\quad_component.cpp" />
+    <ClCompile Include="components\transform_component.cpp" />
     <ClCompile Include="core\component.cpp" />
     <ClCompile Include="core\component_exists_exception.cpp" />
     <ClCompile Include="core\driver.cpp" />
@@ -150,6 +151,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="components\quad_component.h" />
+    <ClInclude Include="components\transform_component.h" />
     <ClInclude Include="core\component.h" />
     <ClInclude Include="core\component_exists_exception.h" />
     <ClInclude Include="core\driver.h" />
