@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include "resource_manager.h"
 
 class Entity;
 
@@ -17,6 +18,9 @@ public:
 
 	const std::string& getName();
 	void setParent(Entity* parent);
+
+protected:
+	ResourceManager* getResourceManager();
 
 private:
 
