@@ -39,3 +39,7 @@ void Game::onKeyEvent(int key, int scanCode, int action, int mods) {
 void Game::addEntity(Entity* entity) {
 	this->entities.push_back(entity);
 }
+
+ResourceManager* Game::getResourceManager() {
+	return &this->m_resource_manager;
+}

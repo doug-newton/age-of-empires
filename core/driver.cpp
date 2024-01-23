@@ -1,6 +1,7 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include "driver.h"
+#include "resource_manager.h"
 
 void Driver::run() {
 	while (!glfwWindowShouldClose(s_window)) {
@@ -15,7 +16,18 @@ bool Driver::onInit() {
 	if (!initGL()) {
 		return false;
 	}
-	return s_game.onInit();
+
+	if (!s_game.onInit()) {
+		return false;
+	}
+
+	if (s_resource_loader_callback != nullptr) {
+		if (!s_resource_loader_callback(s_game.getResourceManager())) {
+			return false;
+		}
+	}
+
+	return true;
 }
 
 void Driver::onUpdate(float delta) {
@@ -32,6 +44,10 @@ void Driver::onKeyEvent(GLFWwindow* window, int key, int scanCode, int action, i
 
 void Driver::onCleanUp() {
 	glfwTerminate();
+}
+
+void Driver::setResourceLoaderCallback(bool (*callback)(ResourceManager*)) {
+	s_resource_loader_callback = callback;
 }
 
 bool Driver::initGL() {
@@ -65,3 +81,4 @@ bool Driver::initGL() {
 
 Game Driver::s_game;
 GLFWwindow* Driver::s_window = nullptr;
+bool (*Driver::s_resource_loader_callback)(ResourceManager*) = nullptr;

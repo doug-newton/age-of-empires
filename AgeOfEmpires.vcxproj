@@ -137,6 +137,8 @@
     <ClCompile Include="core\driver.cpp" />
     <ClCompile Include="core\entity.cpp" />
     <ClCompile Include="core\game.cpp" />
+    <ClCompile Include="core\resource_exists_exception.cpp" />
+    <ClCompile Include="core\resource_manager.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="graphics\shader.cpp" />
     <ClCompile Include="graphics\shader_program.cpp" />
@@ -149,6 +151,8 @@
     <ClInclude Include="core\driver.h" />
     <ClInclude Include="core\entity.h" />
     <ClInclude Include="core\game.h" />
+    <ClInclude Include="core\resource_exists_exception.h" />
+    <ClInclude Include="core\resource_manager.h" />
     <ClInclude Include="graphics\shader.h" />
     <ClInclude Include="graphics\shader_program.h" />
     <ClInclude Include="util\file_util.h" />

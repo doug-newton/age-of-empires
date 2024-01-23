@@ -2,6 +2,7 @@
 
 #include <vector>
 #include "entity.h"
+#include "resource_manager.h"
 
 class Game {
 
@@ -15,6 +16,9 @@ public:
 
 	void addEntity(Entity* entity);
 
+	ResourceManager* getResourceManager();
+
 private:
 	std::vector<Entity*> entities;
+	ResourceManager m_resource_manager;
 };
