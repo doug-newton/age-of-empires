@@ -21,6 +21,7 @@ public:
 
 protected:
 	ResourceManager* getResourceManager();
+	Component* findComponent(const std::string& name);
 
 private:
 
