@@ -13,6 +13,7 @@ ShaderProgram::~ShaderProgram() {
 		return;
 	}
 	glDeleteProgram(m_id);
+	this->m_id = 0;
 }
 
 bool ShaderProgram::onInit() {
@@ -22,7 +23,7 @@ bool ShaderProgram::onInit() {
 	success = success && vertex_shader.loadAndCompile();
 
 	Shader fragment_shader(GL_FRAGMENT_SHADER, this->m_fragment_path);
-	success = success && vertex_shader.loadAndCompile();
+	success = success && fragment_shader.loadAndCompile();
 
 	success = success && attachAndLinkShaders(vertex_shader, fragment_shader);
 
