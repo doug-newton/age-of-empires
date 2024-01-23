@@ -24,4 +24,5 @@ private:
 
 	static bool initGL();
 	static bool (*s_resource_loader_callback)(ResourceManager*);
+	static bool (*s_entity_loader_callback)(Game*);
 };

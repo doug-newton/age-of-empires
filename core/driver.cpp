@@ -23,6 +23,12 @@ bool Driver::onInit() {
 		}
 	}
 
+	if (s_entity_loader_callback != nullptr) {
+		if (!s_entity_loader_callback(&s_game)) {
+			return false;
+		}
+	}
+
 	if (!s_game.onInit()) {
 		return false;
 	}
@@ -82,3 +88,4 @@ bool Driver::initGL() {
 Game Driver::s_game;
 GLFWwindow* Driver::s_window = nullptr;
 bool (*Driver::s_resource_loader_callback)(ResourceManager*) = nullptr;
+bool (*Driver::s_entity_loader_callback)(Game*) = nullptr;
