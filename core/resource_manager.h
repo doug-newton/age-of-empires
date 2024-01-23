@@ -4,6 +4,7 @@
 #include <string>
 #include "../graphics/shader_program.h"
 #include "resource_exists_exception.h"
+#include "generic_resource_manager.h"
 
 class ResourceManager {
 public:
@@ -14,5 +15,6 @@ public:
 	ShaderProgram* getShaderProgram(const std::string& name);
 
 private:
-	std::map<std::string, ShaderProgram*> m_shader_programs;
+	GenericResourceManager<ShaderProgram> m_shader_program_manager;
+
 };

@@ -151,6 +151,7 @@
     <ClInclude Include="core\driver.h" />
     <ClInclude Include="core\entity.h" />
     <ClInclude Include="core\game.h" />
+    <ClInclude Include="core\generic_resource_manager.h" />
     <ClInclude Include="core\resource_exists_exception.h" />
     <ClInclude Include="core\resource_manager.h" />
     <ClInclude Include="graphics\shader.h" />
