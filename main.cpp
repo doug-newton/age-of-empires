@@ -65,8 +65,8 @@ bool load_entities(Game* game) {
 	entity->registerComponent(new QuadComponent());
 
 	TransformComponent* transform = new TransformComponent();
-	transform->setPosition(0.2f, 0.2f);
-	transform->setDimensions(0.5f, 0.5f);
+	transform->setTranslation(0.2f, 0.2f);
+	transform->setScaling(0.5f, 0.5f);
 	transform->setRotation(45.0f);
 	entity->registerComponent(transform);
 

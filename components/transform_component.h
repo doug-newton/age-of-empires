@@ -12,18 +12,18 @@ public:
 	TransformComponent();
 	virtual ~TransformComponent();
 
-	const glm::vec2& getPosition();
-	const glm::vec2& getDimensions();
+	const glm::vec2& getTranslation();
+	const glm::vec2& getScaling();
 	float getRotation();
 
-	void setPosition(float x, float y);
-	void setDimensions(float w, float h);
+	void setTranslation(float x, float y);
+	void setScaling(float w, float h);
 	void setRotation(float r);
 
 private:
 
-	glm::vec2 m_position;
-	glm::vec2 m_dimensions;
+	glm::vec2 m_translation;
+	glm::vec2 m_scaling;
 
 	float m_rotation;
 };
