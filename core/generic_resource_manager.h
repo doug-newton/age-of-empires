@@ -17,15 +17,15 @@ public:
 		}
 	}
 
-	void registerShaderProgram(const std::string& name, ResourceType* shaderProgram) {
+	void registerResource(const std::string& name, ResourceType* resource) {
 		if (m_resources.find(name) != m_resources.end()) {
 			throw new resource_exists_exception();
 		}
 
-		m_resources[name] = shaderProgram;
+		m_resources[name] = resource;
 	}
 
-	ResourceType* getShaderProgram(const std::string& name) {
+	ResourceType* getResource(const std::string& name) {
 		auto result = m_resources.find(name);
 
 		if (result == m_resources.end()) {
