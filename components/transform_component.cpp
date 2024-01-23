@@ -3,7 +3,7 @@
 TransformComponent::TransformComponent() :
 	Component("transform"),
 	m_position(0.0f, 0.0f),
-	m_dimensions(0.0f, 0.0f),
+	m_dimensions(1.0f, 1.0f),
 	m_rotation(0.0f) {
 }
 

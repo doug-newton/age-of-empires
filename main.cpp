@@ -6,6 +6,7 @@
 #include "components/quad_component.h"
 #include "core/game.h"
 #include "core/entity.h"
+#include "components/transform_component.h"
 
 using namespace std;
 
@@ -22,6 +23,21 @@ bool load_resources(ResourceManager* manager) {
 	}
 	catch (resource_exists_exception ex) {
 		delete shader;
+		return false;
+	}
+
+	ShaderProgram* transform_shader = new ShaderProgram("res/transform.vert", "res/basic.frag");
+
+	if (!transform_shader->onInit()) {
+		delete transform_shader;
+		return false;
+	}
+
+	try {
+		manager->registerShaderProgram("transform", transform_shader);
+	}
+	catch (resource_exists_exception ex) {
+		delete transform_shader;
 		return false;
 	}
 
@@ -45,7 +61,15 @@ bool load_resources(ResourceManager* manager) {
 
 bool load_entities(Game* game) {
 	Entity* entity = new Entity();
+
 	entity->registerComponent(new QuadComponent());
+
+	TransformComponent* transform = new TransformComponent();
+	transform->setPosition(0.2f, 0.2f);
+	transform->setDimensions(0.5f, 0.5f);
+	transform->setRotation(45.0f);
+	entity->registerComponent(transform);
+
 	game->addEntity(entity);
 
 	return true;
