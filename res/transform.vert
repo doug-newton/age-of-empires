@@ -9,7 +9,7 @@ uniform mat4 view;
 out vec4 colour;
 
 void main() {
-	transform = view * model;
+	mat4 transform = view * model;
 
 	gl_Position = transform * vec4(vertex_position.xyz, 1.0);
 	colour = vertex_colour;
