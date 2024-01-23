@@ -42,6 +42,9 @@
     <ClCompile Include="util\file_util.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="graphics\shader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core\component.h">
@@ -63,6 +66,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="util\file_util.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\shader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -2,8 +2,9 @@
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-
 #include <string>
+
+#include "shader.h"
 
 class ShaderProgram {
 
@@ -13,7 +14,7 @@ public:
 	~ShaderProgram();
 
 	bool onInit();
-	GLuint getID();
+	GLuint getID() const;
 
 private:
 
@@ -21,6 +22,6 @@ private:
 	std::string m_vertex_path;
 	std::string m_fragment_path;
 
-	GLuint compileShader(const char* source, GLuint type);
+	bool attachAndLinkShaders(const Shader& vertex_shader, const Shader& fragment_shader);
 
 };

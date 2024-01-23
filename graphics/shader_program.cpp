@@ -16,59 +16,43 @@ ShaderProgram::~ShaderProgram() {
 }
 
 bool ShaderProgram::onInit() {
-	std::string vertex_source = read_file(m_vertex_path);
-	GLuint vertex_shader_id = compileShader(vertex_source.c_str(), GL_VERTEX_SHADER);
+	bool success = true;
 
-	if (vertex_shader_id == 0) {
-		return false;
-	}
+	Shader vertex_shader(GL_VERTEX_SHADER, this->m_vertex_path);
+	success = success && vertex_shader.loadAndCompile();
 
-	std::string fragment_source = read_file(m_fragment_path);
-	GLuint fragment_shader_id = compileShader(fragment_source.c_str(), GL_FRAGMENT_SHADER);
+	Shader fragment_shader(GL_FRAGMENT_SHADER, this->m_fragment_path);
+	success = success && vertex_shader.loadAndCompile();
 
-	if (fragment_shader_id == 0) {
-		glDeleteShader(vertex_shader_id);
-		return false;
-	}
-
-	m_id = glCreateProgram();
-	glAttachShader(m_id, fragment_shader_id);
-	glAttachShader(m_id, vertex_shader_id);
-	glLinkProgram(m_id);
-
-	int success;
-	glGetProgramiv(m_id, GL_LINK_STATUS, &success);
+	success = success && attachAndLinkShaders(vertex_shader, fragment_shader);
 
 	if (!success) {
-		char infoLog[512];
-		glGetProgramInfoLog(m_id, 512, NULL, infoLog);
-		std::cerr << infoLog << std::endl;
+		return false;
 	}
 
-	glDeleteShader(vertex_shader_id);
-	glDeleteShader(fragment_shader_id);
-
-	return success != 0;
+	return true;
 }
 
-GLuint ShaderProgram::getID() {
+GLuint ShaderProgram::getID() const {
 	return this->m_id;
 }
 
-GLuint ShaderProgram::compileShader(const char* source, GLuint type) {
-	GLuint shader_id = glCreateShader(type);
-	glShaderSource(shader_id, 1, &source, NULL);
-	glCompileShader(shader_id);
+bool ShaderProgram::attachAndLinkShaders(const Shader& vertex_shader, const Shader& fragment_shader) {
+	this->m_id = glCreateProgram();
+	glAttachShader(this->m_id, vertex_shader.getID());
+	glAttachShader(this->m_id, fragment_shader.getID());
+	glLinkProgram(this->m_id);
 
-	int success = 0;
+	int link_status;
+	glGetProgramiv(this->m_id, GL_LINK_STATUS, &link_status);
 
-	glGetShaderiv(shader_id, GL_COMPILE_STATUS, &success);
-	if (!success) {
+	if (!link_status) {
 		char infoLog[512];
-		glGetShaderInfoLog(shader_id, 512, NULL, infoLog);
+		glGetProgramInfoLog(this->m_id, 512, NULL, infoLog);
 		std::cerr << infoLog << std::endl;
-		return 0;
+		this->m_id = 0;
+		return false;
 	}
 
-	return shader_id;
+	return true;
 }
