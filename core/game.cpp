@@ -1,4 +1,5 @@
 #include "game.h"
+#include "entity.h"
 
 Game::Game() :
 	entities(0) {
@@ -37,6 +38,7 @@ void Game::onKeyEvent(int key, int scanCode, int action, int mods) {
 }
 
 void Game::addEntity(Entity* entity) {
+	entity->setGame(this);
 	this->entities.push_back(entity);
 }
 

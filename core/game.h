@@ -1,8 +1,9 @@
 #pragma once
 
 #include <vector>
-#include "entity.h"
 #include "resource_manager.h"
+
+class Entity;
 
 class Game {
 
