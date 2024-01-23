@@ -11,6 +11,8 @@ public:
 
 	virtual bool onInit() = 0;
 
+	GLuint getID();
+
 protected:
 	GLuint m_id;
 

@@ -3,8 +3,13 @@
 #include "driver.h"
 #include "resource_manager.h"
 
+void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
+	glViewport(0, 0, width, height);
+}
+
 void Driver::run() {
 	while (!glfwWindowShouldClose(s_window)) {
+		glClear(GL_COLOR_BUFFER_BIT);
 		glfwPollEvents();
 		onUpdate(1.0);
 		onRender();
@@ -79,10 +84,14 @@ bool Driver::initGL() {
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
 		return false;
 	}
-
+	
 	glViewport(0, 0, width, height);
-	glEnable(GL_DEPTH_TEST);
+
+	glfwSetFramebufferSizeCallback(s_window, framebuffer_size_callback);
+
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	glfwSetKeyCallback(s_window, onKeyEvent);
 

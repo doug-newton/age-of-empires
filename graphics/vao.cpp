@@ -12,3 +12,7 @@ Vao::~Vao() {
 	}
 	glDeleteVertexArrays(1, &this->m_id);
 }
+
+GLuint Vao::getID() {
+	return this->m_id;
+}

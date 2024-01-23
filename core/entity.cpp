@@ -2,7 +2,8 @@
 #include "entity.h"
 #include <stdexcept>
 
-Entity::Entity() {
+Entity::Entity() :
+	m_game(nullptr) {
 }
 
 Entity::~Entity() {

@@ -2,6 +2,10 @@
 #include "graphics/shader_program.h"
 #include "core/resource_manager.h"
 #include "graphics/quad_vao.h";
+#include "core/component.h"
+#include "components/quad_component.h"
+#include "core/game.h"
+#include "core/entity.h"
 
 using namespace std;
 
@@ -23,7 +27,7 @@ bool load_resources(ResourceManager* manager) {
 
 	Vao* quad = new QuadVao();
 
-	if (!shader->onInit()) {
+	if (!quad->onInit()) {
 		delete quad;
 		return false;
 	}
@@ -39,9 +43,19 @@ bool load_resources(ResourceManager* manager) {
 	return true;
 }
 
+bool load_entities(Game* game) {
+	Entity* entity = new Entity();
+	entity->registerComponent(new QuadComponent());
+	game->addEntity(entity);
+
+	return true;
+}
+
 int main(int argc, char** argv)
 {
 	Driver::setResourceLoaderCallback(load_resources);
+	Driver::setEntityLoaderCallback(load_entities);
+
 	bool init_success = Driver::onInit();
 
 	if (init_success) {
