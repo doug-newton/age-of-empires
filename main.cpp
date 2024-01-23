@@ -7,6 +7,7 @@
 #include "core/game.h"
 #include "core/entity.h"
 #include "components/transform_component.h"
+#include "components/motion_component.h"
 
 using namespace std;
 
@@ -69,6 +70,11 @@ bool load_entities(Game* game) {
 	transform->setScaling(0.5f, 0.5f);
 	transform->setRotation(45.0f);
 	entity->registerComponent(transform);
+
+	MotionComponent* motion = new MotionComponent();
+	motion->setVelocity(0.00001f, 0.00001f);
+	motion->setRotationalVelocity(0.01f);
+	entity->registerComponent(motion);
 
 	game->addEntity(entity);
 
