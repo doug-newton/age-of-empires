@@ -2,6 +2,7 @@
 
 class ShaderProgram;
 class Vao;
+class TransformComponent;
 
 class QuadComponent : public Component {
 public:
@@ -15,5 +16,6 @@ private:
 
 	ShaderProgram* m_shader_program;
 	Vao* m_vao;
+	TransformComponent* m_transform_component;
 
 };
