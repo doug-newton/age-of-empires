@@ -1,4 +1,5 @@
 #include "component.h"
+#include "game.h"
 #include "entity.h"
 
 Component::Component(const std::string& name) :
@@ -29,4 +30,16 @@ const std::string& Component::getName() {
 
 void Component::setParent(Entity* parent) {
 	this->m_parent = parent;
+}
+
+ResourceManager* Component::getResourceManager() {
+	if (this->m_parent == nullptr) {
+		return nullptr;
+	}
+
+	if (this->m_parent->getGame() == nullptr) {
+		return nullptr;
+	}
+
+	return this->m_parent->getGame()->getResourceManager();
 }

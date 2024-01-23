@@ -3,6 +3,7 @@
 #include "game.h"
 
 struct GLFWwindow;
+class ResourceManager;
 
 class Driver {
 
@@ -15,9 +16,14 @@ public:
 
 	static void onKeyEvent(GLFWwindow* window, int key, int scanCode, int action, int mods);
 
+	static void setResourceLoaderCallback(bool (*callback)(ResourceManager*));
+	static void setEntityLoaderCallback(bool (*callback)(Game*));
+
 private:
 	static Game s_game;
 	static GLFWwindow* s_window;
 
 	static bool initGL();
+	static bool (*s_resource_loader_callback)(ResourceManager*);
+	static bool (*s_entity_loader_callback)(Game*);
 };

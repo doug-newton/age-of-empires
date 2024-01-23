@@ -1,7 +1,9 @@
+#include "game.h"
 #include "entity.h"
 #include <stdexcept>
 
-Entity::Entity() {
+Entity::Entity() :
+	m_game(nullptr) {
 }
 
 Entity::~Entity() {
@@ -55,4 +57,12 @@ Component* Entity::findComponent(const std::string& name) {
 	}
 
 	return (*result).second;
+}
+
+void Entity::setGame(Game* game) {
+	this->m_game = game;
+}
+
+Game* Entity::getGame() {
+	return this->m_game;
 }

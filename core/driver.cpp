@@ -1,9 +1,15 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include "driver.h"
+#include "resource_manager.h"
+
+void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
+	glViewport(0, 0, width, height);
+}
 
 void Driver::run() {
 	while (!glfwWindowShouldClose(s_window)) {
+		glClear(GL_COLOR_BUFFER_BIT);
 		glfwPollEvents();
 		onUpdate(1.0);
 		onRender();
@@ -15,7 +21,24 @@ bool Driver::onInit() {
 	if (!initGL()) {
 		return false;
 	}
-	return s_game.onInit();
+
+	if (s_resource_loader_callback != nullptr) {
+		if (!s_resource_loader_callback(s_game.getResourceManager())) {
+			return false;
+		}
+	}
+
+	if (s_entity_loader_callback != nullptr) {
+		if (!s_entity_loader_callback(&s_game)) {
+			return false;
+		}
+	}
+
+	if (!s_game.onInit()) {
+		return false;
+	}
+
+	return true;
 }
 
 void Driver::onUpdate(float delta) {
@@ -32,6 +55,14 @@ void Driver::onKeyEvent(GLFWwindow* window, int key, int scanCode, int action, i
 
 void Driver::onCleanUp() {
 	glfwTerminate();
+}
+
+void Driver::setEntityLoaderCallback(bool (*callback)(Game*)) {
+	s_entity_loader_callback = callback;
+}
+
+void Driver::setResourceLoaderCallback(bool (*callback)(ResourceManager*)) {
+	s_resource_loader_callback = callback;
 }
 
 bool Driver::initGL() {
@@ -53,13 +84,21 @@ bool Driver::initGL() {
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
 		return false;
 	}
-
+	
 	glViewport(0, 0, width, height);
-	glEnable(GL_DEPTH_TEST);
+
+	glfwSetFramebufferSizeCallback(s_window, framebuffer_size_callback);
+
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	glfwSetKeyCallback(s_window, onKeyEvent);
+
+	return true;
 }
 
 Game Driver::s_game;
 GLFWwindow* Driver::s_window = nullptr;
+bool (*Driver::s_resource_loader_callback)(ResourceManager*) = nullptr;
+bool (*Driver::s_entity_loader_callback)(Game*) = nullptr;

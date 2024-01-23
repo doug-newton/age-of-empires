@@ -4,6 +4,8 @@
 #include "component.h"
 #include "component_exists_exception.h"
 
+class Game;
+
 class Entity {
 public:
 
@@ -16,9 +18,12 @@ public:
 
 	void registerComponent(Component* component);
 	Component* findComponent(const std::string& name);
+	void setGame(Game* game);
+	Game* getGame();
 
 private:
 
+	Game* m_game;
 	std::map<std::string, Component*> m_components;
 
 
