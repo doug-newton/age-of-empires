@@ -5,12 +5,12 @@
 
 #include <string>
 
-class Shader {
+class ShaderProgram {
 
 public:
 
-	Shader(const std::string& vertexPath, const std::string& fragmentPath);
-	~Shader();
+	ShaderProgram(const std::string& vertexPath, const std::string& fragmentPath);
+	~ShaderProgram();
 
 	bool onInit();
 	GLuint getID();

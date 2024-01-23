@@ -1,21 +1,21 @@
-#include "shader.h"
+#include "shader_program.h"
 #include "../util/file_util.h"
 #include <iostream>
 
-Shader::Shader(const std::string& vertexPath, const std::string& fragmentPath) :
+ShaderProgram::ShaderProgram(const std::string& vertexPath, const std::string& fragmentPath) :
 	m_id(0),
 	m_vertex_path(vertexPath),
 	m_fragment_path(fragmentPath) {
 }
 
-Shader::~Shader() {
+ShaderProgram::~ShaderProgram() {
 	if (this->m_id == 0) {
 		return;
 	}
 	glDeleteProgram(m_id);
 }
 
-bool Shader::onInit() {
+bool ShaderProgram::onInit() {
 	std::string vertex_source = read_file(m_vertex_path);
 	GLuint vertex_shader_id = compileShader(vertex_source.c_str(), GL_VERTEX_SHADER);
 
@@ -51,11 +51,11 @@ bool Shader::onInit() {
 	return success != 0;
 }
 
-GLuint Shader::getID() {
+GLuint ShaderProgram::getID() {
 	return this->m_id;
 }
 
-GLuint Shader::compileShader(const char* source, GLuint type) {
+GLuint ShaderProgram::compileShader(const char* source, GLuint type) {
 	GLuint shader_id = glCreateShader(type);
 	glShaderSource(shader_id, 1, &source, NULL);
 	glCompileShader(shader_id);
