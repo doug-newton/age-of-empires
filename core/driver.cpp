@@ -52,6 +52,10 @@ void Driver::onCleanUp() {
 	glfwTerminate();
 }
 
+void Driver::setEntityLoaderCallback(bool (*callback)(Game*)) {
+	s_entity_loader_callback = callback;
+}
+
 void Driver::setResourceLoaderCallback(bool (*callback)(ResourceManager*)) {
 	s_resource_loader_callback = callback;
 }
