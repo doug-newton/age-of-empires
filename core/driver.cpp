@@ -59,6 +59,8 @@ bool Driver::initGL() {
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
 	glfwSetKeyCallback(s_window, onKeyEvent);
+
+	return true;
 }
 
 Game Driver::s_game;
