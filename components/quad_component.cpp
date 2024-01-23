@@ -38,14 +38,11 @@ void QuadComponent::onRender() {
 	model = glm::scale(model, glm::vec3(scaling, 0.0f));
 	model = glm::rotate(model, glm::radians(rotation), glm::vec3(0.0f, 0.0f, 1.0f));
 
-	glm::mat4 view(1.0f);
-
 	GLuint program_id = this->m_shader_program->getID();
 	GLuint vao_id = this->m_vao->getID();
 
 	glUseProgram(program_id);
 	this->m_shader_program->setMatrix("model", model);
-	this->m_shader_program->setMatrix("view", view);
 
 	glBindVertexArray(vao_id);
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, (GLvoid*)0);
