@@ -38,6 +38,12 @@ GLuint ShaderProgram::getID() const {
 	return this->m_id;
 }
 
+
+void ShaderProgram::setMatrix(const std::string& uniformName, const glm::mat4& matrix) {
+	GLuint location = glGetUniformLocation(this->m_id, uniformName.c_str());
+	glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(matrix));
+}
+
 bool ShaderProgram::attachAndLinkShaders(const Shader& vertex_shader, const Shader& fragment_shader) {
 	this->m_id = glCreateProgram();
 	glAttachShader(this->m_id, vertex_shader.getID());
