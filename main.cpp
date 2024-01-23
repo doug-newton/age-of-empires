@@ -10,7 +10,7 @@
 using namespace std;
 
 bool load_resources(ResourceManager* manager) {
-	ShaderProgram* shader = new ShaderProgram("res/vertex_shader.glsl", "res/fragment_shader.glsl");
+	ShaderProgram* shader = new ShaderProgram("res/basic.vert", "res/basic.frag");
 
 	if (!shader->onInit()) {
 		delete shader;
