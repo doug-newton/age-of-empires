@@ -135,6 +135,7 @@
     <ClCompile Include="components\motion_component.cpp" />
     <ClCompile Include="components\quad_component.cpp" />
     <ClCompile Include="components\transform_component.cpp" />
+    <ClCompile Include="components\wasd_component.cpp" />
     <ClCompile Include="core\component.cpp" />
     <ClCompile Include="core\component_exists_exception.cpp" />
     <ClCompile Include="core\driver.cpp" />
@@ -154,6 +155,7 @@
     <ClInclude Include="components\motion_component.h" />
     <ClInclude Include="components\quad_component.h" />
     <ClInclude Include="components\transform_component.h" />
+    <ClInclude Include="components\wasd_component.h" />
     <ClInclude Include="core\component.h" />
     <ClInclude Include="core\component_exists_exception.h" />
     <ClInclude Include="core\driver.h" />

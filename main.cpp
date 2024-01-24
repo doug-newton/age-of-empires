@@ -8,6 +8,7 @@
 #include "core/entity.h"
 #include "components/transform_component.h"
 #include "components/motion_component.h"
+#include "components/wasd_component.h"
 
 using namespace std;
 
@@ -75,6 +76,8 @@ bool load_entities(Game* game) {
 	motion->setVelocity(0.00001f, 0.00001f);
 	motion->setRotationalVelocity(0.01f);
 	entity->registerComponent(motion);
+
+	entity->registerComponent(new WASDComponent());
 
 	game->addEntity(entity);
 
