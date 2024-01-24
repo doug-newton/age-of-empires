@@ -6,11 +6,15 @@
 #include "components/quad_component.h"
 #include "core/game.h"
 #include "core/entity.h"
+#include "components/transform_component.h"
+#include "components/motion_component.h"
+#include "components/wasd_component.h"
+#include "components/camera_component.h"
 
 using namespace std;
 
 bool load_resources(ResourceManager* manager) {
-	ShaderProgram* shader = new ShaderProgram("res/vertex_shader.glsl", "res/fragment_shader.glsl");
+	ShaderProgram* shader = new ShaderProgram("res/basic.vert", "res/basic.frag");
 
 	if (!shader->onInit()) {
 		delete shader;
@@ -22,6 +26,21 @@ bool load_resources(ResourceManager* manager) {
 	}
 	catch (resource_exists_exception ex) {
 		delete shader;
+		return false;
+	}
+
+	ShaderProgram* transform_shader = new ShaderProgram("res/transform.vert", "res/basic.frag");
+
+	if (!transform_shader->onInit()) {
+		delete transform_shader;
+		return false;
+	}
+
+	try {
+		manager->registerShaderProgram("transform", transform_shader);
+	}
+	catch (resource_exists_exception ex) {
+		delete transform_shader;
 		return false;
 	}
 
@@ -43,10 +62,44 @@ bool load_resources(ResourceManager* manager) {
 	return true;
 }
 
-bool load_entities(Game* game) {
+Entity* createSpinningBlock(float x, float y) {
 	Entity* entity = new Entity();
+
 	entity->registerComponent(new QuadComponent());
-	game->addEntity(entity);
+
+	TransformComponent* transform = new TransformComponent();
+	transform->setTranslation(x, y);
+	transform->setScaling(0.5f, 0.5f);
+	transform->setRotation(45.0f);
+	entity->registerComponent(transform);
+
+	MotionComponent* motion = new MotionComponent();
+	motion->setVelocity(0.00001f, 0.00001f);
+	motion->setRotationalVelocity(0.01f);
+	entity->registerComponent(motion);
+
+	return entity;
+}
+
+Entity* createCamera() {
+	Entity* camera = new Entity();
+	camera->registerComponent(new TransformComponent());
+	camera->registerComponent(new MotionComponent());
+	camera->registerComponent(new WASDComponent());
+	camera->registerComponent(new CameraComponent());
+	return camera;
+}
+
+bool load_entities(Game* game) {
+	Entity* block1 = createSpinningBlock(0.2f, 0.2f);
+	game->addEntity(block1);
+
+	Entity* block2 = createSpinningBlock(-0.4f, -0.4f);
+	game->addEntity(block2);
+
+	Entity* camera = createCamera();
+
+	game->addEntity(camera);
 
 	return true;
 }

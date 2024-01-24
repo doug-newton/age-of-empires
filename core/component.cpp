@@ -43,3 +43,7 @@ ResourceManager* Component::getResourceManager() {
 
 	return this->m_parent->getGame()->getResourceManager();
 }
+
+Component* Component::findComponent(const std::string& name) {
+	return this->m_parent->findComponent(name);
+}

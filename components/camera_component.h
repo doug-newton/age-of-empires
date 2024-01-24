@@ -1,21 +1,17 @@
 #include "../core/component.h"
 
-class ShaderProgram;
-class Vao;
 class TransformComponent;
+class ShaderProgram;
 
-class QuadComponent : public Component {
+class CameraComponent : public Component {
 public:
-	QuadComponent();
-	~QuadComponent();
+	CameraComponent();
+	virtual ~CameraComponent();
 
 	virtual bool onInit() override;
 	virtual void onRender() override;
 
-private:
-
-	ShaderProgram* m_shader_program;
-	Vao* m_vao;
+public:
 	TransformComponent* m_transform_component;
-
+	ShaderProgram* m_transform_shader_program;
 };
