@@ -3,23 +3,27 @@
 #include <vector>
 #include "resource_manager.h"
 
-class Entity;
+namespace aoe_engine {
 
-class Game {
+	class Entity;
 
-public:
-	Game();
-	~Game();
-	bool onInit();
-	void onUpdate(float delta);
-	void onRender();
-	void onKeyEvent(int key, int scanCode, int action, int mods);
+	class Game {
 
-	void addEntity(Entity* entity);
+	public:
+		Game();
+		~Game();
+		bool onInit();
+		void onUpdate(float delta);
+		void onRender();
+		void onKeyEvent(int key, int scanCode, int action, int mods);
 
-	ResourceManager* getResourceManager();
+		void addEntity(Entity* entity);
 
-private:
-	std::vector<Entity*> entities;
-	ResourceManager m_resource_manager;
-};
+		ResourceManager* getResourceManager();
+
+	private:
+		std::vector<Entity*> entities;
+		ResourceManager m_resource_manager;
+	};
+
+}

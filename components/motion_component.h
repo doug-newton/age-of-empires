@@ -3,24 +3,28 @@
 #include "../core/component.h"
 #include <glm/glm.hpp>
 
-class TransformComponent;
+namespace aoe_engine {
 
-class MotionComponent : public Component {
-public:
+	class TransformComponent;
 
-	MotionComponent();
-	virtual ~MotionComponent();
+	class MotionComponent : public Component {
+	public:
 
-	void setVelocity(float x, float y);
-	void setRotationalVelocity(float r);
+		MotionComponent();
+		virtual ~MotionComponent();
 
-	virtual bool onInit();
-	virtual void onUpdate(float delta);
+		void setVelocity(float x, float y);
+		void setRotationalVelocity(float r);
 
-private:
+		virtual bool onInit();
+		virtual void onUpdate(float delta);
 
-	glm::vec2 m_velocity;
-	float m_rotational_velocity;
-	TransformComponent* m_transform_component;
+	private:
 
-};
+		glm::vec2 m_velocity;
+		float m_rotational_velocity;
+		TransformComponent* m_transform_component;
+
+	};
+
+}

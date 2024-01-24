@@ -2,10 +2,14 @@
 
 #include "vao.h"
 
-class QuadVao : public Vao {
-public:
-	QuadVao();
-	virtual ~QuadVao();
+namespace aoe_engine {
 
-	virtual bool onInit();
-};
+	class QuadVao : public Vao {
+	public:
+		QuadVao();
+		virtual ~QuadVao();
+
+		virtual bool onInit();
+	};
+
+}

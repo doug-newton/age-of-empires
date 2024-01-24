@@ -1,17 +1,21 @@
 #include "../core/component.h"
 
-class TransformComponent;
-class ShaderProgram;
+namespace aoe_engine {
 
-class CameraComponent : public Component {
-public:
-	CameraComponent();
-	virtual ~CameraComponent();
+	class TransformComponent;
+	class ShaderProgram;
 
-	virtual bool onInit() override;
-	virtual void onRender() override;
+	class CameraComponent : public Component {
+	public:
+		CameraComponent();
+		virtual ~CameraComponent();
 
-public:
-	TransformComponent* m_transform_component;
-	ShaderProgram* m_transform_shader_program;
-};
+		virtual bool onInit() override;
+		virtual void onRender() override;
+
+	public:
+		TransformComponent* m_transform_component;
+		ShaderProgram* m_transform_shader_program;
+	};
+
+}

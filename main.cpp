@@ -12,6 +12,7 @@
 #include "components/camera_component.h"
 
 using namespace std;
+using namespace aoe_engine;
 
 bool load_resources(ResourceManager* manager) {
 	ShaderProgram* shader = new ShaderProgram("res/basic.vert", "res/basic.frag");

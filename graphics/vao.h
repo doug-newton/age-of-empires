@@ -3,17 +3,21 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
-class Vao {
-public:
+namespace aoe_engine {
 
-	Vao();
-	virtual ~Vao();
+	class Vao {
+	public:
 
-	virtual bool onInit() = 0;
+		Vao();
+		virtual ~Vao();
 
-	GLuint getID();
+		virtual bool onInit() = 0;
 
-protected:
-	GLuint m_id;
+		GLuint getID();
 
-};
+	protected:
+		GLuint m_id;
+
+	};
+
+}

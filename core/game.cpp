@@ -1,47 +1,51 @@
 #include "game.h"
 #include "entity.h"
 
-Game::Game() :
-	entities(0) {
-}
+namespace aoe_engine {
 
-Game::~Game() {
-	for (auto it = entities.begin(); it != entities.end(); ++it) {
-		delete (*it);
+	Game::Game() :
+		entities(0) {
 	}
-}
 
-bool Game::onInit() {
-	bool success = true;
-	for (auto it = entities.begin(); it != entities.end(); ++it) {
-		success = success && (*it)->onInit();
+	Game::~Game() {
+		for (auto it = entities.begin(); it != entities.end(); ++it) {
+			delete (*it);
+		}
 	}
-	return success;
-}
 
-void Game::onUpdate(float delta) {
-	for (auto it = entities.begin(); it != entities.end(); ++it) {
-		(*it)->onUpdate(delta);
+	bool Game::onInit() {
+		bool success = true;
+		for (auto it = entities.begin(); it != entities.end(); ++it) {
+			success = success && (*it)->onInit();
+		}
+		return success;
 	}
-}
 
-void Game::onRender() {
-	for (auto it = entities.begin(); it != entities.end(); ++it) {
-		(*it)->onRender();
+	void Game::onUpdate(float delta) {
+		for (auto it = entities.begin(); it != entities.end(); ++it) {
+			(*it)->onUpdate(delta);
+		}
 	}
-}
 
-void Game::onKeyEvent(int key, int scanCode, int action, int mods) {
-	for (auto it = entities.begin(); it != entities.end(); ++it) {
-		(*it)->onKeyEvent(key, scanCode, action, mods);
+	void Game::onRender() {
+		for (auto it = entities.begin(); it != entities.end(); ++it) {
+			(*it)->onRender();
+		}
 	}
-}
 
-void Game::addEntity(Entity* entity) {
-	entity->setGame(this);
-	this->entities.push_back(entity);
-}
+	void Game::onKeyEvent(int key, int scanCode, int action, int mods) {
+		for (auto it = entities.begin(); it != entities.end(); ++it) {
+			(*it)->onKeyEvent(key, scanCode, action, mods);
+		}
+	}
 
-ResourceManager* Game::getResourceManager() {
-	return &this->m_resource_manager;
+	void Game::addEntity(Entity* entity) {
+		entity->setGame(this);
+		this->entities.push_back(entity);
+	}
+
+	ResourceManager* Game::getResourceManager() {
+		return &this->m_resource_manager;
+	}
+
 }

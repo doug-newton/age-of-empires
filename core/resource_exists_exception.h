@@ -2,7 +2,12 @@
 
 #include <stdexcept>
 
-class resource_exists_exception : public std::exception {
-public:
-	const char* what() const override;
-};
+namespace aoe_engine {
+
+	class resource_exists_exception : public std::exception {
+	public:
+		const char* what() const override;
+	};
+
+}
+

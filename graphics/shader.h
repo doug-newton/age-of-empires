@@ -4,16 +4,21 @@
 #include <GLFW/glfw3.h>
 #include <string>
 
-class Shader {
-public:
-	Shader(GLuint type, const std::string& path);
-	~Shader();
+namespace aoe_engine {
 
-	GLuint getID() const;
-	bool loadAndCompile();
+	class Shader {
+	public:
+		Shader(GLuint type, const std::string& path);
+		~Shader();
 
-private:
-	GLuint m_id;
-	GLuint m_type;
-	std::string m_path;
-};
+		GLuint getID() const;
+		bool loadAndCompile();
+
+	private:
+		GLuint m_id;
+		GLuint m_type;
+		std::string m_path;
+	};
+
+}
+

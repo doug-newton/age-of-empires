@@ -3,28 +3,32 @@
 #include <string>
 #include "resource_manager.h"
 
-class Entity;
+namespace aoe_engine {
 
-class Component {
-public:
+	class Entity;
 
-	Component(const std::string& name);
-	~Component();
+	class Component {
+	public:
 
-	virtual bool onInit();
-	virtual void onUpdate(float delta);
-	virtual void onRender();
-	virtual void onKeyEvent(int key, int scancode, int action, int mods);
+		Component(const std::string& name);
+		~Component();
 
-	const std::string& getName();
-	void setParent(Entity* parent);
+		virtual bool onInit();
+		virtual void onUpdate(float delta);
+		virtual void onRender();
+		virtual void onKeyEvent(int key, int scancode, int action, int mods);
 
-protected:
-	ResourceManager* getResourceManager();
-	Component* findComponent(const std::string& name);
+		const std::string& getName();
+		void setParent(Entity* parent);
 
-private:
+	protected:
+		ResourceManager* getResourceManager();
+		Component* findComponent(const std::string& name);
 
-	Entity* m_parent;
-	std::string m_name;
-};
+	private:
+
+		Entity* m_parent;
+		std::string m_name;
+	};
+
+}

@@ -5,25 +5,29 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-class TransformComponent : public Component {
+namespace aoe_engine {
 
-public:
+	class TransformComponent : public Component {
 
-	TransformComponent();
-	virtual ~TransformComponent();
+	public:
 
-	const glm::vec2& getTranslation();
-	const glm::vec2& getScaling();
-	float getRotation();
+		TransformComponent();
+		virtual ~TransformComponent();
 
-	void setTranslation(float x, float y);
-	void setScaling(float w, float h);
-	void setRotation(float r);
+		const glm::vec2& getTranslation();
+		const glm::vec2& getScaling();
+		float getRotation();
 
-private:
+		void setTranslation(float x, float y);
+		void setScaling(float w, float h);
+		void setRotation(float r);
 
-	glm::vec2 m_translation;
-	glm::vec2 m_scaling;
+	private:
 
-	float m_rotation;
-};
+		glm::vec2 m_translation;
+		glm::vec2 m_scaling;
+
+		float m_rotation;
+	};
+
+}

@@ -2,17 +2,21 @@
 
 #include "vao.h"
 
-Vao::Vao() :
-	m_id(0) {
-}
+namespace aoe_engine {
 
-Vao::~Vao() {
-	if (this->m_id == 0) {
-		return;
+	Vao::Vao() :
+		m_id(0) {
 	}
-	glDeleteVertexArrays(1, &this->m_id);
-}
 
-GLuint Vao::getID() {
-	return this->m_id;
+	Vao::~Vao() {
+		if (this->m_id == 0) {
+			return;
+		}
+		glDeleteVertexArrays(1, &this->m_id);
+	}
+
+	GLuint Vao::getID() {
+		return this->m_id;
+	}
+
 }

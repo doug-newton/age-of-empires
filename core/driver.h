@@ -3,27 +3,32 @@
 #include "game.h"
 
 struct GLFWwindow;
-class ResourceManager;
 
-class Driver {
+namespace aoe_engine {
 
-public:
-	static void run();
-	static bool onInit();
-	static void onUpdate(float delta);
-	static void onRender();
-	static void onCleanUp();
+	class ResourceManager;
 
-	static void onKeyEvent(GLFWwindow* window, int key, int scanCode, int action, int mods);
+	class Driver {
 
-	static void setResourceLoaderCallback(bool (*callback)(ResourceManager*));
-	static void setEntityLoaderCallback(bool (*callback)(Game*));
+	public:
+		static void run();
+		static bool onInit();
+		static void onUpdate(float delta);
+		static void onRender();
+		static void onCleanUp();
 
-private:
-	static Game s_game;
-	static GLFWwindow* s_window;
+		static void onKeyEvent(GLFWwindow* window, int key, int scanCode, int action, int mods);
 
-	static bool initGL();
-	static bool (*s_resource_loader_callback)(ResourceManager*);
-	static bool (*s_entity_loader_callback)(Game*);
-};
+		static void setResourceLoaderCallback(bool (*callback)(ResourceManager*));
+		static void setEntityLoaderCallback(bool (*callback)(Game*));
+
+	private:
+		static Game s_game;
+		static GLFWwindow* s_window;
+
+		static bool initGL();
+		static bool (*s_resource_loader_callback)(ResourceManager*);
+		static bool (*s_entity_loader_callback)(Game*);
+	};
+
+}

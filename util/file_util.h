@@ -2,4 +2,8 @@
 
 #include <string>
 
-std::string read_file(const std::string& path);
+namespace aoe_engine {
+
+	std::string read_file(const std::string& path);
+
+}

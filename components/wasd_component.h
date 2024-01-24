@@ -2,18 +2,21 @@
 
 #include "../core/component.h"
 
-class MotionComponent;
+namespace aoe_engine {
 
-class WASDComponent : public Component {
-public:
-	WASDComponent();
-	virtual ~WASDComponent();
+	class MotionComponent;
 
-	virtual bool onInit() override;
-	virtual void onKeyEvent(int key, int scanCode, int action, int mods) override;
+	class WASDComponent : public Component {
+	public:
+		WASDComponent();
+		virtual ~WASDComponent();
 
-private:
-	float m_speed;
-	MotionComponent* m_motion_component;
-};
+		virtual bool onInit() override;
+		virtual void onKeyEvent(int key, int scanCode, int action, int mods) override;
 
+	private:
+		float m_speed;
+		MotionComponent* m_motion_component;
+	};
+
+}

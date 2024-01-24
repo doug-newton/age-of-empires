@@ -9,24 +9,28 @@
 
 #include "shader.h"
 
-class ShaderProgram {
+namespace aoe_engine {
 
-public:
+	class ShaderProgram {
 
-	ShaderProgram(const std::string& vertexPath, const std::string& fragmentPath);
-	~ShaderProgram();
+	public:
 
-	bool onInit();
-	GLuint getID() const;
+		ShaderProgram(const std::string& vertexPath, const std::string& fragmentPath);
+		~ShaderProgram();
 
-	void setMatrix(const std::string& uniformName, const glm::mat4& matrix);
+		bool onInit();
+		GLuint getID() const;
 
-private:
+		void setMatrix(const std::string& uniformName, const glm::mat4& matrix);
 
-	GLuint m_id;
-	std::string m_vertex_path;
-	std::string m_fragment_path;
+	private:
 
-	bool attachAndLinkShaders(const Shader& vertex_shader, const Shader& fragment_shader);
+		GLuint m_id;
+		std::string m_vertex_path;
+		std::string m_fragment_path;
 
-};
+		bool attachAndLinkShaders(const Shader& vertex_shader, const Shader& fragment_shader);
+
+	};
+
+}

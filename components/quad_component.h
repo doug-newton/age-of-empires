@@ -1,21 +1,25 @@
 #include "../core/component.h"
 
-class ShaderProgram;
-class Vao;
-class TransformComponent;
+namespace aoe_engine {
 
-class QuadComponent : public Component {
-public:
-	QuadComponent();
-	~QuadComponent();
+	class ShaderProgram;
+	class Vao;
+	class TransformComponent;
 
-	virtual bool onInit() override;
-	virtual void onRender() override;
+	class QuadComponent : public Component {
+	public:
+		QuadComponent();
+		~QuadComponent();
 
-private:
+		virtual bool onInit() override;
+		virtual void onRender() override;
 
-	ShaderProgram* m_shader_program;
-	Vao* m_vao;
-	TransformComponent* m_transform_component;
+	private:
 
-};
+		ShaderProgram* m_shader_program;
+		Vao* m_vao;
+		TransformComponent* m_transform_component;
+
+	};
+
+}

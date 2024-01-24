@@ -3,38 +3,42 @@
 #include <string>
 #include <map>
 
-template <class ResourceType>
-class GenericResourceManager {
+namespace aoe_engine {
 
-public:
+	template <class ResourceType>
+	class GenericResourceManager {
 
-	GenericResourceManager() {
-	}
+	public:
 
-	~GenericResourceManager() {
-		for (auto it = m_resources.begin(); it != m_resources.end(); ++it) {
-			delete (*it).second;
-		}
-	}
-
-	void registerResource(const std::string& name, ResourceType* resource) {
-		if (m_resources.find(name) != m_resources.end()) {
-			throw new resource_exists_exception();
+		GenericResourceManager() {
 		}
 
-		m_resources[name] = resource;
-	}
-
-	ResourceType* getResource(const std::string& name) {
-		auto result = m_resources.find(name);
-
-		if (result == m_resources.end()) {
-			return nullptr;
+		~GenericResourceManager() {
+			for (auto it = m_resources.begin(); it != m_resources.end(); ++it) {
+				delete (*it).second;
+			}
 		}
 
-		return (*result).second;
-	}
+		void registerResource(const std::string& name, ResourceType* resource) {
+			if (m_resources.find(name) != m_resources.end()) {
+				throw new resource_exists_exception();
+			}
 
-private:
-	std::map<std::string, ResourceType*> m_resources;
-};
+			m_resources[name] = resource;
+		}
+
+		ResourceType* getResource(const std::string& name) {
+			auto result = m_resources.find(name);
+
+			if (result == m_resources.end()) {
+				return nullptr;
+			}
+
+			return (*result).second;
+		}
+
+	private:
+		std::map<std::string, ResourceType*> m_resources;
+	};
+
+}
