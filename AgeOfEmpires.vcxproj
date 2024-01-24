@@ -132,6 +132,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="components\camera_component.cpp" />
     <ClCompile Include="components\motion_component.cpp" />
     <ClCompile Include="components\quad_component.cpp" />
     <ClCompile Include="components\transform_component.cpp" />
@@ -152,6 +153,7 @@
     <ClCompile Include="util\file_util.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="components\camera_component.h" />
     <ClInclude Include="components\motion_component.h" />
     <ClInclude Include="components\quad_component.h" />
     <ClInclude Include="components\transform_component.h" />

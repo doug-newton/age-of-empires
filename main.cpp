@@ -9,6 +9,7 @@
 #include "components/transform_component.h"
 #include "components/motion_component.h"
 #include "components/wasd_component.h"
+#include "components/camera_component.h"
 
 using namespace std;
 
@@ -61,13 +62,13 @@ bool load_resources(ResourceManager* manager) {
 	return true;
 }
 
-bool load_entities(Game* game) {
+Entity* createSpinningBlock(float x, float y) {
 	Entity* entity = new Entity();
 
 	entity->registerComponent(new QuadComponent());
 
 	TransformComponent* transform = new TransformComponent();
-	transform->setTranslation(0.2f, 0.2f);
+	transform->setTranslation(x, y);
 	transform->setScaling(0.5f, 0.5f);
 	transform->setRotation(45.0f);
 	entity->registerComponent(transform);
@@ -77,9 +78,28 @@ bool load_entities(Game* game) {
 	motion->setRotationalVelocity(0.01f);
 	entity->registerComponent(motion);
 
-	entity->registerComponent(new WASDComponent());
+	return entity;
+}
 
-	game->addEntity(entity);
+Entity* createCamera() {
+	Entity* camera = new Entity();
+	camera->registerComponent(new TransformComponent());
+	camera->registerComponent(new MotionComponent());
+	camera->registerComponent(new WASDComponent());
+	camera->registerComponent(new CameraComponent());
+	return camera;
+}
+
+bool load_entities(Game* game) {
+	Entity* block1 = createSpinningBlock(0.2f, 0.2f);
+	game->addEntity(block1);
+
+	Entity* block2 = createSpinningBlock(-0.4f, -0.4f);
+	game->addEntity(block2);
+
+	Entity* camera = createCamera();
+
+	game->addEntity(camera);
 
 	return true;
 }
