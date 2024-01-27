@@ -40,6 +40,40 @@ bool create_and_register_shader(
 	return true;
 }
 
+bool load_and_register_vao(ResourceManager* manager, const std::string& name, Vao* vao) {
+	if (!vao->onInit()) {
+		delete vao;
+		return false;
+	}
+
+	try {
+		manager->registerVao(name, vao);
+	}
+	catch (resource_exists_exception ex) {
+		delete vao;
+		return false;
+	}
+
+	return true;
+}
+
+bool load_and_register_texture(ResourceManager* manager, const std::string& name, Texture* texture) {
+	if (!texture->onInit()) {
+		delete texture;
+		return false;
+	}
+
+	try {
+		manager->registerTexture(name, texture);
+	}
+	catch (resource_exists_exception ex) {
+		delete texture;
+		return false;
+	}
+
+	return true;
+}
+
 bool load_resources(ResourceManager* manager) {
 	if (!create_and_register_shader(
 		manager,
@@ -65,48 +99,15 @@ bool load_resources(ResourceManager* manager) {
 		return false;
 	}
 
-	Vao* quad = new QuadVao();
-
-	if (!quad->onInit()) {
-		delete quad;
+	if (!load_and_register_vao(manager, "quad", new QuadVao())) {
 		return false;
 	}
 
-	try {
-		manager->registerVao("quad", quad);
-	}
-	catch (resource_exists_exception ex) {
-		delete quad;
+	if (!load_and_register_vao(manager, "sprite", new SpriteVao())) {
 		return false;
 	}
 
-	Vao* sprite = new SpriteVao();
-
-	if (!sprite->onInit()) {
-		delete sprite;
-		return false;
-	}
-
-	try {
-		manager->registerVao("sprite", sprite);
-	}
-	catch (resource_exists_exception ex) {
-		delete sprite;
-		return false;
-	}
-
-	Texture* tilesheet = new Texture("res/images/tilesheet.png");
-
-	if (!tilesheet->onInit()) {
-		delete tilesheet;
-		return false;
-	}
-
-	try {
-		manager->registerTexture("tilesheet", tilesheet);
-	}
-	catch (resource_exists_exception ex) {
-		delete tilesheet;
+	if (!load_and_register_texture(manager, "tilesheet", new Texture("res/images/tilesheet.png"))) {
 		return false;
 	}
 
@@ -125,8 +126,8 @@ Entity* createSpinningBlock(float x, float y) {
 	entity->registerComponent(transform);
 
 	MotionComponent* motion = new MotionComponent();
-	motion->setVelocity(0.00001f, 0.00001f);
-	motion->setRotationalVelocity(0.01f);
+	motion->setVelocity(0.1f, 0.1f);
+	motion->setRotationalVelocity(10.0f);
 	entity->registerComponent(motion);
 
 	return entity;
@@ -140,13 +141,7 @@ Entity* createTexturedSpinningBlock(float x, float y) {
 	TransformComponent* transform = new TransformComponent();
 	transform->setTranslation(x, y);
 	transform->setScaling(0.5f, 0.5f);
-	transform->setRotation(45.0f);
 	entity->registerComponent(transform);
-
-	MotionComponent* motion = new MotionComponent();
-	motion->setVelocity(0.00001f, 0.00001f);
-	motion->setRotationalVelocity(0.01f);
-	entity->registerComponent(motion);
 
 	return entity;
 }
