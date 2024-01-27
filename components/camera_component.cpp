@@ -33,6 +33,7 @@ namespace aoe_engine {
 		glm::mat4 view(1.0);
 		view = glm::translate(view, glm::vec3(-translation.x, -translation.y, 0.0f));
 
+		this->m_transform_shader_program->bind();
 		this->m_transform_shader_program->setMatrix("view", view);
 	}
 
