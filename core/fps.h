@@ -8,8 +8,8 @@ namespace aoe_engine {
 		float getDelta();
 		void calcDelta();
 	private:
-		float delta;
-		float lastTime;
+		float m_delta;
+		float m_last_time;
 	};
 
 }

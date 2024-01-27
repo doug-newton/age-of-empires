@@ -5,19 +5,19 @@
 namespace aoe_engine {
 
 	FPS::FPS() :
-		delta(0.0f),
-		lastTime(0.0f) {
-		this->lastTime = glfwGetTime();
+		m_delta(0.0f),
+		m_last_time(0.0f) {
+		this->m_last_time = glfwGetTime();
 	}
 
 	float FPS::getDelta() {
-		return this->delta;
+		return this->m_delta;
 	}
 
 	void FPS::calcDelta() {
-		float currentTime = glfwGetTime();
-		delta = currentTime - lastTime;
-		lastTime = currentTime;
+		float current_time = glfwGetTime();
+		m_delta = current_time - m_last_time;
+		m_last_time = current_time;
 	}
 
 }
