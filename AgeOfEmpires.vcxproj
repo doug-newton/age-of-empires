@@ -149,6 +149,7 @@
     <ClCompile Include="graphics\quad_vao.cpp" />
     <ClCompile Include="graphics\shader.cpp" />
     <ClCompile Include="graphics\shader_program.cpp" />
+    <ClCompile Include="graphics\texture.cpp" />
     <ClCompile Include="graphics\vao.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="stb_image.cpp" />
@@ -172,6 +173,7 @@
     <ClInclude Include="graphics\quad_vao.h" />
     <ClInclude Include="graphics\shader.h" />
     <ClInclude Include="graphics\shader_program.h" />
+    <ClInclude Include="graphics\texture.h" />
     <ClInclude Include="graphics\vao.h" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="util\file_util.h" />
