@@ -31,14 +31,7 @@ namespace aoe_engine {
 	}
 
 	void QuadComponent::onRender() {
-		glm::vec2 translation = this->m_transform_component->getTranslation();
-		glm::vec2 scaling = this->m_transform_component->getScaling();
-		float rotation = this->m_transform_component->getRotation();
-
-		glm::mat4 model(1.0f);
-		model = glm::translate(model, glm::vec3(translation, 0.0f));
-		model = glm::scale(model, glm::vec3(scaling, 0.0f));
-		model = glm::rotate(model, glm::radians(rotation), glm::vec3(0.0f, 0.0f, 1.0f));
+		glm::mat4 model = this->m_transform_component->createModelMatrix();
 
 		GLuint program_id = this->m_shader_program->getID();
 		GLuint vao_id = this->m_vao->getID();

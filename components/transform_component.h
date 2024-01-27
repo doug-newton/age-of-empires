@@ -17,6 +17,7 @@ namespace aoe_engine {
 		const glm::vec2& getTranslation();
 		const glm::vec2& getScaling();
 		float getRotation();
+		glm::mat4 createModelMatrix();
 
 		void setTranslation(float x, float y);
 		void setScaling(float w, float h);

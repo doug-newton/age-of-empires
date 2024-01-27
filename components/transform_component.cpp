@@ -24,6 +24,16 @@ namespace aoe_engine {
 		return this->m_rotation;
 	}
 
+	glm::mat4 TransformComponent::createModelMatrix() {
+		glm::mat4 model(1.0f);
+
+		model = glm::translate(model, glm::vec3(this->m_translation, 0.0f));
+		model = glm::scale(model, glm::vec3(this->m_scaling, 0.0f));
+		model = glm::rotate(model, glm::radians(this->m_rotation), glm::vec3(0.0f, 0.0f, 1.0f));
+
+		return model;
+	}
+
 	void TransformComponent::setTranslation(float x, float y) {
 		this->m_translation.x = x;
 		this->m_translation.y = y;
