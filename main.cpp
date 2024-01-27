@@ -2,6 +2,7 @@
 #include "graphics/shader_program.h"
 #include "core/resource_manager.h"
 #include "graphics/quad_vao.h";
+#include "graphics/sprite_vao.h";
 #include "core/component.h"
 #include "components/quad_component.h"
 #include "core/game.h"
@@ -10,6 +11,7 @@
 #include "components/motion_component.h"
 #include "components/wasd_component.h"
 #include "components/camera_component.h"
+#include "components/sprite_component.h"
 
 using namespace std;
 using namespace aoe_engine;
@@ -78,6 +80,21 @@ bool load_resources(ResourceManager* manager) {
 		return false;
 	}
 
+	Vao* sprite = new SpriteVao();
+
+	if (!sprite->onInit()) {
+		delete sprite;
+		return false;
+	}
+
+	try {
+		manager->registerVao("sprite", sprite);
+	}
+	catch (resource_exists_exception ex) {
+		delete sprite;
+		return false;
+	}
+
 	Texture* tilesheet = new Texture("res/images/tilesheet.png");
 
 	if (!tilesheet->onInit()) {
@@ -115,6 +132,25 @@ Entity* createSpinningBlock(float x, float y) {
 	return entity;
 }
 
+Entity* createTexturedSpinningBlock(float x, float y) {
+	Entity* entity = new Entity();
+
+	entity->registerComponent(new SpriteComponent("tilesheet"));
+
+	TransformComponent* transform = new TransformComponent();
+	transform->setTranslation(x, y);
+	transform->setScaling(0.5f, 0.5f);
+	transform->setRotation(45.0f);
+	entity->registerComponent(transform);
+
+	MotionComponent* motion = new MotionComponent();
+	motion->setVelocity(0.00001f, 0.00001f);
+	motion->setRotationalVelocity(0.01f);
+	entity->registerComponent(motion);
+
+	return entity;
+}
+
 Entity* createCamera() {
 	Entity* camera = new Entity();
 	camera->registerComponent(new TransformComponent());
@@ -128,7 +164,7 @@ bool load_entities(Game* game) {
 	Entity* block1 = createSpinningBlock(0.2f, 0.2f);
 	game->addEntity(block1);
 
-	Entity* block2 = createSpinningBlock(-0.4f, -0.4f);
+	Entity* block2 = createTexturedSpinningBlock(-0.4f, -0.4f);
 	game->addEntity(block2);
 
 	Entity* camera = createCamera();
