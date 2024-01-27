@@ -15,6 +15,8 @@ namespace aoe_engine {
 
 		GLuint getID();
 
+		void bind();
+
 	protected:
 		GLuint m_id;
 

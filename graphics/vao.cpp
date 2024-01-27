@@ -19,4 +19,8 @@ namespace aoe_engine {
 		return this->m_id;
 	}
 
+	void Vao::bind() {
+		glBindVertexArray(this->m_id);
+	}
+
 }

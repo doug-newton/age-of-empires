@@ -33,13 +33,11 @@ namespace aoe_engine {
 	void QuadComponent::onRender() {
 		glm::mat4 model = this->m_transform_component->createModelMatrix();
 
-		GLuint program_id = this->m_shader_program->getID();
-		GLuint vao_id = this->m_vao->getID();
-
-		glUseProgram(program_id);
+		this->m_shader_program->bind();
 		this->m_shader_program->setMatrix("model", model);
 
-		glBindVertexArray(vao_id);
+		this->m_vao->bind();
+
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, (GLvoid*)0);
 	}
 

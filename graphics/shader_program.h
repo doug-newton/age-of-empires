@@ -21,6 +21,8 @@ namespace aoe_engine {
 		bool onInit();
 		GLuint getID() const;
 
+		void bind() const;
+
 		void setMatrix(const std::string& uniformName, const glm::mat4& matrix);
 
 	private:
