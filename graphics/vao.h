@@ -17,8 +17,11 @@ namespace aoe_engine {
 
 		void bind();
 
+		void render();
+
 	protected:
 		GLuint m_id;
+		int n_num_elements;
 
 	};
 

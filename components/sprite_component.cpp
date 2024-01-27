@@ -44,9 +44,7 @@ namespace aoe_engine {
 		this->m_shader_program->setMatrix("model", model);
 		this->m_shader_program->bindTexture("texture_id", this->m_texture->getID());
 
-		this->m_vao->bind();
-
-		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, (GLvoid*)0);
+		this->m_vao->render();
 	}
 
 }
