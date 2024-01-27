@@ -49,6 +49,13 @@ namespace aoe_engine {
 		glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(matrix));
 	}
 
+	void ShaderProgram::bindTexture(const std::string& uniformName, GLuint textureID) {
+		GLuint location = glGetUniformLocation(this->m_id, uniformName.c_str());
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_2D, textureID);
+		glUniform1ui(location, 0);
+	}
+
 	bool ShaderProgram::attachAndLinkShaders(const Shader& vertex_shader, const Shader& fragment_shader) {
 		this->m_id = glCreateProgram();
 		glAttachShader(this->m_id, vertex_shader.getID());
