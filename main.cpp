@@ -14,8 +14,13 @@
 using namespace std;
 using namespace aoe_engine;
 
-bool load_resources(ResourceManager* manager) {
-	ShaderProgram* shader = new ShaderProgram("res/shaders/basic.vert", "res/shaders/basic.frag");
+bool create_and_register_shader(
+	ResourceManager* manager,
+	const std::string& name,
+	const std::string& vertex_source,
+	const std::string& fragment_source
+) {
+	ShaderProgram* shader = new ShaderProgram(vertex_source, fragment_source);
 
 	if (!shader->onInit()) {
 		delete shader;
@@ -23,25 +28,38 @@ bool load_resources(ResourceManager* manager) {
 	}
 
 	try {
-		manager->registerShaderProgram("basic", shader);
+		manager->registerShaderProgram(name, shader);
 	}
 	catch (resource_exists_exception ex) {
 		delete shader;
 		return false;
 	}
 
-	ShaderProgram* transform_shader = new ShaderProgram("res/shaders/transform.vert", "res/shaders/basic.frag");
+	return true;
+}
 
-	if (!transform_shader->onInit()) {
-		delete transform_shader;
+bool load_resources(ResourceManager* manager) {
+	if (!create_and_register_shader(
+		manager,
+		"basic",
+		"res/shaders/basic.vert",
+		"res/shaders/basic.frag")) {
 		return false;
 	}
 
-	try {
-		manager->registerShaderProgram("transform", transform_shader);
+	if (!create_and_register_shader(
+		manager,
+		"transform",
+		"res/shaders/transform.vert",
+		"res/shaders/basic.frag")) {
+		return false;
 	}
-	catch (resource_exists_exception ex) {
-		delete transform_shader;
+
+	if (!create_and_register_shader(
+		manager,
+		"texture",
+		"res/shaders/texture.vert",
+		"res/shaders/texture.frag")) {
 		return false;
 	}
 
