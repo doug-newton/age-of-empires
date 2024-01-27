@@ -24,4 +24,12 @@ namespace aoe_engine {
 		return this->m_vao_manager.getResource(name);
 	}
 
+	void ResourceManager::registerTexture(const std::string& name, Texture* texture) {
+		this->m_texture_manager.registerResource(name, texture);
+	}
+
+	Texture* ResourceManager::getTexture(const std::string& name) {
+		return this->m_texture_manager.getResource(name);
+	}
+
 }

@@ -4,6 +4,7 @@
 #include <string>
 #include "../graphics/shader_program.h"
 #include "../graphics/vao.h"
+#include "../graphics/texture.h"
 #include "resource_exists_exception.h"
 #include "generic_resource_manager.h"
 
@@ -20,9 +21,13 @@ namespace aoe_engine {
 		void registerVao(const std::string& name, Vao* vao);
 		Vao* getVao(const std::string& name);
 
+		void registerTexture(const std::string& name, Texture* texture);
+		Texture* getTexture(const std::string& name);
+
 	private:
 		GenericResourceManager<ShaderProgram> m_shader_program_manager;
 		GenericResourceManager<Vao> m_vao_manager;
+		GenericResourceManager<Texture> m_texture_manager;
 
 	};
 
