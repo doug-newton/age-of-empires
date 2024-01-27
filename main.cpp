@@ -15,7 +15,7 @@ using namespace std;
 using namespace aoe_engine;
 
 bool load_resources(ResourceManager* manager) {
-	ShaderProgram* shader = new ShaderProgram("res/basic.vert", "res/basic.frag");
+	ShaderProgram* shader = new ShaderProgram("res/shaders/basic.vert", "res/shaders/basic.frag");
 
 	if (!shader->onInit()) {
 		delete shader;
@@ -30,7 +30,7 @@ bool load_resources(ResourceManager* manager) {
 		return false;
 	}
 
-	ShaderProgram* transform_shader = new ShaderProgram("res/transform.vert", "res/basic.frag");
+	ShaderProgram* transform_shader = new ShaderProgram("res/shaders/transform.vert", "res/shaders/basic.frag");
 
 	if (!transform_shader->onInit()) {
 		delete transform_shader;
