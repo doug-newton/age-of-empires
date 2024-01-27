@@ -13,7 +13,7 @@ namespace aoe_engine {
 		while (!glfwWindowShouldClose(s_window)) {
 			glClear(GL_COLOR_BUFFER_BIT);
 			glfwPollEvents();
-			onUpdate(1.0);
+			onUpdate();
 			onRender();
 			glfwSwapBuffers(s_window);
 		}
@@ -43,7 +43,9 @@ namespace aoe_engine {
 		return true;
 	}
 
-	void Driver::onUpdate(float delta) {
+	void Driver::onUpdate() {
+		s_fps.calcDelta();
+		float delta = s_fps.getDelta();
 		s_game.onUpdate(delta);
 	}
 
@@ -102,6 +104,7 @@ namespace aoe_engine {
 
 	Game Driver::s_game;
 	GLFWwindow* Driver::s_window = nullptr;
+	FPS Driver::s_fps;
 	bool (*Driver::s_resource_loader_callback)(ResourceManager*) = nullptr;
 	bool (*Driver::s_entity_loader_callback)(Game*) = nullptr;
 

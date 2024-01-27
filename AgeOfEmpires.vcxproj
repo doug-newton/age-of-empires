@@ -141,6 +141,7 @@
     <ClCompile Include="core\component_exists_exception.cpp" />
     <ClCompile Include="core\driver.cpp" />
     <ClCompile Include="core\entity.cpp" />
+    <ClCompile Include="core\fps.cpp" />
     <ClCompile Include="core\game.cpp" />
     <ClCompile Include="core\resource_exists_exception.cpp" />
     <ClCompile Include="core\resource_manager.cpp" />
@@ -162,6 +163,7 @@
     <ClInclude Include="core\component_exists_exception.h" />
     <ClInclude Include="core\driver.h" />
     <ClInclude Include="core\entity.h" />
+    <ClInclude Include="core\fps.h" />
     <ClInclude Include="core\game.h" />
     <ClInclude Include="core\generic_resource_manager.h" />
     <ClInclude Include="core\resource_exists_exception.h" />
