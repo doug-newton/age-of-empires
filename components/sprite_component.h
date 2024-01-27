@@ -3,6 +3,7 @@
 #include "../core/component.h"
 #include "../graphics/shader_program.h"
 #include "../graphics/texture.h"
+#include "../graphics/vao.h"
 #include <string>
 
 namespace aoe_engine {
@@ -21,6 +22,7 @@ namespace aoe_engine {
 	private:
 		ShaderProgram* m_shader_program;
 		Texture* m_texture;
+		Vao* m_vao;
 		TransformComponent* m_transform_component;
 		std::string m_texture_name;
 
