@@ -4,10 +4,11 @@
 
 namespace aoe_engine {
 
-	CameraComponent::CameraComponent() :
+	CameraComponent::CameraComponent(std::vector<std::string> programNames) :
 		Component("camera"),
 		m_transform_component(nullptr),
-		m_transform_shader_program(nullptr) {
+		m_program_names(programNames),
+		m_shader_programs(0) {
 	}
 
 	CameraComponent::~CameraComponent() {
@@ -17,11 +18,18 @@ namespace aoe_engine {
 		void* p_transform_component = findComponent("transform");
 		this->m_transform_component = static_cast<TransformComponent*>(p_transform_component);
 
-		ResourceManager* mgr = getResourceManager();
-		this->m_transform_shader_program = mgr->getShaderProgram("transform");
-
-		if (this->m_transform_component == nullptr || this->m_transform_shader_program == nullptr) {
+		if (this->m_transform_component == nullptr) {
 			return false;
+		}
+
+		ResourceManager* mgr = getResourceManager();
+
+		for (auto it = this->m_program_names.begin(); it != m_program_names.end(); ++it) {
+			ShaderProgram* shader_program = mgr->getShaderProgram(*it);
+			if (shader_program == nullptr) {
+				return false;
+			}
+			this->m_shader_programs.push_back(shader_program);
 		}
 
 		return true;
@@ -33,8 +41,10 @@ namespace aoe_engine {
 		glm::mat4 view(1.0);
 		view = glm::translate(view, glm::vec3(-translation.x, -translation.y, 0.0f));
 
-		this->m_transform_shader_program->bind();
-		this->m_transform_shader_program->setMatrix("view", view);
+		for (auto it = this->m_shader_programs.begin(); it != this->m_shader_programs.end(); it++) {
+			(*it)->bind();
+			(*it)->setMatrix("view", view);
+		}
 	}
 
 }

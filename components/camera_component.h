@@ -1,4 +1,5 @@
 #include "../core/component.h"
+#include <vector>
 
 namespace aoe_engine {
 
@@ -7,15 +8,16 @@ namespace aoe_engine {
 
 	class CameraComponent : public Component {
 	public:
-		CameraComponent();
+		CameraComponent(std::vector<std::string> programNames);
 		virtual ~CameraComponent();
 
 		virtual bool onInit() override;
 		virtual void onRender() override;
 
-	public:
+	private:
 		TransformComponent* m_transform_component;
-		ShaderProgram* m_transform_shader_program;
+		std::vector<std::string> m_program_names;
+		std::vector<ShaderProgram*> m_shader_programs;
 	};
 
 }

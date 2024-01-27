@@ -156,7 +156,7 @@ Entity* createCamera() {
 	camera->registerComponent(new TransformComponent());
 	camera->registerComponent(new MotionComponent());
 	camera->registerComponent(new WASDComponent());
-	camera->registerComponent(new CameraComponent());
+	camera->registerComponent(new CameraComponent({"transform", "texture"}));
 	return camera;
 }
 
