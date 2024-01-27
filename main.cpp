@@ -78,6 +78,21 @@ bool load_resources(ResourceManager* manager) {
 		return false;
 	}
 
+	Texture* tilesheet = new Texture("res/images/tilesheet.png");
+
+	if (!tilesheet->onInit()) {
+		delete tilesheet;
+		return false;
+	}
+
+	try {
+		manager->registerTexture("tilesheet", tilesheet);
+	}
+	catch (resource_exists_exception ex) {
+		delete tilesheet;
+		return false;
+	}
+
 	return true;
 }
 
