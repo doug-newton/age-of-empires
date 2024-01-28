@@ -7,8 +7,8 @@ namespace aoe_engine {
 		int quad = r * w + c;
 		int begin = quad * 4 * 5;
 
-		float map_left = -w * 1.0f / 2;
-		float map_bottom = h * 1.0f / 2;
+		float map_left = -(w * 1.0f) / 2;
+		float map_bottom = (h * 1.0f) / 2;
 
 		int sides_x[] = { 0, 1, 1, 0 };
 		int sides_y[] = { 0, 0, 1, 1 };
@@ -24,8 +24,8 @@ namespace aoe_engine {
 
 			std::cout << side_x << ", " << side_y << std::endl;
 
-			vertices[begin + i * 5 + 0] = map_left + (side_x + c) * 0.5f - 0.5f;
-			vertices[begin + i * 5 + 1] = map_bottom - ((side_y + r) * 0.5f - 0.5f);
+			vertices[begin + i * 5 + 0] = map_left + (side_x + c);
+			vertices[begin + i * 5 + 1] = map_bottom - (side_y + r);
 			vertices[begin + i * 5 + 2] = 1.0f;
 			vertices[begin + i * 5 + 3] = (tc_x + side_x) * tile_sz;
 			vertices[begin + i * 5 + 4] = (tc_y + (1-side_y)) * tile_sz;

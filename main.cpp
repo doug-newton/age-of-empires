@@ -164,7 +164,11 @@ Entity* create_map() {
 
 Entity* createCamera() {
 	Entity* camera = new Entity();
-	camera->registerComponent(new TransformComponent());
+
+	TransformComponent* tc = new TransformComponent();
+	tc->setScaling(0.25f, 0.25f);
+	camera->registerComponent(tc);
+
 	camera->registerComponent(new MotionComponent());
 	camera->registerComponent(new WASDComponent());
 	camera->registerComponent(new CameraComponent({"transform", "texture"}));

@@ -37,9 +37,11 @@ namespace aoe_engine {
 
 	void CameraComponent::onRender() {
 		glm::vec2 translation = this->m_transform_component->getTranslation();
+		glm::vec2 scaling = this->m_transform_component->getScaling();
 
 		glm::mat4 view(1.0);
 		view = glm::translate(view, glm::vec3(-translation.x, -translation.y, 0.0f));
+		view = glm::scale(view, glm::vec3(scaling.x, scaling.y, 0.0f));
 
 		for (auto it = this->m_shader_programs.begin(); it != this->m_shader_programs.end(); it++) {
 			(*it)->bind();
