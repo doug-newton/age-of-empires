@@ -55,7 +55,7 @@ namespace aoe_engine {
 		glEnableVertexAttribArray(1);
 
 		int elements_size;
-		GLuint* elements = createElements(w * h, &this->m_num_elements, &elements_size);
+		GLuint* elements = createElements(w * h, &elements_size);
 
 		GLuint ebo;
 		glGenBuffers(1, &ebo);
@@ -114,9 +114,9 @@ namespace aoe_engine {
 		return vertices;
 	}
 
-	GLuint* MapVao::createElements(int num_sides, int* num_elements, int * elements_size) {
-		*num_elements = num_sides * 6;
-		GLuint* elements = new GLuint[*num_elements];
+	GLuint* MapVao::createElements(int num_sides, int * elements_size) {
+		this->m_num_elements = num_sides * 6;
+		GLuint* elements = new GLuint[this->m_num_elements];
 		GLuint points[] = { 0, 1, 2, 2, 3, 0 };
 
 		for (int s = 0; s < num_sides; s++) {
@@ -125,7 +125,7 @@ namespace aoe_engine {
 			}
 		}
 
-		*elements_size = (*num_elements) * sizeof(int);
+		*elements_size = (this->m_num_elements) * sizeof(int);
 
 		return elements;
 	}
