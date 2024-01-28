@@ -1,8 +1,11 @@
 #include "map_vao.h"
+#include <vector>
+#include <fstream>
 
 namespace aoe_engine {
 
-	MapVao::MapVao() {
+	MapVao::MapVao(const std::string& path) :
+		m_path(path) {
 	}
 
 	MapVao::~MapVao() {
@@ -12,33 +15,8 @@ namespace aoe_engine {
 		glGenVertexArrays(1, &this->m_id);
 		glBindVertexArray(this->m_id);
 
-		int w = 4;
-		int h = 4;
-
-		int** tiles = new int* [h];
-		for (int r = 0; r < h; r++) {
-			tiles[r] = new int[w];
-		}
-
-		tiles[0][0] = 0;
-		tiles[0][1] = 0;
-		tiles[0][2] = 0;
-		tiles[0][3] = 1;
-
-		tiles[1][0] = 1;
-		tiles[1][1] = 1;
-		tiles[1][2] = 1;
-		tiles[1][3] = 1;
-
-		tiles[2][0] = 2;
-		tiles[2][1] = 2;
-		tiles[2][2] = 2;
-		tiles[2][3] = 2;
-
-		tiles[3][0] = 3;
-		tiles[3][1] = 3;
-		tiles[3][2] = 3;
-		tiles[3][3] = 3;
+		int w, h;
+		int** tiles = readMap(m_path, &w, &h);
 
 		int vertices_size;
 		GLfloat* vertices = createTiles(tiles, w, h, &vertices_size);
@@ -128,6 +106,52 @@ namespace aoe_engine {
 		*elements_size = (this->m_num_elements) * sizeof(int);
 
 		return elements;
+	}
+
+	int** MapVao::readMap(const std::string& path, int* w, int* h) {
+		std::ifstream file(path);
+		std::string current_line;
+		std::vector<std::string> lines;
+
+		int width = 0;
+
+		while (std::getline(file, current_line)) {
+			if (width == 0) {
+				width = current_line.length();
+			}
+			else {
+				if (current_line.length() != width) {
+					throw new std::out_of_range("all lines in map must be same length");
+				}
+			}
+			lines.push_back(current_line);
+		}
+
+		int height = lines.size();
+
+		int** tiles = new int* [height];
+
+		int r = 0;
+		int c = 0;
+
+		for (const std::string& line : lines) {
+			tiles[r] = new int[width];
+
+			for (char ch : line) {
+				tiles[r][c] = (int)(ch - 48);
+				c++;
+			}
+
+			c = 0;
+			r++;
+		}
+
+		*w = width;
+		*h = height;
+
+		file.close();
+
+		return tiles;
 	}
 
 }

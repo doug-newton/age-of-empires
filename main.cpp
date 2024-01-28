@@ -108,7 +108,7 @@ bool load_resources(ResourceManager* manager) {
 		return false;
 	}
 
-	if (!load_and_register_vao(manager, "map", new MapVao())) {
+	if (!load_and_register_vao(manager, "map", new MapVao("res/maps/map.txt"))) {
 		return false;
 	}
 
@@ -117,38 +117,6 @@ bool load_resources(ResourceManager* manager) {
 	}
 
 	return true;
-}
-
-Entity* createSpinningBlock(float x, float y) {
-	Entity* entity = new Entity();
-
-	entity->registerComponent(new QuadComponent());
-
-	TransformComponent* transform = new TransformComponent();
-	transform->setTranslation(x, y);
-	transform->setScaling(0.5f, 0.5f);
-	transform->setRotation(45.0f);
-	entity->registerComponent(transform);
-
-	MotionComponent* motion = new MotionComponent();
-	motion->setVelocity(0.1f, 0.1f);
-	motion->setRotationalVelocity(10.0f);
-	entity->registerComponent(motion);
-
-	return entity;
-}
-
-Entity* createTexturedSpinningBlock(float x, float y) {
-	Entity* entity = new Entity();
-
-	entity->registerComponent(new SpriteComponent("tilesheet", "sprite"));
-
-	TransformComponent* transform = new TransformComponent();
-	transform->setTranslation(x, y);
-	transform->setScaling(0.5f, 0.5f);
-	entity->registerComponent(transform);
-
-	return entity;
 }
 
 Entity* create_map() {
@@ -162,11 +130,11 @@ Entity* create_map() {
 	return entity;
 }
 
-Entity* createCamera() {
+Entity* create_camera() {
 	Entity* camera = new Entity();
 
 	TransformComponent* tc = new TransformComponent();
-	tc->setScaling(0.25f, 0.25f);
+	tc->setScaling(0.0625f, 0.0625f);
 	camera->registerComponent(tc);
 
 	camera->registerComponent(new MotionComponent());
@@ -176,7 +144,7 @@ Entity* createCamera() {
 }
 
 bool load_entities(Game* game) {
-	Entity* camera = createCamera();
+	Entity* camera = create_camera();
 	game->addEntity(camera);
 
 	Entity* map = create_map();
