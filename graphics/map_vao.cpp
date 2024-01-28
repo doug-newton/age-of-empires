@@ -8,7 +8,7 @@ namespace aoe_engine {
 		int begin = quad * 4 * 5;
 
 		float map_left = -w * 1.0f / 2;
-		float map_top = -h * 1.0f / 2;
+		float map_bottom = h * 1.0f / 2;
 
 		int sides_x[] = { 0, 1, 1, 0 };
 		int sides_y[] = { 0, 0, 1, 1 };
@@ -25,10 +25,10 @@ namespace aoe_engine {
 			std::cout << side_x << ", " << side_y << std::endl;
 
 			vertices[begin + i * 5 + 0] = map_left + (side_x + c) * 0.5f - 0.5f;
-			vertices[begin + i * 5 + 1] = map_top + (side_y + r) * 0.5f - 0.5f;
+			vertices[begin + i * 5 + 1] = map_bottom - ((side_y + r) * 0.5f - 0.5f);
 			vertices[begin + i * 5 + 2] = 1.0f;
 			vertices[begin + i * 5 + 3] = (tc_x + side_x) * tile_sz;
-			vertices[begin + i * 5 + 4] = (tc_y + side_y) * tile_sz;
+			vertices[begin + i * 5 + 4] = (tc_y + (1-side_y)) * tile_sz;
 		}
 	}
 
@@ -76,8 +76,8 @@ namespace aoe_engine {
 		glGenVertexArrays(1, &this->m_id);
 		glBindVertexArray(this->m_id);
 
-		int w = 3;
-		int h = 2;
+		int w = 4;
+		int h = 4;
 
 		int** tiles = new int* [h];
 		for (int r = 0; r < h; r++) {
@@ -85,11 +85,24 @@ namespace aoe_engine {
 		}
 
 		tiles[0][0] = 0;
-		tiles[0][1] = 3;
-		tiles[0][2] = 2;
-		tiles[1][0] = 2;
+		tiles[0][1] = 0;
+		tiles[0][2] = 0;
+		tiles[0][3] = 1;
+
+		tiles[1][0] = 1;
 		tiles[1][1] = 1;
-		tiles[1][2] = 2;
+		tiles[1][2] = 1;
+		tiles[1][3] = 1;
+
+		tiles[2][0] = 2;
+		tiles[2][1] = 2;
+		tiles[2][2] = 2;
+		tiles[2][3] = 2;
+
+		tiles[3][0] = 3;
+		tiles[3][1] = 3;
+		tiles[3][2] = 3;
+		tiles[3][3] = 3;
 
 		int n_vertices_size;
 		GLfloat* n_vertices = create_tiles(tiles, w, h, &n_vertices_size);

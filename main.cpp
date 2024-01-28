@@ -178,12 +178,6 @@ bool load_entities(Game* game) {
 	Entity* map = create_map();
 	game->addEntity(map);
 
-	Entity* block1 = createSpinningBlock(0.2f, 0.2f);
-	game->addEntity(block1);
-
-	Entity* block2 = createTexturedSpinningBlock(-0.4f, -0.4f);
-	game->addEntity(block2);
-
 	return true;
 }
 
