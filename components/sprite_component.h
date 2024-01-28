@@ -13,7 +13,7 @@ namespace aoe_engine {
 	class SpriteComponent : public Component {
 
 	public:
-		SpriteComponent(const std::string& texture_name);
+		SpriteComponent(const std::string& texture_name, const std::string& vao_name);
 		virtual ~SpriteComponent();
 
 		virtual bool onInit() override;
@@ -25,6 +25,7 @@ namespace aoe_engine {
 		Vao* m_vao;
 		TransformComponent* m_transform_component;
 		std::string m_texture_name;
+		std::string m_vao_name;
 
 	};
 

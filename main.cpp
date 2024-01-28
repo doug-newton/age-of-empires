@@ -3,6 +3,7 @@
 #include "core/resource_manager.h"
 #include "graphics/quad_vao.h";
 #include "graphics/sprite_vao.h";
+#include "graphics/map_vao.h";
 #include "core/component.h"
 #include "components/quad_component.h"
 #include "core/game.h"
@@ -107,6 +108,10 @@ bool load_resources(ResourceManager* manager) {
 		return false;
 	}
 
+	if (!load_and_register_vao(manager, "map", new MapVao())) {
+		return false;
+	}
+
 	if (!load_and_register_texture(manager, "tilesheet", new Texture("res/images/tilesheet.png"))) {
 		return false;
 	}
@@ -136,11 +141,22 @@ Entity* createSpinningBlock(float x, float y) {
 Entity* createTexturedSpinningBlock(float x, float y) {
 	Entity* entity = new Entity();
 
-	entity->registerComponent(new SpriteComponent("tilesheet"));
+	entity->registerComponent(new SpriteComponent("tilesheet", "sprite"));
 
 	TransformComponent* transform = new TransformComponent();
 	transform->setTranslation(x, y);
 	transform->setScaling(0.5f, 0.5f);
+	entity->registerComponent(transform);
+
+	return entity;
+}
+
+Entity* create_map() {
+	Entity* entity = new Entity();
+
+	entity->registerComponent(new SpriteComponent("tilesheet", "map"));
+
+	TransformComponent* transform = new TransformComponent();
 	entity->registerComponent(transform);
 
 	return entity;
@@ -156,15 +172,17 @@ Entity* createCamera() {
 }
 
 bool load_entities(Game* game) {
+	Entity* camera = createCamera();
+	game->addEntity(camera);
+
+	Entity* map = create_map();
+	game->addEntity(map);
+
 	Entity* block1 = createSpinningBlock(0.2f, 0.2f);
 	game->addEntity(block1);
 
 	Entity* block2 = createTexturedSpinningBlock(-0.4f, -0.4f);
 	game->addEntity(block2);
-
-	Entity* camera = createCamera();
-
-	game->addEntity(camera);
 
 	return true;
 }

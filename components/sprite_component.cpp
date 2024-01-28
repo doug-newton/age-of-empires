@@ -4,13 +4,14 @@
 
 namespace aoe_engine {
 
-	SpriteComponent::SpriteComponent(const std::string& texture_name) :
+	SpriteComponent::SpriteComponent(const std::string& texture_name, const std::string& vao_name) :
 		Component("sprite"),
 		m_shader_program(nullptr),
 		m_texture(nullptr),
 		m_vao(nullptr),
 		m_transform_component(nullptr),
-		m_texture_name(texture_name) {
+		m_texture_name(texture_name),
+		m_vao_name(vao_name) {
 	}
 
 	SpriteComponent::~SpriteComponent() {
@@ -21,7 +22,7 @@ namespace aoe_engine {
 		ResourceManager* mgr = getResourceManager();
 		this->m_shader_program = mgr->getShaderProgram("texture");
 		this->m_texture = mgr->getTexture(this->m_texture_name);
-		this->m_vao = mgr->getVao("sprite");
+		this->m_vao = mgr->getVao(this->m_vao_name);
 
 		void* p_transform_component = findComponent("transform");
 		this->m_transform_component = static_cast<TransformComponent*>(p_transform_component);
