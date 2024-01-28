@@ -21,7 +21,7 @@ namespace aoe_engine {
 
 	protected:
 		GLuint m_id;
-		int n_num_elements;
+		int m_num_elements;
 
 	};
 

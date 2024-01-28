@@ -35,7 +35,7 @@ namespace aoe_engine {
 			2, 3, 0
 		};
 
-		this->n_num_elements = 6;
+		this->m_num_elements = 6;
 
 		GLuint ebo;
 		glGenBuffers(1, &ebo);

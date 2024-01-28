@@ -6,7 +6,7 @@ namespace aoe_engine {
 
 	Vao::Vao() :
 		m_id(0),
-		n_num_elements(0) {
+		m_num_elements(0) {
 	}
 
 	Vao::~Vao() {
@@ -26,7 +26,7 @@ namespace aoe_engine {
 
 	void Vao::render() {
 		glBindVertexArray(this->m_id);
-		glDrawElements(GL_TRIANGLES, this->n_num_elements, GL_UNSIGNED_INT, (GLvoid*)0);
+		glDrawElements(GL_TRIANGLES, this->m_num_elements, GL_UNSIGNED_INT, (GLvoid*)0);
 	}
 
 }

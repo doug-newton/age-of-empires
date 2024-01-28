@@ -100,13 +100,13 @@ namespace aoe_engine {
 		tiles[3][2] = 3;
 		tiles[3][3] = 3;
 
-		int n_vertices_size;
-		GLfloat* n_vertices = create_tiles(tiles, w, h, &n_vertices_size);
+		int vertices_size;
+		GLfloat* vertices = create_tiles(tiles, w, h, &vertices_size);
 
 		GLuint vbo;
 		glGenBuffers(1, &vbo);
 		glBindBuffer(GL_ARRAY_BUFFER, vbo);
-		glBufferData(GL_ARRAY_BUFFER, n_vertices_size, n_vertices, GL_STATIC_DRAW);
+		glBufferData(GL_ARRAY_BUFFER, vertices_size, vertices, GL_STATIC_DRAW);
 
 		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(GLfloat), (GLvoid*)0);
 		glEnableVertexAttribArray(0);
@@ -115,18 +115,18 @@ namespace aoe_engine {
 		glEnableVertexAttribArray(1);
 
 		int elements_size;
-		GLuint* n_elements = create_elements(w * h, &this->n_num_elements, &elements_size);
+		GLuint* elements = create_elements(w * h, &this->m_num_elements, &elements_size);
 
 		GLuint ebo;
 		glGenBuffers(1, &ebo);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, elements_size, n_elements, GL_STATIC_DRAW);
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, elements_size, elements, GL_STATIC_DRAW);
 
 		glBindVertexArray(0);
 
 		delete[] tiles;
-		delete[] n_elements;
-		delete[] n_vertices;
+		delete[] elements;
+		delete[] vertices;
 
 		return true;
 	}
