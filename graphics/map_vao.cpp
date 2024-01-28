@@ -14,8 +14,8 @@ namespace aoe_engine {
 		int sides_y[] = { 0, 0, 1, 1 };
 
 		int tile_dim = 2;
-		int tc_x = t % 2;
-		int tc_y = t / 2;
+		int tc_x = t % tile_dim;
+		int tc_y = t / tile_dim;
 		float tile_sz = 1.0f / tile_dim;
 
 		for (int i = 0; i < 4; i++) {
@@ -27,14 +27,31 @@ namespace aoe_engine {
 			vertices[begin + i * 5 + 0] = map_left + (side_x + c) * 0.5f - 0.5f;
 			vertices[begin + i * 5 + 1] = map_top + (side_y + r) * 0.5f - 0.5f;
 			vertices[begin + i * 5 + 2] = 1.0f;
-			vertices[begin + i * 5 + 3] = tc_x + side_x * tile_sz;
-			vertices[begin + i * 5 + 4] = tc_y + side_y * tile_sz;
+			vertices[begin + i * 5 + 3] = (tc_x + side_x) * tile_sz;
+			vertices[begin + i * 5 + 4] = (tc_y + side_y) * tile_sz;
 		}
 	}
 
-	GLuint* create_elements(int num_sides, int * elements_size) {
-		int num_elements = num_sides * 6;
-		GLuint* elements = new GLuint[num_elements];
+	GLfloat* create_tiles(int** tiles, int w, int h, int* vertices_size) {
+		int num_attributes = h * w * 4 * 5;
+		std::cout << num_attributes << std::endl;
+		GLfloat* vertices = new GLfloat[num_attributes];
+
+		for (int r = 0; r < h; r++) {
+			for (int c = 0; c < w; c++) {
+				int t = tiles[r][c];
+				create_tile(vertices, w, h, r, c, t);
+			}
+		}
+
+		*vertices_size = num_attributes * sizeof(GLfloat);
+
+		return vertices;
+	}
+
+	GLuint* create_elements(int num_sides, int* num_elements, int * elements_size) {
+		*num_elements = num_sides * 6;
+		GLuint* elements = new GLuint[*num_elements];
 		GLuint points[] = { 0, 1, 2, 2, 3, 0 };
 
 		for (int s = 0; s < num_sides; s++) {
@@ -43,7 +60,7 @@ namespace aoe_engine {
 			}
 		}
 
-		*elements_size = num_elements * sizeof(int);
+		*elements_size = (*num_elements) * sizeof(int);
 
 		return elements;
 	}
@@ -62,49 +79,35 @@ namespace aoe_engine {
 		int w = 3;
 		int h = 2;
 
-		int tiles[2][3] = {
-			{ 0, 3, 2},
-			{ 2, 1, 2},
-		};
-
-		int num_floats = w * h * 4 * 5;
-		GLfloat* n_vertices = new GLfloat[num_floats];
-
+		int** tiles = new int* [h];
 		for (int r = 0; r < h; r++) {
-			for (int c = 0; c < w; c++) {
-				int t = tiles[r][c];
-				create_tile(n_vertices, w, h, r, c, t);
-			}
+			tiles[r] = new int[w];
 		}
 
-		for (int i = 0; i < num_floats; i++) {
-			std::cout << n_vertices[i] << ", ";
-			if ((i + 1) % 5 == 0) std::cout << std::endl;
-		}
+		tiles[0][0] = 0;
+		tiles[0][1] = 3;
+		tiles[0][2] = 2;
+		tiles[1][0] = 2;
+		tiles[1][1] = 1;
+		tiles[1][2] = 2;
+
+		int n_vertices_size;
+		GLfloat* n_vertices = create_tiles(tiles, w, h, &n_vertices_size);
 
 		for (int s = 0; s < w * h; s++) {
 			for (int v = 0; v < 4; v++) {
 				for (int a = 0; a < 5; a++) {
 					std::cout << n_vertices[s * 4 * 5 + v * 5 + a] << ", ";
 				}
+				std::cout << std::endl;
 			}
 			std::cout << std::endl;
 		}
 
-		int n_elements_size;
-		GLuint* n_elements = create_elements(w * h, &n_elements_size);
-
-		GLfloat vertices[] = {
-			-0.5f, -0.5f, 1.0f,		0.0f, 0.0f,
-			 0.5f, -0.5f, 1.0f,		0.5f, 0.0f,
-			 0.5f,  0.5f, 1.0f,		0.5f, 0.5f,
-			-0.5f,  0.5f, 1.0f,		0.0f, 0.5f
-		};
-
 		GLuint vbo;
 		glGenBuffers(1, &vbo);
 		glBindBuffer(GL_ARRAY_BUFFER, vbo);
-		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+		glBufferData(GL_ARRAY_BUFFER, n_vertices_size, n_vertices, GL_STATIC_DRAW);
 
 		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(GLfloat), (GLvoid*)0);
 		glEnableVertexAttribArray(0);
@@ -112,21 +115,17 @@ namespace aoe_engine {
 		glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(GLfloat), (GLvoid*)(3 * sizeof(GLfloat)));
 		glEnableVertexAttribArray(1);
 
-		GLuint elements[] = {
-			0, 1, 2,
-			2, 3, 0
-		};
-
-		this->n_num_elements = 6;
-		int e_sz = sizeof(elements);
+		int elements_size;
+		GLuint* n_elements = create_elements(w * h, &this->n_num_elements, &elements_size);
 
 		GLuint ebo;
 		glGenBuffers(1, &ebo);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(elements), elements, GL_STATIC_DRAW);
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, elements_size, n_elements, GL_STATIC_DRAW);
 
 		glBindVertexArray(0);
 
+		delete[] tiles;
 		delete[] n_elements;
 		delete[] n_vertices;
 
