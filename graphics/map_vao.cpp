@@ -1,5 +1,4 @@
 #include "map_vao.h"
-#include <iostream>
 
 namespace aoe_engine {
 
@@ -22,8 +21,6 @@ namespace aoe_engine {
 			int side_x = sides_x[i];
 			int side_y = sides_y[i];
 
-			std::cout << side_x << ", " << side_y << std::endl;
-
 			vertices[begin + i * 5 + 0] = map_left + (side_x + c);
 			vertices[begin + i * 5 + 1] = map_bottom - (side_y + r);
 			vertices[begin + i * 5 + 2] = 1.0f;
@@ -34,7 +31,6 @@ namespace aoe_engine {
 
 	GLfloat* create_tiles(int** tiles, int w, int h, int* vertices_size) {
 		int num_attributes = h * w * 4 * 5;
-		std::cout << num_attributes << std::endl;
 		GLfloat* vertices = new GLfloat[num_attributes];
 
 		for (int r = 0; r < h; r++) {
@@ -106,16 +102,6 @@ namespace aoe_engine {
 
 		int n_vertices_size;
 		GLfloat* n_vertices = create_tiles(tiles, w, h, &n_vertices_size);
-
-		for (int s = 0; s < w * h; s++) {
-			for (int v = 0; v < 4; v++) {
-				for (int a = 0; a < 5; a++) {
-					std::cout << n_vertices[s * 4 * 5 + v * 5 + a] << ", ";
-				}
-				std::cout << std::endl;
-			}
-			std::cout << std::endl;
-		}
 
 		GLuint vbo;
 		glGenBuffers(1, &vbo);
