@@ -5,10 +5,6 @@
 
 namespace aoe_engine {
 
-	void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
-		glViewport(0, 0, width, height);
-	}
-
 	void Driver::run() {
 		while (!glfwWindowShouldClose(s_window)) {
 			glClear(GL_COLOR_BUFFER_BIT);
@@ -53,6 +49,10 @@ namespace aoe_engine {
 		s_game.onRender();
 	}
 
+	void Driver::onWindowResize(GLFWwindow* window, int width, int height) {
+		glViewport(0, 0, width, height);
+	}
+
 	void Driver::onKeyEvent(GLFWwindow* window, int key, int scanCode, int action, int mods) {
 		s_game.onKeyEvent(key, scanCode, action, mods);
 	}
@@ -91,7 +91,7 @@ namespace aoe_engine {
 
 		glViewport(0, 0, width, height);
 
-		glfwSetFramebufferSizeCallback(s_window, framebuffer_size_callback);
+		glfwSetFramebufferSizeCallback(s_window, onWindowResize);
 
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		glEnable(GL_BLEND);

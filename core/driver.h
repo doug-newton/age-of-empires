@@ -18,6 +18,7 @@ namespace aoe_engine {
 		static void onRender();
 		static void onCleanUp();
 
+		static void onWindowResize(GLFWwindow* window, int width, int height);
 		static void onKeyEvent(GLFWwindow* window, int key, int scanCode, int action, int mods);
 
 		static void setResourceLoaderCallback(bool (*callback)(ResourceManager*));
