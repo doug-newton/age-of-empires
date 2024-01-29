@@ -14,12 +14,9 @@ namespace aoe_engine {
 	QuadComponent::~QuadComponent() {}
 
 	bool QuadComponent::onInit() {
-		ResourceManager* mgr = getResourceManager();
-
-		this->m_shader_program = mgr->getShaderProgram("transform");
-		this->m_vao = mgr->getVao("quad");
-		void* p_transform_component = findComponent("transform");
-		this->m_transform_component = static_cast<TransformComponent*>(p_transform_component);
+		this->m_shader_program = getShaderProgram("transform");
+		this->m_vao = getVao("quad");
+		this->m_transform_component = getComponent<TransformComponent>("transform");
 
 		if (this->m_shader_program == nullptr ||
 			this->m_vao == nullptr ||

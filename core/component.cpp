@@ -1,6 +1,7 @@
 #include "component.h"
 #include "game.h"
 #include "entity.h"
+#include <type_traits>
 
 namespace aoe_engine {
 
@@ -32,6 +33,36 @@ namespace aoe_engine {
 
 	void Component::setParent(Entity* parent) {
 		this->m_parent = parent;
+	}
+
+	ShaderProgram* Component::getShaderProgram(const std::string& name) {
+		ResourceManager* mgr = getResourceManager();
+
+		if (mgr == nullptr) {
+			return nullptr;
+		}
+
+		return mgr->getShaderProgram(name);
+	}
+
+	Vao* Component::getVao(const std::string& name) {
+		ResourceManager* mgr = getResourceManager();
+
+		if (mgr == nullptr) {
+			return nullptr;
+		}
+
+		return mgr->getVao(name);
+	}
+
+	Texture* Component::getTexture(const std::string& name) {
+		ResourceManager* mgr = getResourceManager();
+
+		if (mgr == nullptr) {
+			return nullptr;
+		}
+
+		return mgr->getTexture(name);
 	}
 
 	ResourceManager* Component::getResourceManager() {

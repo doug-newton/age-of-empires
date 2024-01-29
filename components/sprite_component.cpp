@@ -18,14 +18,11 @@ namespace aoe_engine {
 	}
 
 	bool SpriteComponent::onInit() {
+		this->m_shader_program = getShaderProgram("texture");
+		this->m_texture = getTexture(this->m_texture_name);
+		this->m_vao = getVao(this->m_vao_name);
 
-		ResourceManager* mgr = getResourceManager();
-		this->m_shader_program = mgr->getShaderProgram("texture");
-		this->m_texture = mgr->getTexture(this->m_texture_name);
-		this->m_vao = mgr->getVao(this->m_vao_name);
-
-		void* p_transform_component = findComponent("transform");
-		this->m_transform_component = static_cast<TransformComponent*>(p_transform_component);
+		this->m_transform_component = getComponent<TransformComponent>("transform");
 
 		if (
 			this->m_shader_program == nullptr ||

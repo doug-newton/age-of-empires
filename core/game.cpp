@@ -15,9 +15,13 @@ namespace aoe_engine {
 
 	bool Game::onInit() {
 		bool success = true;
+
+		success = success && m_resource_manager.onInit();
+
 		for (auto it = entities.begin(); it != entities.end(); ++it) {
 			success = success && (*it)->onInit();
 		}
+
 		return success;
 	}
 

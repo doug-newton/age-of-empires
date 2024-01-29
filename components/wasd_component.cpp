@@ -14,8 +14,7 @@ namespace aoe_engine {
 	WASDComponent::~WASDComponent() {}
 
 	bool WASDComponent::onInit() {
-		void* p_motion_component = findComponent("motion");
-		this->m_motion_component = static_cast<MotionComponent*>(p_motion_component);
+		this->m_motion_component = getComponent<MotionComponent>("motion");
 
 		if (this->m_motion_component == nullptr) {
 			return false;

@@ -7,18 +7,19 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+#include "resource.h"
 #include "shader.h"
 
 namespace aoe_engine {
 
-	class ShaderProgram {
+	class ShaderProgram: public Resource {
 
 	public:
 
 		ShaderProgram(const std::string& vertexPath, const std::string& fragmentPath);
 		~ShaderProgram();
 
-		bool onInit();
+		virtual bool onInit() override;
 		GLuint getID() const;
 
 		void bind() const;

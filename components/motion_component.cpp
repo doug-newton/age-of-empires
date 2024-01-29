@@ -23,8 +23,7 @@ namespace aoe_engine {
 	}
 
 	bool MotionComponent::onInit() {
-		void* p_transform_component = findComponent("transform");
-		this->m_transform_component = static_cast<TransformComponent*>(p_transform_component);
+		this->m_transform_component = getComponent<TransformComponent>("transform");
 
 		if (this->m_transform_component == nullptr) {
 			return false;

@@ -22,13 +22,34 @@ namespace aoe_engine {
 		void setParent(Entity* parent);
 
 	protected:
-		ResourceManager* getResourceManager();
-		Component* findComponent(const std::string& name);
+
+		template <class ComponentType>
+		ComponentType* getComponent(const std::string& name);
+
+		ShaderProgram* getShaderProgram(const std::string& name);
+		Vao* getVao(const std::string& name);
+		Texture* getTexture(const std::string& name);
 
 	private:
+
+		ResourceManager* getResourceManager();
+		Component* findComponent(const std::string& name);
 
 		Entity* m_parent;
 		std::string m_name;
 	};
+
+	template <class ComponentType>
+	ComponentType* Component::getComponent(const std::string& name) {
+		static_assert(std::is_base_of<Component, ComponentType>::value, "ComponentType must be derived from Component");
+
+		void* component = findComponent(name);
+
+		if (component == nullptr) {
+			return nullptr;
+		}
+
+		return static_cast<ComponentType*>(component);
+	}
 
 }

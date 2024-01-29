@@ -15,17 +15,14 @@ namespace aoe_engine {
 	}
 
 	bool CameraComponent::onInit() {
-		void* p_transform_component = findComponent("transform");
-		this->m_transform_component = static_cast<TransformComponent*>(p_transform_component);
+		this->m_transform_component = getComponent<TransformComponent>("transform");
 
 		if (this->m_transform_component == nullptr) {
 			return false;
 		}
 
-		ResourceManager* mgr = getResourceManager();
-
 		for (auto it = this->m_program_names.begin(); it != m_program_names.end(); ++it) {
-			ShaderProgram* shader_program = mgr->getShaderProgram(*it);
+			ShaderProgram* shader_program = getShaderProgram(*it);
 			if (shader_program == nullptr) {
 				return false;
 			}
@@ -41,7 +38,7 @@ namespace aoe_engine {
 
 		glm::mat4 view(1.0);
 		view = glm::translate(view, glm::vec3(-translation.x, -translation.y, 0.0f));
-		view = glm::scale(view, glm::vec3(scaling.x, scaling.y, 0.0f));
+		view = glm::scale(view, glm::vec3(1/scaling.x, 1/scaling.y, 0.0f));
 
 		for (auto it = this->m_shader_programs.begin(); it != this->m_shader_programs.end(); it++) {
 			(*it)->bind();

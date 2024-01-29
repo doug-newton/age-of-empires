@@ -6,7 +6,7 @@
 #include "../graphics/vao.h"
 #include "../graphics/texture.h"
 #include "resource_exists_exception.h"
-#include "generic_resource_manager.h"
+#include "resource_map.h"
 
 namespace aoe_engine {
 
@@ -14,6 +14,8 @@ namespace aoe_engine {
 	public:
 		ResourceManager();
 		~ResourceManager();
+
+		bool onInit();
 
 		void registerShaderProgram(const std::string& name, ShaderProgram* shader);
 		ShaderProgram* getShaderProgram(const std::string& name);
@@ -25,9 +27,13 @@ namespace aoe_engine {
 		Texture* getTexture(const std::string& name);
 
 	private:
-		GenericResourceManager<ShaderProgram> m_shader_program_manager;
-		GenericResourceManager<Vao> m_vao_manager;
-		GenericResourceManager<Texture> m_texture_manager;
+
+		template <class ResourceType>
+		ResourceType* getResource(ResourceMap* map, const std::string& name);
+
+		ResourceMap m_shader_program_manager;
+		ResourceMap m_vao_manager;
+		ResourceMap m_texture_manager;
 
 	};
 

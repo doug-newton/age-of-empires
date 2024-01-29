@@ -4,9 +4,11 @@
 #include <GLFW/glfw3.h>
 #include <string>
 
+#include "resource.h"
+
 namespace aoe_engine {
 
-	class Texture {
+	class Texture: public Resource {
 
 	public:
 
@@ -14,7 +16,7 @@ namespace aoe_engine {
 		~Texture();
 
 		GLuint getID();
-		bool onInit();
+		virtual bool onInit() override;
 
 	private:
 
