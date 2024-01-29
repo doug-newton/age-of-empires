@@ -13,11 +13,13 @@ namespace aoe_engine {
 
 		virtual bool onInit() override;
 		virtual void onRender() override;
+		virtual void onWindowResize(int width, int height);
 
 	private:
 		TransformComponent* m_transform_component;
 		std::vector<std::string> m_program_names;
 		std::vector<ShaderProgram*> m_shader_programs;
+		float m_aspect_ratio;
 	};
 
 }

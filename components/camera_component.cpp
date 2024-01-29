@@ -8,7 +8,8 @@ namespace aoe_engine {
 		Component("camera"),
 		m_transform_component(nullptr),
 		m_program_names(programNames),
-		m_shader_programs(0) {
+		m_shader_programs(0),
+		m_aspect_ratio(1.0f) {
 	}
 
 	CameraComponent::~CameraComponent() {
@@ -38,12 +39,16 @@ namespace aoe_engine {
 
 		glm::mat4 view(1.0);
 		view = glm::translate(view, glm::vec3(-translation.x, -translation.y, 0.0f));
-		view = glm::scale(view, glm::vec3(1/scaling.x, 1/scaling.y, 0.0f));
+		view = glm::scale(view, glm::vec3((1/scaling.x), (1 / scaling.y)*m_aspect_ratio, 0.0f));
 
 		for (auto it = this->m_shader_programs.begin(); it != this->m_shader_programs.end(); it++) {
 			(*it)->bind();
 			(*it)->setMatrix("view", view);
 		}
+	}
+
+	void CameraComponent::onWindowResize(int width, int height) {
+		m_aspect_ratio = ((float)width) / height;
 	}
 
 }
