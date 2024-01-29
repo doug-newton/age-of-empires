@@ -16,6 +16,8 @@ namespace aoe_engine {
 		virtual bool onInit();
 		virtual void onUpdate(float delta);
 		virtual void onRender();
+
+		virtual void onWindowResize(int width, int height);
 		virtual void onKeyEvent(int key, int scancode, int action, int mods);
 
 		const std::string& getName();

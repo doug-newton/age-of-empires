@@ -51,6 +51,7 @@ namespace aoe_engine {
 
 	void Driver::onWindowResize(GLFWwindow* window, int width, int height) {
 		glViewport(0, 0, width, height);
+		s_game.onWindowResize(width, height);
 	}
 
 	void Driver::onKeyEvent(GLFWwindow* window, int key, int scanCode, int action, int mods) {

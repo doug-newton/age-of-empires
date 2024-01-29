@@ -12,9 +12,12 @@ namespace aoe_engine {
 	public:
 		Game();
 		~Game();
+
 		bool onInit();
 		void onUpdate(float delta);
 		void onRender();
+
+		void onWindowResize(int width, int height);
 		void onKeyEvent(int key, int scanCode, int action, int mods);
 
 		void addEntity(Entity* entity);

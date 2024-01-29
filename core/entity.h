@@ -18,6 +18,8 @@ namespace aoe_engine {
 		bool onInit();
 		void onUpdate(float delta);
 		void onRender();
+
+		void onWindowResize(int width, int height);
 		void onKeyEvent(int key, int scanCode, int action, int mods);
 
 		void registerComponent(Component* component);
