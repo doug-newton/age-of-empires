@@ -12,7 +12,11 @@ namespace aoe_engine {
 	class Driver {
 
 	public:
+
+		static void setWindowDetails(const std::string& window_title, int width, int height);
+
 		static void run();
+
 		static bool onInit();
 		static void onUpdate();
 		static void onRender();
@@ -27,6 +31,9 @@ namespace aoe_engine {
 	private:
 		static Game s_game;
 		static GLFWwindow* s_window;
+		static std::string s_window_title;
+		static int s_window_width;
+		static int s_window_height;
 
 		static FPS s_fps;
 
