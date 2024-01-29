@@ -24,6 +24,9 @@ namespace aoe_engine {
 	void Component::onRender() {
 	}
 
+	void Component::onWindowResize(int width, int height) {
+	}
+
 	void Component::onKeyEvent(int key, int scancode, int action, int mods) {
 	}
 

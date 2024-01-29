@@ -5,8 +5,10 @@
 
 namespace aoe_engine {
 
-	void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
-		glViewport(0, 0, width, height);
+	void Driver::setWindowDetails(const std::string& title, int width, int height) {
+		s_window_title = title;
+		s_window_width = width;
+		s_window_height = height;
 	}
 
 	void Driver::run() {
@@ -40,6 +42,8 @@ namespace aoe_engine {
 			return false;
 		}
 
+		s_game.onWindowResize(s_window_width, s_window_height);
+
 		return true;
 	}
 
@@ -51,6 +55,11 @@ namespace aoe_engine {
 
 	void Driver::onRender() {
 		s_game.onRender();
+	}
+
+	void Driver::onWindowResize(GLFWwindow* window, int width, int height) {
+		glViewport(0, 0, width, height);
+		s_game.onWindowResize(width, height);
 	}
 
 	void Driver::onKeyEvent(GLFWwindow* window, int key, int scanCode, int action, int mods) {
@@ -75,23 +84,21 @@ namespace aoe_engine {
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 		glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 
-		int width = 1280;
-		int height = 960;
-
-		s_window = glfwCreateWindow(width, height, "Age of Empires", NULL, NULL);
+		s_window = glfwCreateWindow(s_window_width, s_window_height, s_window_title.c_str(), NULL, NULL);
 		if (s_window == nullptr) {
 			glfwTerminate();
 			return false;
 		}
+
 		glfwMakeContextCurrent(s_window);
 
 		if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
 			return false;
 		}
 
-		glViewport(0, 0, width, height);
+		glViewport(0, 0, s_window_width, s_window_height);
 
-		glfwSetFramebufferSizeCallback(s_window, framebuffer_size_callback);
+		glfwSetFramebufferSizeCallback(s_window, onWindowResize);
 
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		glEnable(GL_BLEND);
@@ -108,4 +115,7 @@ namespace aoe_engine {
 	bool (*Driver::s_resource_loader_callback)(ResourceManager*) = nullptr;
 	bool (*Driver::s_entity_loader_callback)(Game*) = nullptr;
 
+	std::string Driver::s_window_title = "Unnamed Window";
+	int Driver::s_window_width = 1280;
+	int Driver::s_window_height = 960;
 }

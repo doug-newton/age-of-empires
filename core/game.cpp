@@ -37,6 +37,12 @@ namespace aoe_engine {
 		}
 	}
 
+	void Game::onWindowResize(int width, int height) {
+		for (auto it = entities.begin(); it != entities.end(); ++it) {
+			(*it)->onWindowResize(width, height);
+		}
+	}
+
 	void Game::onKeyEvent(int key, int scanCode, int action, int mods) {
 		for (auto it = entities.begin(); it != entities.end(); ++it) {
 			(*it)->onKeyEvent(key, scanCode, action, mods);
