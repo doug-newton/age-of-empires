@@ -25,6 +25,7 @@ namespace aoe_engine {
 		void bind() const;
 
 		void setMatrix(const std::string& uniformName, const glm::mat4& matrix);
+		void setVec2(const std::string& uniformName, const glm::vec2& vec2);
 		void bindTexture(const std::string& uniformName, const GLuint textureID);
 
 	private:
