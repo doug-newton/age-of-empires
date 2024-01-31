@@ -2,6 +2,7 @@
 #include "game.h"
 #include "entity.h"
 #include <type_traits>
+#include "message.h"
 
 namespace aoe_engine {
 
@@ -28,6 +29,9 @@ namespace aoe_engine {
 	}
 
 	void Component::onKeyEvent(int key, int scancode, int action, int mods) {
+	}
+
+	void Component::accept(Message* message) {
 	}
 
 	const std::string& Component::getName() {

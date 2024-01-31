@@ -4,8 +4,11 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
+#include "../core/message.h"
 
 namespace aoe_engine {
+
+	class MoveMessage;
 
 	class TransformComponent : public Component {
 
@@ -22,6 +25,8 @@ namespace aoe_engine {
 		void setTranslation(float x, float y);
 		void setScaling(float w, float h);
 		void setRotation(float r);
+
+		virtual void accept(Message* message) override;
 
 	private:
 

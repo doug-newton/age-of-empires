@@ -48,4 +48,8 @@ namespace aoe_engine {
 		this->m_rotation = r;
 	}
 
+	void TransformComponent::accept(Message* message) {
+		message->visitTransformComponent(this);
+	}
+
 }

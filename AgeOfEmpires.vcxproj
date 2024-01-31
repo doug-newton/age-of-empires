@@ -143,6 +143,7 @@
     <ClCompile Include="core\component_exists_exception.cpp" />
     <ClCompile Include="core\driver.cpp" />
     <ClCompile Include="core\entity.cpp" />
+    <ClCompile Include="core\message.cpp" />
     <ClCompile Include="init.cpp" />
     <ClCompile Include="entity_factory.cpp" />
     <ClCompile Include="core\fps.cpp" />
@@ -159,6 +160,7 @@
     <ClCompile Include="graphics\texture.cpp" />
     <ClCompile Include="graphics\vao.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="messages\move_message.cpp" />
     <ClCompile Include="stb_image.cpp" />
     <ClCompile Include="util\file_util.cpp" />
   </ItemGroup>
@@ -174,6 +176,7 @@
     <ClInclude Include="core\component_exists_exception.h" />
     <ClInclude Include="core\driver.h" />
     <ClInclude Include="core\entity.h" />
+    <ClInclude Include="core\message.h" />
     <ClInclude Include="init.h" />
     <ClInclude Include="entity_factory.h" />
     <ClInclude Include="core\fps.h" />
@@ -189,6 +192,7 @@
     <ClInclude Include="graphics\sprite_vao.h" />
     <ClInclude Include="graphics\texture.h" />
     <ClInclude Include="graphics\vao.h" />
+    <ClInclude Include="messages\move_message.h" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="util\file_util.h" />
   </ItemGroup>
