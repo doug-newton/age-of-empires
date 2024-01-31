@@ -15,12 +15,14 @@ namespace aoe {
 		manager->registerShaderProgram("basic", new ShaderProgram("res/shaders/basic.vert", "res/shaders/basic.frag"));
 		manager->registerShaderProgram("transform", new ShaderProgram("res/shaders/transform.vert", "res/shaders/basic.frag"));
 		manager->registerShaderProgram("texture", new ShaderProgram("res/shaders/texture.vert", "res/shaders/texture.frag"));
+		manager->registerShaderProgram("animated_texture", new ShaderProgram("res/shaders/animated_texture.vert", "res/shaders/animated_texture.frag"));
 
 		manager->registerVao("quad", new QuadVao());
 		manager->registerVao("sprite", new SpriteVao());
 		manager->registerVao("map", new MapVao("res/maps/map.txt"));
 
 		manager->registerTexture("tilesheet", new Texture("res/images/tilesheet.png"));
+		manager->registerTexture("villager", new Texture("res/images/villager.png"));
 
 		return true;
 	}
@@ -31,6 +33,9 @@ namespace aoe {
 
 		Entity* map = aoe::EntityFactory::createMap();
 		game->addEntity(map);
+
+		Entity* villager = aoe::EntityFactory::createVillager();
+		game->addEntity(villager);
 
 		return true;
 	}

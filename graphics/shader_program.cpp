@@ -49,6 +49,11 @@ namespace aoe_engine {
 		glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(matrix));
 	}
 
+	void ShaderProgram::setVec2(const std::string& uniformName, const glm::vec2& vec2) {
+		GLuint location = glGetUniformLocation(this->m_id, uniformName.c_str());
+		glUniform2fv(location, 1, glm::value_ptr(vec2));
+	}
+
 	void ShaderProgram::bindTexture(const std::string& uniformName, GLuint textureID) {
 		GLuint location = glGetUniformLocation(this->m_id, uniformName.c_str());
 		glActiveTexture(GL_TEXTURE0);
