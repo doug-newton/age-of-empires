@@ -8,7 +8,7 @@
 
 namespace aoe_engine {
 
-	class MoveMessage;
+	class TransformMessage;
 
 	class TransformComponent : public Component {
 

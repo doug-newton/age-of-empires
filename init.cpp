@@ -6,7 +6,6 @@
 #include "graphics/map_vao.h"
 #include "core/game.h"
 #include "entity_factory.h"
-#include "messages/move_message.h"
 
 namespace aoe {
 

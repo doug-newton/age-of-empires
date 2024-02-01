@@ -4,13 +4,11 @@
 
 namespace aoe_engine {
 
-	class TransformComponent;
-
-	class MoveMessage : public Message {
+	class TransformMessage : public Message {
 
 	public:
-		MoveMessage(void* sender);
-		virtual ~MoveMessage();
+		TransformMessage(void* sender);
+		virtual ~TransformMessage();
 
 		void visitTransformComponent(TransformComponent* transform_component);
 
