@@ -1,6 +1,7 @@
 #include "game.h"
 #include "entity.h"
 #include <stdexcept>
+#include "message.h"
 
 namespace aoe_engine {
 
@@ -73,6 +74,17 @@ namespace aoe_engine {
 
 	Game* Entity::getGame() {
 		return this->m_game;
+	}
+
+	void Entity::sendMessage(Message* message) {
+		for (auto it = m_components.begin(); it != m_components.end(); ++it) {
+			Component* component = (*it).second;
+			if (message->getSender() == component) {
+				continue;
+			}
+			component->accept(message);
+		}
+		delete message;
 	}
 
 }

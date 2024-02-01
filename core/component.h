@@ -25,7 +25,6 @@ namespace aoe_engine {
 		const std::string& getName();
 		void setParent(Entity* parent);
 
-
 	protected:
 
 		template <class ComponentType>
@@ -34,6 +33,8 @@ namespace aoe_engine {
 		ShaderProgram* getShaderProgram(const std::string& name);
 		Vao* getVao(const std::string& name);
 		Texture* getTexture(const std::string& name);
+
+		void sendMessage(Message* message);
 
 	private:
 

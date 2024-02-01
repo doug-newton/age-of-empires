@@ -72,6 +72,10 @@ namespace aoe_engine {
 		return mgr->getTexture(name);
 	}
 
+	void Component::sendMessage(Message* message) {
+		this->m_parent->sendMessage(message);
+	}
+
 	ResourceManager* Component::getResourceManager() {
 		if (this->m_parent == nullptr) {
 			return nullptr;
