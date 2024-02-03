@@ -7,7 +7,7 @@ namespace aoe_engine {
 
 	class Message;
 	class Entity;
-	class TransformMessage;
+	class ChangeTransformMessage;
 
 	class Component {
 	public:
@@ -27,7 +27,7 @@ namespace aoe_engine {
 
 	public:
 
-		virtual void onTransformMessage(TransformMessage* message);
+		virtual void onChangeTransformMessage(ChangeTransformMessage* message);
 
 	protected:
 

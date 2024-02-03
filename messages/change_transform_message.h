@@ -5,11 +5,11 @@
 
 namespace aoe_engine {
 
-	class TransformMessage : public Message {
+	class ChangeTransformMessage : public Message {
 
 	public:
-		TransformMessage(void* sender, const glm::vec2& velocity, float r_velocity);
-		virtual ~TransformMessage();
+		ChangeTransformMessage(void* sender, const glm::vec2& velocity, float r_velocity);
+		virtual ~ChangeTransformMessage();
 
 		virtual void accept(Component* component) override;
 

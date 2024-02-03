@@ -8,7 +8,7 @@
 
 namespace aoe_engine {
 
-	class TransformMessage;
+	class ChangeTransformMessage;
 
 	class TransformComponent : public Component {
 
@@ -27,7 +27,7 @@ namespace aoe_engine {
 		void setRotation(float r);
 
 	public:
-		void onTransformMessage(TransformMessage* message) override;
+		void onChangeTransformMessage(ChangeTransformMessage* message) override;
 
 	private:
 

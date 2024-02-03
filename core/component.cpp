@@ -39,7 +39,7 @@ namespace aoe_engine {
 		this->m_parent = parent;
 	}
 
-	void Component::onTransformMessage(TransformMessage* message) {}
+	void Component::onChangeTransformMessage(ChangeTransformMessage* message) {}
 
 	ShaderProgram* Component::getShaderProgram(const std::string& name) {
 		ResourceManager* mgr = getResourceManager();

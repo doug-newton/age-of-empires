@@ -1,6 +1,6 @@
 #include "motion_component.h"
 #include "transform_component.h"
-#include "../messages/transform_message.h"
+#include "../messages/change_transform_message.h"
 
 namespace aoe_engine {
 
@@ -23,7 +23,7 @@ namespace aoe_engine {
 	}
 
 	void MotionComponent::onUpdate(float delta) {
-		sendMessage(new TransformMessage(this,
+		sendMessage(new ChangeTransformMessage(this,
 			this->m_velocity * delta,
 			this->m_rotational_velocity * delta));
 	}
