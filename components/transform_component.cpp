@@ -1,4 +1,5 @@
 #include "transform_component.h"
+#include "../messages/transform_message.h"
 
 namespace aoe_engine {
 
@@ -48,8 +49,17 @@ namespace aoe_engine {
 		this->m_rotation = r;
 	}
 
-	void TransformComponent::accept(Message* message) {
-		message->visitTransformComponent(this);
+	void TransformComponent::onTransformMessage(TransformMessage* message) {
+		glm::vec2 velocity = message->getVelocity();
+
+		setTranslation(
+			this->m_translation.x + velocity.x,
+			this->m_translation.y + velocity.y
+		);
+
+		setRotation(
+			this->m_rotation + message->getRotationalVelocity()
+		);
 	}
 
 }

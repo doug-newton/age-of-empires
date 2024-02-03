@@ -31,9 +31,6 @@ namespace aoe_engine {
 	void Component::onKeyEvent(int key, int scancode, int action, int mods) {
 	}
 
-	void Component::accept(Message* message) {
-	}
-
 	const std::string& Component::getName() {
 		return this->m_name;
 	}
@@ -41,6 +38,8 @@ namespace aoe_engine {
 	void Component::setParent(Entity* parent) {
 		this->m_parent = parent;
 	}
+
+	void Component::onTransformMessage(TransformMessage* message) {}
 
 	ShaderProgram* Component::getShaderProgram(const std::string& name) {
 		ResourceManager* mgr = getResourceManager();

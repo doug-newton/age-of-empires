@@ -26,7 +26,8 @@ namespace aoe_engine {
 		void setScaling(float w, float h);
 		void setRotation(float r);
 
-		virtual void accept(Message* message) override;
+	public:
+		void onTransformMessage(TransformMessage* message) override;
 
 	private:
 

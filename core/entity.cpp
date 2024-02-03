@@ -82,7 +82,7 @@ namespace aoe_engine {
 			if (message->getSender() == component) {
 				continue;
 			}
-			component->accept(message);
+			message->accept(component);
 		}
 		delete message;
 	}

@@ -11,7 +11,10 @@ namespace aoe_engine {
 		TransformMessage(void* sender, const glm::vec2& velocity, float r_velocity);
 		virtual ~TransformMessage();
 
-		void visitTransformComponent(TransformComponent* transform_component);
+		virtual void accept(Component* component) override;
+
+		glm::vec2 getVelocity();
+		float getRotationalVelocity();
 
 	private:
 		

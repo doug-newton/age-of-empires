@@ -7,6 +7,7 @@ namespace aoe_engine {
 
 	class Message;
 	class Entity;
+	class TransformMessage;
 
 	class Component {
 	public:
@@ -20,10 +21,13 @@ namespace aoe_engine {
 
 		virtual void onWindowResize(int width, int height);
 		virtual void onKeyEvent(int key, int scancode, int action, int mods);
-		virtual void accept(Message* message);
 
 		const std::string& getName();
 		void setParent(Entity* parent);
+
+	public:
+
+		virtual void onTransformMessage(TransformMessage* message);
 
 	protected:
 

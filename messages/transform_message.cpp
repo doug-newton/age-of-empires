@@ -22,19 +22,16 @@ namespace aoe_engine {
 	TransformMessage::~TransformMessage() {
 	}
 
-	void TransformMessage::visitTransformComponent(TransformComponent* component) {
-		glm::vec2 current_translation = component->getTranslation();
+	void TransformMessage::accept(Component* component) {
+		component->onTransformMessage(this);
+	}
 
-		component->setTranslation(
-			current_translation.x + m_velocity.x,
-			current_translation.y + m_velocity.y
-		);
+	glm::vec2 TransformMessage::getVelocity() {
+		return this->m_velocity;
+	}
 
-		float current_rotation = component->getRotation();
-
-		component->setRotation(
-			current_rotation + m_rotational_velocity
-		);
+	float TransformMessage::getRotationalVelocity() {
+		return this->m_rotational_velocity;
 	}
 
 }
