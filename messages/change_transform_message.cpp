@@ -3,10 +3,14 @@
 
 namespace aoe_engine {
 
-	ChangeTransformMessage::ChangeTransformMessage(void* sender, const glm::vec2& velocity, float r_velocity) :
+	ChangeTransformMessage::ChangeTransformMessage(
+		void* sender, 
+		const glm::vec2& translation_change, 
+		float rotation_change) :
+
 		Message(sender),
-		m_velocity(velocity),
-		m_rotational_velocity(r_velocity) {
+		m_translation_change(translation_change),
+		m_rotation_change(rotation_change) {
 	}
 
 	ChangeTransformMessage::~ChangeTransformMessage() {
@@ -17,11 +21,11 @@ namespace aoe_engine {
 	}
 
 	glm::vec2 ChangeTransformMessage::getVelocity() {
-		return this->m_velocity;
+		return this->m_translation_change;
 	}
 
 	float ChangeTransformMessage::getRotationalVelocity() {
-		return this->m_rotational_velocity;
+		return this->m_rotation_change;
 	}
 
 }

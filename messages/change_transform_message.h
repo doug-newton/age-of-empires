@@ -8,7 +8,7 @@ namespace aoe_engine {
 	class ChangeTransformMessage : public Message {
 
 	public:
-		ChangeTransformMessage(void* sender, const glm::vec2& velocity, float r_velocity);
+		ChangeTransformMessage(void* sender, const glm::vec2& translation_change, float rotation_change);
 		virtual ~ChangeTransformMessage();
 
 		virtual void accept(Component* component) override;
@@ -18,8 +18,8 @@ namespace aoe_engine {
 
 	private:
 		
-		glm::vec2 m_velocity;
-		float m_rotational_velocity;
+		glm::vec2 m_translation_change;
+		float m_rotation_change;
 
 	};
 
