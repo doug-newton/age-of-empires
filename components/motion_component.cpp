@@ -7,6 +7,7 @@ namespace aoe_engine {
 	MotionComponent::MotionComponent() :
 		Component("motion"),
 		m_velocity(0.0f, 0.0f),
+		m_scaling_velocity(0.0f, 0.0f),
 		m_rotational_velocity(0.0f) {
 	}
 
@@ -23,9 +24,11 @@ namespace aoe_engine {
 	}
 
 	void MotionComponent::onUpdate(float delta) {
-		sendMessage(new ChangeTransformMessage(this,
-			this->m_velocity * delta,
-			this->m_rotational_velocity * delta));
+		ChangeTransformMessage* message = new ChangeTransformMessage(this);
+		message->setTranslationChange(this->m_velocity.x * delta, this->m_velocity.y * delta);
+		message->setScalingChange(this->m_scaling_velocity.x * delta, this->m_scaling_velocity.y * delta);
+		message->setRotationChange(this->m_rotational_velocity * delta);
+		sendMessage(message);
 	}
 
 }

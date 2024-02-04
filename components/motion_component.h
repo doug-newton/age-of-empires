@@ -19,6 +19,7 @@ namespace aoe_engine {
 	private:
 
 		glm::vec2 m_velocity;
+		glm::vec2 m_scaling_velocity;
 		float m_rotational_velocity;
 
 	};

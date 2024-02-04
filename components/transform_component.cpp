@@ -50,7 +50,7 @@ namespace aoe_engine {
 	}
 
 	void TransformComponent::onChangeTransformMessage(ChangeTransformMessage* message) {
-		glm::vec2 velocity = message->getVelocity();
+		glm::vec2 velocity = message->getTranslationChange();
 
 		setTranslation(
 			this->m_translation.x + velocity.x,
@@ -58,7 +58,7 @@ namespace aoe_engine {
 		);
 
 		setRotation(
-			this->m_rotation + message->getRotationalVelocity()
+			this->m_rotation + message->getRotationChange()
 		);
 	}
 
