@@ -160,6 +160,7 @@
     <ClCompile Include="graphics\texture.cpp" />
     <ClCompile Include="graphics\vao.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="messages\change_motion_message.cpp" />
     <ClCompile Include="messages\change_transform_message.cpp" />
     <ClCompile Include="stb_image.cpp" />
     <ClCompile Include="util\file_util.cpp" />
@@ -192,6 +193,7 @@
     <ClInclude Include="graphics\sprite_vao.h" />
     <ClInclude Include="graphics\texture.h" />
     <ClInclude Include="graphics\vao.h" />
+    <ClInclude Include="messages\change_motion_message.h" />
     <ClInclude Include="messages\change_transform_message.h" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="util\file_util.h" />

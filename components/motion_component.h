@@ -16,6 +16,8 @@ namespace aoe_engine {
 
 		virtual void onUpdate(float delta);
 
+		void onChangeMotionMessage(ChangeMotionMessage* message) override;
+
 	private:
 
 		glm::vec2 m_velocity;

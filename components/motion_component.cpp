@@ -1,6 +1,7 @@
 #include "motion_component.h"
 #include "transform_component.h"
 #include "../messages/change_transform_message.h"
+#include "../messages/change_motion_message.h"
 
 namespace aoe_engine {
 
@@ -29,6 +30,12 @@ namespace aoe_engine {
 		message->setScalingChange(this->m_scaling_velocity.x * delta, this->m_scaling_velocity.y * delta);
 		message->setRotationChange(this->m_rotational_velocity * delta);
 		sendMessage(message);
+	}
+
+	void MotionComponent::onChangeMotionMessage(ChangeMotionMessage* message) {
+		glm::vec2 new_velocity = message->getNewVelocity();
+		this->m_velocity.x = new_velocity.x;
+		this->m_velocity.y = new_velocity.y;
 	}
 
 }

@@ -40,6 +40,7 @@ namespace aoe_engine {
 	}
 
 	void Component::onChangeTransformMessage(ChangeTransformMessage* message) {}
+	void Component::onChangeMotionMessage(ChangeMotionMessage* message) {}
 
 	ShaderProgram* Component::getShaderProgram(const std::string& name) {
 		ResourceManager* mgr = getResourceManager();

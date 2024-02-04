@@ -1,52 +1,69 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include "wasd_component.h"
-#include "motion_component.h"
+#include "../messages/change_motion_message.h"
 
 namespace aoe_engine {
 
 	WASDComponent::WASDComponent() :
 		Component("WASD"),
-		m_speed(0.5f),
-		m_motion_component(nullptr) {
+		m_speed(0.5f) {
 	}
 
 	WASDComponent::~WASDComponent() {}
-
-	bool WASDComponent::onInit() {
-		this->m_motion_component = getComponent<MotionComponent>("motion");
-
-		if (this->m_motion_component == nullptr) {
-			return false;
-		}
-
-		return true;
-	}
 
 	void WASDComponent::onKeyEvent(int key, int scanCode, int action, int mods) {
 		switch (action) {
 		case GLFW_PRESS:
 			switch (key) {
-			case GLFW_KEY_A:
-				this->m_motion_component->setVelocity(-this->m_speed, 0);
-				break;
-			case GLFW_KEY_D:
-				this->m_motion_component->setVelocity(this->m_speed, 0);
-				break;
 			case GLFW_KEY_W:
-				this->m_motion_component->setVelocity(0, this->m_speed);
+				goUp();
+				break;
+			case GLFW_KEY_A:
+				goLeft();
 				break;
 			case GLFW_KEY_S:
-				this->m_motion_component->setVelocity(0, -this->m_speed);
+				goDown();
+				break;
+			case GLFW_KEY_D:
+				goRight();
 				break;
 			}
 			break;
 		case GLFW_RELEASE:
-			this->m_motion_component->setVelocity(0, 0);
+			stop();
 			break;
 		default:
 			break;
 		}
+	}
+
+	void WASDComponent::goUp() {
+		ChangeMotionMessage* message = new ChangeMotionMessage(this);
+		message->setNewVelocity(0, this->m_speed);
+		sendMessage(message);
+	}
+
+	void WASDComponent::goDown() {
+		ChangeMotionMessage* message = new ChangeMotionMessage(this);
+		message->setNewVelocity(0, -this->m_speed);
+		sendMessage(message);
+	}
+
+	void WASDComponent::goLeft() {
+		ChangeMotionMessage* message = new ChangeMotionMessage(this);
+		message->setNewVelocity(-this->m_speed, 0);
+		sendMessage(message);
+	}
+
+	void WASDComponent::goRight() {
+		ChangeMotionMessage* message = new ChangeMotionMessage(this);
+		message->setNewVelocity(this->m_speed, 0);
+		sendMessage(message);
+	}
+
+	void WASDComponent::stop() {
+		sendMessage(new ChangeMotionMessage(this));
 	}
 
 }

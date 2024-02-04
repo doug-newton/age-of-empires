@@ -4,19 +4,23 @@
 
 namespace aoe_engine {
 
-	class MotionComponent;
+	class ChangeMotionMessage;
 
 	class WASDComponent : public Component {
 	public:
 		WASDComponent();
 		virtual ~WASDComponent();
 
-		virtual bool onInit() override;
 		virtual void onKeyEvent(int key, int scanCode, int action, int mods) override;
 
 	private:
 		float m_speed;
-		MotionComponent* m_motion_component;
+
+		void goUp();
+		void goDown();
+		void goLeft();
+		void goRight();
+		void stop();
 	};
 
 }
