@@ -19,6 +19,7 @@ namespace aoe_engine {
 
 		virtual void onWindowResize(int width, int height);
 		virtual void onKeyEvent(int key, int scancode, int action, int mods);
+		virtual void onMouseButtonEvent(int button, int action, int mods);
 
 		const std::string& getName();
 		void setParent(Entity* parent);

@@ -66,6 +66,10 @@ namespace aoe_engine {
 		s_game.onKeyEvent(key, scanCode, action, mods);
 	}
 
+	void Driver::onMouseButtonEvent(GLFWwindow* window, int button, int action, int mods) {
+		s_game.onMouseButtonEvent(button, action, mods);
+	}
+
 	void Driver::onCleanUp() {
 		glfwTerminate();
 	}
@@ -105,6 +109,7 @@ namespace aoe_engine {
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 		glfwSetKeyCallback(s_window, onKeyEvent);
+		glfwSetMouseButtonCallback(s_window, onMouseButtonEvent);
 
 		return true;
 	}

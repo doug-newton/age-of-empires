@@ -49,6 +49,12 @@ namespace aoe_engine {
 		}
 	}
 
+	void Game::onMouseButtonEvent(int button, int action, int mods) {
+		for (auto it = entities.begin(); it != entities.end(); ++it) {
+			(*it)->onMouseButtonEvent(button, action, mods);
+		}
+	}
+
 	void Game::addEntity(Entity* entity) {
 		entity->setGame(this);
 		this->entities.push_back(entity);

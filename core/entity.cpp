@@ -46,6 +46,12 @@ namespace aoe_engine {
 		}
 	}
 
+	void Entity::onMouseButtonEvent(int button, int action, int mods) {
+		for (auto it = m_components.begin(); it != m_components.end(); ++it) {
+			(*it).second->onMouseButtonEvent(button, action, mods);
+		}
+	}
+
 	void Entity::registerComponent(Component* component) {
 		const std::string& c_name = component->getName();
 
