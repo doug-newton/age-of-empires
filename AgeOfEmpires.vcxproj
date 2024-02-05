@@ -143,6 +143,7 @@
     <ClCompile Include="core\component_exists_exception.cpp" />
     <ClCompile Include="core\driver.cpp" />
     <ClCompile Include="core\entity.cpp" />
+    <ClCompile Include="entities\camera.cpp" />
     <ClCompile Include="init.cpp" />
     <ClCompile Include="entity_factory.cpp" />
     <ClCompile Include="core\fps.cpp" />
@@ -174,6 +175,7 @@
     <ClInclude Include="core\component_exists_exception.h" />
     <ClInclude Include="core\driver.h" />
     <ClInclude Include="core\entity.h" />
+    <ClInclude Include="entities\camera.h" />
     <ClInclude Include="init.h" />
     <ClInclude Include="entity_factory.h" />
     <ClInclude Include="core\fps.h" />

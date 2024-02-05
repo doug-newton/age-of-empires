@@ -21,19 +21,6 @@ namespace aoe {
 		return entity;
 	}
 
-	Entity* EntityFactory::createCamera() {
-		Entity* camera = new Entity();
-
-		TransformComponent* tc = new TransformComponent();
-		tc->setScaling(16.0f, 16.0f);
-		camera->registerComponent(tc);
-
-		camera->registerComponent(new MotionComponent());
-		camera->registerComponent(new WASDComponent());
-		camera->registerComponent(new CameraComponent({ "transform", "texture", "animated_texture"}));
-		return camera;
-	}
-
 	Entity* EntityFactory::createVillager() {
 		Entity* villager = new Entity();
 

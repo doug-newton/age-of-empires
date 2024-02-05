@@ -6,6 +6,7 @@
 #include "graphics/map_vao.h"
 #include "core/game.h"
 #include "entity_factory.h"
+#include "entities/camera.h"
 
 namespace aoe {
 
@@ -28,8 +29,8 @@ namespace aoe {
 	}
 
 	bool load_entities(Game* game) {
-		Entity* camera = aoe::EntityFactory::createCamera();
-		game->addEntity(camera);
+		Camera* camera1 = new Camera(16, { 0.0f, 0.0f });
+		game->addEntity(camera1);
 
 		Entity* map = aoe::EntityFactory::createMap();
 		game->addEntity(map);
