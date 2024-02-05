@@ -15,12 +15,12 @@ namespace aoe_engine {
 
 		Entity();
 		~Entity();
-		bool onInit();
-		void onUpdate(float delta);
-		void onRender();
+		virtual bool onInit();
+		virtual void onUpdate(float delta);
+		virtual void onRender();
 
-		void onWindowResize(int width, int height);
-		void onKeyEvent(int key, int scanCode, int action, int mods);
+		virtual void onWindowResize(int width, int height);
+		virtual void onKeyEvent(int key, int scanCode, int action, int mods);
 
 		void registerComponent(Component* component);
 		Component* findComponent(const std::string& name);
