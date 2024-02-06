@@ -31,7 +31,7 @@ namespace aoe_engine {
 	void Component::onKeyEvent(int key, int scancode, int action, int mods) {
 	}
 
-	void Component::onMouseButtonEvent(int button, int action, int mods, double x, double y) {
+	void Component::onMouseButtonEvent(const MouseButtonEvent& event) {
 	}
 
 	const std::string& Component::getName() {

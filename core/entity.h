@@ -5,6 +5,7 @@
 
 #include "component.h"
 #include "component_exists_exception.h"
+#include "../events/mouse_button_event.h"
 
 namespace aoe_engine {
 
@@ -21,7 +22,7 @@ namespace aoe_engine {
 
 		virtual void onWindowResize(int width, int height);
 		virtual void onKeyEvent(int key, int scanCode, int action, int mods);
-		virtual void onMouseButtonEvent(int button, int action, int mods, double x, double y);
+		virtual void onMouseButtonEvent(const MouseButtonEvent& event);
 
 		void registerComponent(Component* component);
 		Component* findComponent(const std::string& name);

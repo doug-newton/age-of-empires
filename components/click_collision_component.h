@@ -14,7 +14,7 @@ namespace aoe_engine {
 		virtual ~ClickCollisionComponent();
 		
 		bool onInit() override;
-		void onMouseButtonEvent(int button, int action, int mods, double x, double y) override;
+		void onMouseButtonEvent(const MouseButtonEvent& event) override;
 
 	private:
 

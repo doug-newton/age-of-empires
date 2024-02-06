@@ -3,6 +3,7 @@
 #include "click_collision_component.h"
 #include "transform_component.h"
 #include "../entities/camera.h"
+#include <iostream>
 
 namespace aoe_engine {
 
@@ -24,7 +25,7 @@ namespace aoe_engine {
 		return true;
 	}
 
-	void ClickCollisionComponent::onMouseButtonEvent(int button, int action, int mods, double x, double y) {
+	void ClickCollisionComponent::onMouseButtonEvent(const MouseButtonEvent& event) {
 		glm::vec2 e_pos = this->m_transform_component->getTranslation();
 		glm::vec2 e_size = this->m_transform_component->getScaling();
 

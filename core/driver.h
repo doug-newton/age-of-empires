@@ -2,6 +2,7 @@
 
 #include "game.h"
 #include "fps.h"
+#include "../events/mouse_button_event.h"
 
 struct GLFWwindow;
 
