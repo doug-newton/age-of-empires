@@ -134,6 +134,7 @@
   <ItemGroup>
     <ClCompile Include="components\animated_sprite_component.cpp" />
     <ClCompile Include="components\camera_component.cpp" />
+    <ClCompile Include="components\click_collision_component.cpp" />
     <ClCompile Include="components\motion_component.cpp" />
     <ClCompile Include="components\quad_component.cpp" />
     <ClCompile Include="components\sprite_component.cpp" />
@@ -169,6 +170,7 @@
   <ItemGroup>
     <ClInclude Include="components\animated_sprite_component.h" />
     <ClInclude Include="components\camera_component.h" />
+    <ClInclude Include="components\click_collision_component.h" />
     <ClInclude Include="components\motion_component.h" />
     <ClInclude Include="components\quad_component.h" />
     <ClInclude Include="components\sprite_component.h" />
