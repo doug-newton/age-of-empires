@@ -5,8 +5,6 @@
 
 namespace aoe_engine {
 
-	class TransformComponent;
-
 	class MotionComponent : public Component {
 	public:
 
@@ -16,14 +14,15 @@ namespace aoe_engine {
 		void setVelocity(float x, float y);
 		void setRotationalVelocity(float r);
 
-		virtual bool onInit();
 		virtual void onUpdate(float delta);
+
+		void onChangeMotionMessage(ChangeMotionMessage* message) override;
 
 	private:
 
 		glm::vec2 m_velocity;
+		glm::vec2 m_scaling_velocity;
 		float m_rotational_velocity;
-		TransformComponent* m_transform_component;
 
 	};
 

@@ -2,6 +2,7 @@
 #include "game.h"
 #include "entity.h"
 #include <type_traits>
+#include "message.h"
 
 namespace aoe_engine {
 
@@ -41,6 +42,9 @@ namespace aoe_engine {
 		this->m_parent = parent;
 	}
 
+	void Component::onChangeTransformMessage(ChangeTransformMessage* message) {}
+	void Component::onChangeMotionMessage(ChangeMotionMessage* message) {}
+
 	ShaderProgram* Component::getShaderProgram(const std::string& name) {
 		ResourceManager* mgr = getResourceManager();
 
@@ -69,6 +73,10 @@ namespace aoe_engine {
 		}
 
 		return mgr->getTexture(name);
+	}
+
+	void Component::sendMessage(Message* message) {
+		this->m_parent->sendMessage(message);
 	}
 
 	ResourceManager* Component::getResourceManager() {

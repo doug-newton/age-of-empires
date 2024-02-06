@@ -28,6 +28,8 @@ namespace aoe_engine {
 		void setGame(Game* game);
 		Game* getGame();
 
+		void sendMessage(Message*);
+
 	private:
 
 		Game* m_game;

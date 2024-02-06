@@ -5,7 +5,10 @@
 
 namespace aoe_engine {
 
+	class Message;
 	class Entity;
+	class ChangeTransformMessage;
+	class ChangeMotionMessage;
 
 	class Component {
 	public:
@@ -24,6 +27,11 @@ namespace aoe_engine {
 		const std::string& getName();
 		void setParent(Entity* parent);
 
+	public:
+
+		virtual void onChangeTransformMessage(ChangeTransformMessage* message);
+		virtual void onChangeMotionMessage(ChangeMotionMessage* message);
+
 	protected:
 
 		template <class ComponentType>
@@ -32,6 +40,8 @@ namespace aoe_engine {
 		ShaderProgram* getShaderProgram(const std::string& name);
 		Vao* getVao(const std::string& name);
 		Texture* getTexture(const std::string& name);
+
+		void sendMessage(Message* message);
 
 	private:
 

@@ -102,6 +102,12 @@
     <ClCompile Include="components\animated_sprite_component.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="core\message.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="messages\transform_message.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core\component.h">
@@ -186,6 +192,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="components\animated_sprite_component.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="core\message.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="messages\transform_message.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
