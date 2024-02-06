@@ -47,9 +47,9 @@ namespace aoe_engine {
 		}
 	}
 
-	void Entity::onMouseButtonEvent(int button, int action, int mods) {
+	void Entity::onMouseButtonEvent(int button, int action, int mods, double x, double y) {
 		for (auto it = m_components.begin(); it != m_components.end(); ++it) {
-			(*it).second->onMouseButtonEvent(button, action, mods);
+			(*it).second->onMouseButtonEvent(button, action, mods, x, y);
 		}
 	}
 

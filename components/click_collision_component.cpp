@@ -24,7 +24,7 @@ namespace aoe_engine {
 		return true;
 	}
 
-	void ClickCollisionComponent::onMouseButtonEvent(int button, int action, int mods) {
+	void ClickCollisionComponent::onMouseButtonEvent(int button, int action, int mods, double x, double y) {
 		glm::vec2 e_pos = this->m_transform_component->getTranslation();
 		glm::vec2 e_size = this->m_transform_component->getScaling();
 

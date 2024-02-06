@@ -67,7 +67,9 @@ namespace aoe_engine {
 	}
 
 	void Driver::onMouseButtonEvent(GLFWwindow* window, int button, int action, int mods) {
-		s_game.onMouseButtonEvent(button, action, mods);
+		double x, y;
+		glfwGetCursorPos(s_window, &x, &y);
+		s_game.onMouseButtonEvent(button, action, mods, x, y);
 	}
 
 	void Driver::onCleanUp() {

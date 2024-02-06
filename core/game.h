@@ -19,7 +19,7 @@ namespace aoe_engine {
 
 		void onWindowResize(int width, int height);
 		void onKeyEvent(int key, int scanCode, int action, int mods);
-		void onMouseButtonEvent(int button, int action, int mods);
+		void onMouseButtonEvent(int button, int action, int mods, double x, double y);
 
 		void addEntity(Entity* entity);
 
