@@ -47,6 +47,10 @@ namespace aoe_engine {
 		return this == s_current_camera;
 	}
 
+	Camera* Camera::getActiveCamera() {
+		return s_current_camera;
+	}
+
 	Camera* Camera::s_current_camera = nullptr;
 
 }
