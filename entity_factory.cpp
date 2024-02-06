@@ -5,6 +5,7 @@
 #include "components/motion_component.h"
 #include "components/wasd_component.h"
 #include "components/camera_component.h"
+#include "components/click_collision_component.h"
 
 namespace aoe {
 
@@ -28,6 +29,7 @@ namespace aoe {
 		villager->registerComponent(tc);
 
 		villager->registerComponent(new AnimatedSpriteComponent("villager", "sprite"));
+		villager->registerComponent(new ClickCollisionComponent());
 
 		return villager;
 	}
