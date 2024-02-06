@@ -8,7 +8,7 @@
 namespace aoe_engine {
 
 	ClickCollisionComponent::ClickCollisionComponent() :
-		Component("click_collission"),
+		Component("click_collision"),
 		m_transform_component(nullptr) {
 	}
 
