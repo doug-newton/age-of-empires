@@ -51,4 +51,8 @@ namespace aoe_engine {
 		m_aspect_ratio = ((float)width) / height;
 	}
 
+	float CameraComponent::getAspectRatio() {
+		return this->m_aspect_ratio;
+	}
+
 }

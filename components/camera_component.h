@@ -14,6 +14,7 @@ namespace aoe_engine {
 		virtual bool onInit() override;
 		virtual void onRender() override;
 		virtual void onWindowResize(int width, int height);
+		float getAspectRatio();
 
 	private:
 		TransformComponent* m_transform_component;
