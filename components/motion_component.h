@@ -12,10 +12,14 @@ namespace aoe_engine {
 		MotionComponent();
 		virtual ~MotionComponent();
 
+		bool onInit() override;
 		void onUpdate(float delta) override;
 		void onSetParent() override;
 
-		void onChangeMotionMessage(ChangeMotionMessage* message) override;
+		void onMovementUpdate(const MovementSubject* subject) override;
+
+	private:
+		float m_speed;
 
 	};
 

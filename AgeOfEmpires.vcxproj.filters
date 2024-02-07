@@ -111,9 +111,6 @@
     <ClCompile Include="entities\camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="messages\change_motion_message.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="core\subject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -121,6 +118,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="subjects\motion_subject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="subjects\movement_subject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -221,9 +221,6 @@
     <ClInclude Include="events\mouse_button_event.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="messages\change_motion_message.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="core\subject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -234,6 +231,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="core\subject_registry.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="subjects\movement_subject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -31,10 +31,6 @@ namespace aoe_engine {
 
 		void subscribe(const std::string& name);
 
-	public:
-
-		virtual void onChangeMotionMessage(ChangeMotionMessage* message);
-
 	protected:
 
 		template <class ComponentType>

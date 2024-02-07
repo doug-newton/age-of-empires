@@ -4,6 +4,7 @@ namespace aoe_engine {
 
 	class Subject;
 	class MotionSubject;
+	class MovementSubject;
 
 	class Subscriber {
 
@@ -12,6 +13,7 @@ namespace aoe_engine {
 		virtual ~Subscriber();
 
 		virtual void onMotionUpdate(const MotionSubject* subject);
+		virtual void onMovementUpdate(const MovementSubject* subject);
 
 	protected:
 		void subscribe(Subject* subject);

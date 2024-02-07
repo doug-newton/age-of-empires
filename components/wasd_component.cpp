@@ -1,69 +1,61 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include "wasd_component.h"
-#include "../messages/change_motion_message.h"
+#include "../core/entity.h"
 
 namespace aoe_engine {
 
 	WASDComponent::WASDComponent() :
 		Component("WASD"),
+		MovementSubject(),
 		m_speed(0.5f) {
 	}
 
 	WASDComponent::~WASDComponent() {}
+
+	void WASDComponent::onSetParent() {
+		registerSubject(this->getParent());
+	}
 
 	void WASDComponent::onKeyEvent(int key, int scanCode, int action, int mods) {
 		switch (action) {
 		case GLFW_PRESS:
 			switch (key) {
 			case GLFW_KEY_W:
-				goUp();
+				moving_up = true;
 				break;
 			case GLFW_KEY_A:
-				goLeft();
+				moving_left = true;
 				break;
 			case GLFW_KEY_S:
-				goDown();
+				moving_down = true;
 				break;
 			case GLFW_KEY_D:
-				goRight();
+				moving_right = true;
 				break;
 			}
 			break;
 		case GLFW_RELEASE:
-			stop();
+			switch (key) {
+			case GLFW_KEY_W:
+				moving_up = false;
+				break;
+			case GLFW_KEY_A:
+				moving_left = false;
+				break;
+			case GLFW_KEY_S:
+				moving_down = false;
+				break;
+			case GLFW_KEY_D:
+				moving_right = false;
+				break;
+			}
 			break;
 		default:
 			break;
 		}
-	}
 
-	void WASDComponent::goUp() {
-		ChangeMotionMessage* message = new ChangeMotionMessage(this);
-		message->setNewVelocity(0, this->m_speed);
-		sendMessage(message);
-	}
-
-	void WASDComponent::goDown() {
-		ChangeMotionMessage* message = new ChangeMotionMessage(this);
-		message->setNewVelocity(0, -this->m_speed);
-		sendMessage(message);
-	}
-
-	void WASDComponent::goLeft() {
-		ChangeMotionMessage* message = new ChangeMotionMessage(this);
-		message->setNewVelocity(-this->m_speed, 0);
-		sendMessage(message);
-	}
-
-	void WASDComponent::goRight() {
-		ChangeMotionMessage* message = new ChangeMotionMessage(this);
-		message->setNewVelocity(this->m_speed, 0);
-		sendMessage(message);
-	}
-
-	void WASDComponent::stop() {
-		sendMessage(new ChangeMotionMessage(this));
+		publish();
 	}
 
 }
