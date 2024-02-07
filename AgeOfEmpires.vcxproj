@@ -167,6 +167,7 @@
     <ClCompile Include="stb_image.cpp" />
     <ClCompile Include="subjects\motion_subject.cpp" />
     <ClCompile Include="subjects\movement_subject.cpp" />
+    <ClCompile Include="subjects\transform_subject.cpp" />
     <ClCompile Include="util\file_util.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -206,6 +207,7 @@
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="subjects\motion_subject.h" />
     <ClInclude Include="subjects\movement_subject.h" />
+    <ClInclude Include="subjects\transform_subject.h" />
     <ClInclude Include="util\file_util.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -1,12 +1,12 @@
 #pragma once
 
 #include "../core/component.h"
+#include <glm/glm.hpp>
 
 namespace aoe_engine {
 
 	class Texture;
 	class ShaderProgram;
-	class TransformComponent;
 	class Vao;
 
 	class AnimatedSpriteComponent: public Component {
@@ -17,17 +17,19 @@ namespace aoe_engine {
 
 		bool onInit() override;
 		void onRender() override;
+		void onTransformUpdate(const TransformSubject* subject);
 
 	private:
 
 		std::string m_texture_name;
 		std::string m_vao_name;
 
-		TransformComponent* m_transform_component;
 		ShaderProgram* m_shader_program;
 		Texture* m_texture;
 		Vao* m_vao;
+		glm::mat4 m_model;
 
 	};
 
 }
+

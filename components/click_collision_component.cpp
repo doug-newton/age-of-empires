@@ -10,34 +10,32 @@ namespace aoe_engine {
 
 	ClickCollisionComponent::ClickCollisionComponent() :
 		Component("click_collision"),
-		m_transform_component(nullptr) {
+		m_position(0.0f, 0.0f),
+		m_size(1.0f, 1.0f) {
 	}
 
 	ClickCollisionComponent::~ClickCollisionComponent() {
 	}
 
 	bool ClickCollisionComponent::onInit() {
-		this->m_transform_component = getComponent<TransformComponent>("transform");
-
-		if (this->m_transform_component == nullptr) {
-			return false;
-		}
-
+		subscribe("transform");
 		return true;
 	}
 
-	void ClickCollisionComponent::onMouseButtonEvent(const MouseButtonEvent& event) {
-		glm::vec2 e_pos = this->m_transform_component->getTranslation();
-		glm::vec2 e_size = this->m_transform_component->getScaling();
+	void ClickCollisionComponent::onTransformUpdate(const TransformSubject* subject) {
+		this->m_position = subject->translation;
+		this->m_size = subject->scaling;
+	}
 
+	void ClickCollisionComponent::onMouseButtonEvent(const MouseButtonEvent& event) {
 		struct {
 			double left, right, top, bottom;
 		} aabb;
 
-		aabb.left = e_pos.x - e_size.x / 2;
-		aabb.right = e_pos.x + e_size.x / 2;
-		aabb.top = e_pos.y - e_size.y / 2;
-		aabb.bottom = e_pos.y + e_size.y / 2;
+		aabb.left = this->m_position.x - this->m_size.x / 2;
+		aabb.right = this->m_position.x + this->m_size.x / 2;
+		aabb.top = this->m_position.y - this->m_size.y / 2;
+		aabb.bottom = this->m_position.y + this->m_size.y / 2;
 
 		Camera* camera = Camera::getActiveCamera();
 
@@ -47,8 +45,8 @@ namespace aoe_engine {
 		void* p_camera = camera->findComponent("camera");
 		CameraComponent* camera_cmp = static_cast<CameraComponent*>(p_camera);
 
-		glm::vec2 camera_pos = camera_transform->getTranslation();
-		glm::vec2 camera_scaling = camera_transform->getScaling();
+		glm::vec2 camera_pos = camera_transform->translation;
+		glm::vec2 camera_scaling = camera_transform->scaling;
 		float ar = camera_cmp->getAspectRatio();
 
 		struct {
