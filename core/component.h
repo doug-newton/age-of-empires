@@ -3,6 +3,7 @@
 #include <string>
 #include "resource_manager.h"
 #include "../events/mouse_button_event.h"
+#include "subscriber.h"
 
 namespace aoe_engine {
 
@@ -11,7 +12,7 @@ namespace aoe_engine {
 	class ChangeTransformMessage;
 	class ChangeMotionMessage;
 
-	class Component {
+	class Component: public Subscriber {
 	public:
 
 		Component(const std::string& name);
@@ -27,6 +28,9 @@ namespace aoe_engine {
 
 		const std::string& getName();
 		void setParent(Entity* parent);
+		virtual void onSetParent();
+
+		void subscribe(const std::string& name);
 
 	public:
 
@@ -43,6 +47,8 @@ namespace aoe_engine {
 		Texture* getTexture(const std::string& name);
 
 		void sendMessage(Message* message);
+
+		Entity* getParent();
 
 	private:
 

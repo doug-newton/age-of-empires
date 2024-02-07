@@ -13,6 +13,11 @@ namespace aoe_engine {
 	TransformComponent::~TransformComponent() {
 	}
 
+	bool TransformComponent::onInit() {
+		subscribe("motion");
+		return true;
+	}
+
 	const glm::vec2& TransformComponent::getTranslation() {
 		return this->m_translation;
 	}
@@ -60,6 +65,10 @@ namespace aoe_engine {
 		setRotation(
 			this->m_rotation + message->getRotationChange()
 		);
+	}
+
+	void TransformComponent::onMotionUpdate(const MotionSubject* subject) {
+		int r = 0;
 	}
 
 }

@@ -3,6 +3,7 @@
 #include "entity.h"
 #include <type_traits>
 #include "message.h"
+#include "subject.h"
 
 namespace aoe_engine {
 
@@ -40,6 +41,17 @@ namespace aoe_engine {
 
 	void Component::setParent(Entity* parent) {
 		this->m_parent = parent;
+		onSetParent();
+	}
+
+	void Component::onSetParent() { }
+
+	void Component::subscribe(const std::string& name) {
+		Subject* subject = this->m_parent->getSubject(name);
+		if (subject == nullptr) {
+			return;
+		}
+		subject->addSubscriber(this);
 	}
 
 	void Component::onChangeTransformMessage(ChangeTransformMessage* message) {}
@@ -77,6 +89,10 @@ namespace aoe_engine {
 
 	void Component::sendMessage(Message* message) {
 		this->m_parent->sendMessage(message);
+	}
+
+	Entity* Component::getParent() {
+		return this->m_parent;
 	}
 
 	ResourceManager* Component::getResourceManager() {

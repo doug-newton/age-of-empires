@@ -6,12 +6,13 @@
 #include "component.h"
 #include "component_exists_exception.h"
 #include "../events/mouse_button_event.h"
+#include "subject_registry.h"
 
 namespace aoe_engine {
 
 	class Game;
 
-	class Entity {
+	class Entity: public SubjectRegistry {
 	public:
 
 		Entity();
@@ -31,10 +32,15 @@ namespace aoe_engine {
 
 		void sendMessage(Message*);
 
+		virtual void registerSubject(const std::string& name, Subject* subject) override;
+		virtual Subject* getSubject(const std::string&) override;
+
 	private:
 
 		Game* m_game;
 		std::map<std::string, Component*> m_components;
+
+		std::map<std::string, Subject*> m_subjects;
 
 
 	};

@@ -2,19 +2,21 @@
 
 #include "../core/component.h"
 #include <glm/glm.hpp>
+#include "../subjects/motion_subject.h"
 
 namespace aoe_engine {
 
-	class MotionComponent : public Component {
+	class MotionComponent : public Component, public MotionSubject {
 	public:
 
 		MotionComponent();
 		virtual ~MotionComponent();
 
+		void onUpdate(float delta) override;
+		void onSetParent() override;
+
 		void setVelocity(float x, float y);
 		void setRotationalVelocity(float r);
-
-		virtual void onUpdate(float delta);
 
 		void onChangeMotionMessage(ChangeMotionMessage* message) override;
 

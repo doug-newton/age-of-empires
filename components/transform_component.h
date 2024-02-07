@@ -17,6 +17,8 @@ namespace aoe_engine {
 		TransformComponent();
 		virtual ~TransformComponent();
 
+		bool onInit() override;
+
 		const glm::vec2& getTranslation();
 		const glm::vec2& getScaling();
 		float getRotation();
@@ -28,6 +30,8 @@ namespace aoe_engine {
 
 	public:
 		void onChangeTransformMessage(ChangeTransformMessage* message) override;
+
+		void onMotionUpdate(const MotionSubject* subject) override;
 
 	private:
 
