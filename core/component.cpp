@@ -41,10 +41,10 @@ namespace aoe_engine {
 
 	void Component::setParent(Entity* parent) {
 		this->m_parent = parent;
-		onSetParent();
+		onEntityRegistration();
 	}
 
-	void Component::onSetParent() { }
+	void Component::onEntityRegistration() { }
 
 	void Component::subscribe(const std::string& name) {
 		Subject* subject = this->m_parent->getSubject(name);

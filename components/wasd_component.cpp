@@ -13,7 +13,7 @@ namespace aoe_engine {
 
 	WASDComponent::~WASDComponent() {}
 
-	void WASDComponent::onSetParent() {
+	void WASDComponent::onEntityRegistration() {
 		registerSubject(this->getParent());
 	}
 

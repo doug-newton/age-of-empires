@@ -18,7 +18,7 @@ namespace aoe_engine {
 		return true;
 	}
 
-	void MotionComponent::onSetParent() {
+	void MotionComponent::onEntityRegistration() {
 		registerSubject(this->getParent());
 	}
 

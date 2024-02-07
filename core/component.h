@@ -27,7 +27,7 @@ namespace aoe_engine {
 
 		const std::string& getName();
 		void setParent(Entity* parent);
-		virtual void onSetParent();
+		virtual void onEntityRegistration();
 
 		void subscribe(const std::string& name);
 

@@ -14,7 +14,7 @@ namespace aoe_engine {
 
 		bool onInit() override;
 		void onUpdate(float delta) override;
-		void onSetParent() override;
+		void onEntityRegistration() override;
 
 		void onMovementUpdate(const MovementSubject* subject) override;
 

@@ -12,7 +12,7 @@ namespace aoe_engine {
 		WASDComponent();
 		virtual ~WASDComponent();
 
-		void onSetParent() override;
+		void onEntityRegistration() override;
 
 		virtual void onKeyEvent(int key, int scanCode, int action, int mods) override;
 
