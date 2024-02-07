@@ -1,41 +1,48 @@
 #include "motion_component.h"
-#include "transform_component.h"
-#include "../messages/change_transform_message.h"
-#include "../messages/change_motion_message.h"
+#include "../core/entity.h"
+#include "../subjects/movement_subject.h"
 
 namespace aoe_engine {
 
 	MotionComponent::MotionComponent() :
 		Component("motion"),
-		m_velocity(0.0f, 0.0f),
-		m_scaling_velocity(0.0f, 0.0f),
-		m_rotational_velocity(0.0f) {
+		MotionSubject("motion"),
+		m_speed(0.5f) {
 	}
 
 	MotionComponent::~MotionComponent() {
 	}
 
-	void MotionComponent::setVelocity(float x, float y) {
-		this->m_velocity.x = x;
-		this->m_velocity.y = y;
+	bool MotionComponent::onInit() {
+		subscribe("movement");
+		return true;
 	}
 
-	void MotionComponent::setRotationalVelocity(float r) {
-		this->m_rotational_velocity = r;
+	void MotionComponent::onEntityRegistration() {
+		registerSubject(this->getParent());
 	}
 
 	void MotionComponent::onUpdate(float delta) {
-		ChangeTransformMessage* message = new ChangeTransformMessage(this);
-		message->setTranslationChange(this->m_velocity.x * delta, this->m_velocity.y * delta);
-		message->setScalingChange(this->m_scaling_velocity.x * delta, this->m_scaling_velocity.y * delta);
-		message->setRotationChange(this->m_rotational_velocity * delta);
-		sendMessage(message);
+		this->delta = delta;
+		publish();
 	}
 
-	void MotionComponent::onChangeMotionMessage(ChangeMotionMessage* message) {
-		glm::vec2 new_velocity = message->getNewVelocity();
-		this->m_velocity.x = new_velocity.x;
-		this->m_velocity.y = new_velocity.y;
+	void MotionComponent::onMovementUpdate(const MovementSubject* subject) {
+		this->velocity.x = this->velocity.y = 0;
+
+		if (subject->moving_left) {
+			this->velocity.x = -this->m_speed;
+		}
+		else if (subject->moving_right) {
+			this->velocity.x = this->m_speed;
+		}
+
+		if (subject->moving_up) {
+			this->velocity.y = this->m_speed;
+		}
+		else if (subject->moving_down) {
+			this->velocity.y = -this->m_speed;
+		}
 	}
 
 }

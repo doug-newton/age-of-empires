@@ -1,65 +1,43 @@
 #include "transform_component.h"
-#include "../messages/change_transform_message.h"
+#include "../subjects/motion_subject.h"
+#include "../core/entity.h"
 
 namespace aoe_engine {
 
 	TransformComponent::TransformComponent() :
 		Component("transform"),
-		m_translation(0.0f, 0.0f),
-		m_scaling(1.0f, 1.0f),
-		m_rotation(0.0f) {
+		TransformSubject()
+	{
 	}
 
 	TransformComponent::~TransformComponent() {
 	}
 
-	const glm::vec2& TransformComponent::getTranslation() {
-		return this->m_translation;
+	void TransformComponent::onEntityRegistration() {
+		this->registerSubject(this->getParent());
 	}
 
-	const glm::vec2& TransformComponent::getScaling() {
-		return this->m_scaling;
+	bool TransformComponent::onInit() {
+		subscribe("motion");
+		return true;
 	}
 
-	float TransformComponent::getRotation() {
-		return this->m_rotation;
+	void TransformComponent::onMotionUpdate(const MotionSubject* subject) {
+		this->translation.x += subject->velocity.x * subject->delta;
+		this->translation.y += subject->velocity.y * subject->delta;
+		publish();
 	}
 
-	glm::mat4 TransformComponent::createModelMatrix() {
-		glm::mat4 model(1.0f);
-
-		model = glm::translate(model, glm::vec3(this->m_translation, 0.0f));
-		model = glm::scale(model, glm::vec3(this->m_scaling, 0.0f));
-		model = glm::rotate(model, glm::radians(this->m_rotation), glm::vec3(0.0f, 0.0f, 1.0f));
-
-		return model;
+	void TransformComponent::setScaling(float x, float y) {
+		this->scaling.x = x;
+		this->scaling.y = y;
+		publish();
 	}
 
 	void TransformComponent::setTranslation(float x, float y) {
-		this->m_translation.x = x;
-		this->m_translation.y = y;
-	}
-
-	void TransformComponent::setScaling(float w, float h) {
-		this->m_scaling.x = w;
-		this->m_scaling.y = h;
-	}
-
-	void TransformComponent::setRotation(float r) {
-		this->m_rotation = r;
-	}
-
-	void TransformComponent::onChangeTransformMessage(ChangeTransformMessage* message) {
-		glm::vec2 velocity = message->getTranslationChange();
-
-		setTranslation(
-			this->m_translation.x + velocity.x,
-			this->m_translation.y + velocity.y
-		);
-
-		setRotation(
-			this->m_rotation + message->getRotationChange()
-		);
+		this->translation.x = x;
+		this->translation.y = y;
+		publish();
 	}
 
 }

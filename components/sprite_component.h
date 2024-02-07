@@ -5,10 +5,9 @@
 #include "../graphics/texture.h"
 #include "../graphics/vao.h"
 #include <string>
+#include <glm/glm.hpp>
 
 namespace aoe_engine {
-
-	class TransformComponent;
 
 	class SpriteComponent : public Component {
 
@@ -18,14 +17,16 @@ namespace aoe_engine {
 
 		virtual bool onInit() override;
 		virtual void onRender() override;
+		void onTransformUpdate(const TransformSubject* subject);
 
 	private:
 		ShaderProgram* m_shader_program;
 		Texture* m_texture;
 		Vao* m_vao;
-		TransformComponent* m_transform_component;
 		std::string m_texture_name;
 		std::string m_vao_name;
+
+		glm::mat4 m_model;
 
 	};
 

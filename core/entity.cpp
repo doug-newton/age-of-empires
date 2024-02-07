@@ -93,4 +93,22 @@ namespace aoe_engine {
 		delete message;
 	}
 
+	void Entity::registerSubject(const std::string& name, Subject* subject) {
+		if (this->m_subjects.find(name) != this->m_subjects.end()) {
+			return;
+		}
+
+		this->m_subjects[name] = subject;
+	}
+
+	Subject* Entity::getSubject(const std::string& name) {
+		auto result = this->m_subjects.find(name);
+
+		if (result == this->m_subjects.end()) {
+			return nullptr;
+		}
+
+		return (*result).second;
+	}
+
 }

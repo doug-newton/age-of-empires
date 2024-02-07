@@ -3,6 +3,7 @@
 #include "entity.h"
 #include <type_traits>
 #include "message.h"
+#include "subject.h"
 
 namespace aoe_engine {
 
@@ -40,10 +41,18 @@ namespace aoe_engine {
 
 	void Component::setParent(Entity* parent) {
 		this->m_parent = parent;
+		onEntityRegistration();
 	}
 
-	void Component::onChangeTransformMessage(ChangeTransformMessage* message) {}
-	void Component::onChangeMotionMessage(ChangeMotionMessage* message) {}
+	void Component::onEntityRegistration() { }
+
+	void Component::subscribe(const std::string& name) {
+		Subject* subject = this->m_parent->getSubject(name);
+		if (subject == nullptr) {
+			return;
+		}
+		subject->addSubscriber(this);
+	}
 
 	ShaderProgram* Component::getShaderProgram(const std::string& name) {
 		ResourceManager* mgr = getResourceManager();
@@ -77,6 +86,10 @@ namespace aoe_engine {
 
 	void Component::sendMessage(Message* message) {
 		this->m_parent->sendMessage(message);
+	}
+
+	Entity* Component::getParent() {
+		return this->m_parent;
 	}
 
 	ResourceManager* Component::getResourceManager() {
