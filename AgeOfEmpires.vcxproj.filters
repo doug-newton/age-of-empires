@@ -114,9 +114,6 @@
     <ClCompile Include="messages\change_motion_message.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="messages\change_transform_message.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="core\subject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -225,9 +222,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="messages\change_motion_message.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="messages\change_transform_message.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="core\subject.h">

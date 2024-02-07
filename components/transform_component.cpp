@@ -1,5 +1,5 @@
 #include "transform_component.h"
-#include "../messages/change_transform_message.h"
+#include "../subjects/motion_subject.h"
 
 namespace aoe_engine {
 
@@ -54,21 +54,9 @@ namespace aoe_engine {
 		this->m_rotation = r;
 	}
 
-	void TransformComponent::onChangeTransformMessage(ChangeTransformMessage* message) {
-		glm::vec2 velocity = message->getTranslationChange();
-
-		setTranslation(
-			this->m_translation.x + velocity.x,
-			this->m_translation.y + velocity.y
-		);
-
-		setRotation(
-			this->m_rotation + message->getRotationChange()
-		);
-	}
-
 	void TransformComponent::onMotionUpdate(const MotionSubject* subject) {
-		int r = 0;
+		this->m_translation.x += subject->velocity.x * subject->delta;
+		this->m_translation.y += subject->velocity.y * subject->delta;
 	}
 
 }

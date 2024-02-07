@@ -4,8 +4,9 @@ namespace aoe_engine {
 
 	MotionSubject::MotionSubject(const std::string& name) :
 		Subject(name),
-		velocity_x(0.0f), 
-		velocity_y(0.0f) {
+		delta(0.0f),
+		velocity(0.0f, 0.0f) 
+	{
 	}
 
 	MotionSubject::~MotionSubject() {

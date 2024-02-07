@@ -9,7 +9,6 @@ namespace aoe_engine {
 
 	class Message;
 	class Entity;
-	class ChangeTransformMessage;
 	class ChangeMotionMessage;
 
 	class Component: public Subscriber {
@@ -34,7 +33,6 @@ namespace aoe_engine {
 
 	public:
 
-		virtual void onChangeTransformMessage(ChangeTransformMessage* message);
 		virtual void onChangeMotionMessage(ChangeMotionMessage* message);
 
 	protected:

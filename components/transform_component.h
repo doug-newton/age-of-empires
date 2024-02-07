@@ -29,7 +29,6 @@ namespace aoe_engine {
 		void setRotation(float r);
 
 	public:
-		void onChangeTransformMessage(ChangeTransformMessage* message) override;
 
 		void onMotionUpdate(const MotionSubject* subject) override;
 

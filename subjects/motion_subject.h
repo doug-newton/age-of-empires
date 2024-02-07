@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../core/subject.h"
+#include <glm/glm.hpp>
 
 namespace aoe_engine {
 
@@ -11,8 +12,8 @@ namespace aoe_engine {
 
 		void notify(Subscriber* subscriber);
 
-		float velocity_x;
-		float velocity_y;
+		float delta;
+		glm::vec2 velocity;
 	};
 
 }

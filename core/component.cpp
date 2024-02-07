@@ -54,7 +54,6 @@ namespace aoe_engine {
 		subject->addSubscriber(this);
 	}
 
-	void Component::onChangeTransformMessage(ChangeTransformMessage* message) {}
 	void Component::onChangeMotionMessage(ChangeMotionMessage* message) {}
 
 	ShaderProgram* Component::getShaderProgram(const std::string& name) {
