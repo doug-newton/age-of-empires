@@ -63,8 +63,8 @@ namespace aoe_engine {
 
 	void ViewComponent::updateView() {
 		this->m_view = glm::mat4(1.0);
-		this->m_view = glm::translate(this->m_view, glm::vec3(-this->translation.x, -this->translation.y, 0.0f));
 		this->m_view = glm::scale(this->m_view, glm::vec3((1/this->scaling.x), (1 / this->scaling.y)*aspect_ratio, 0.0f));
+		this->m_view = glm::translate(this->m_view, glm::vec3(-this->translation.x, -this->translation.y, 0.0f));
 	}
 
 }

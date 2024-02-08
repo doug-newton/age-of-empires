@@ -7,7 +7,7 @@ namespace aoe_engine {
 	MotionComponent::MotionComponent() :
 		Component("motion"),
 		MotionSubject("motion"),
-		m_speed(0.5f) {
+		m_speed(5.0f) {
 	}
 
 	MotionComponent::~MotionComponent() {
