@@ -1,9 +1,6 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include "click_collision_component.h"
-#include "transform_component.h"
-#include "view_component.h"
-#include "../camera/camera.h"
 #include <iostream>
 #include "../camera/camera_system.h"
 
