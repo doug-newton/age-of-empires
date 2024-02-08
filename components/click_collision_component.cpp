@@ -18,6 +18,10 @@ namespace aoe_engine {
 	ClickCollisionComponent::~ClickCollisionComponent() {
 	}
 
+	void ClickCollisionComponent::onEntityRegistration() {
+		registerSubject(this->getParent());
+	}
+
 	bool ClickCollisionComponent::onInit() {
 		subscribe("transform");
 		CameraSystem::addCameraInfoSubscriber(this);
@@ -57,9 +61,14 @@ namespace aoe_engine {
 		click_pos.x += this->m_camera_pos.x;
 		click_pos.y -= this->m_camera_pos.y;
 
-		if (!aabbClicked(aabb, click_pos)) return;
+		this->aabb_clicked = aabbClicked(aabb, click_pos);
+		this->button = event.button;
+		this->action = event.action;
+		this->mods = event.mods;
+		this->world_x = click_pos.x;
+		this->world_y = click_pos.y;
 
-		std::cout << "click collision detected" << std::endl;
+		publish();
 	}
 
 	bool ClickCollisionComponent::aabbClicked(const aabb& aabb, const click_pos& click_pos) {

@@ -8,6 +8,7 @@ namespace aoe_engine {
 	class TransformSubject;
 	class ViewSubject;
 	class CameraInfoSubject;
+	class ClickSubject;
 
 	class Subscriber {
 
@@ -20,6 +21,7 @@ namespace aoe_engine {
 		virtual void onTransformUpdate(const TransformSubject* subject);
 		virtual void onViewUpdate(const ViewSubject* subject);
 		virtual void onCameraInfoUpdate(const CameraInfoSubject* subject);
+		virtual void onClickUpdate(const ClickSubject* subject);
 
 	protected:
 		void subscribe(Subject* subject);

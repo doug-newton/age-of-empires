@@ -1,17 +1,19 @@
 #pragma once
 
 #include "../core/component.h"
+#include "../subjects/click_subject.h"
 #include <glm/glm.hpp>
 
 namespace aoe_engine {
 
-	class ClickCollisionComponent : public Component {
+	class ClickCollisionComponent : public Component, public ClickSubject {
 
 	public:
 
 		ClickCollisionComponent();
 		virtual ~ClickCollisionComponent();
 		
+		void onEntityRegistration() override;
 		bool onInit() override;
 		void onMouseButtonEvent(const MouseButtonEvent& event) override;
 		void onTransformUpdate(const TransformSubject* subject) override;
