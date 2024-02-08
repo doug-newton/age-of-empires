@@ -108,7 +108,7 @@
     <ClCompile Include="components\click_collision_component.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="entities\camera.cpp">
+    <ClCompile Include="camera\camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="core\subject.cpp">
@@ -227,7 +227,7 @@
     <ClInclude Include="components\click_collision_component.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="entities\camera.h">
+    <ClInclude Include="camera\camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="events\mouse_button_event.h">

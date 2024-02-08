@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../core/subscriber.h"
-#include "../entities/camera.h"
+#include "../camera/camera.h"
 #include "../subjects/camera_info_subject.h"
 
 /*

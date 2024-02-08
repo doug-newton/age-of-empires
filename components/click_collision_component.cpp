@@ -3,7 +3,7 @@
 #include "click_collision_component.h"
 #include "transform_component.h"
 #include "view_component.h"
-#include "../entities/camera.h"
+#include "../camera/camera.h"
 #include <iostream>
 
 namespace aoe_engine {
