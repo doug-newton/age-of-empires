@@ -133,7 +133,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="components\animated_sprite_component.cpp" />
-    <ClCompile Include="components\camera_component.cpp" />
+    <ClCompile Include="components\view_component.cpp" />
     <ClCompile Include="components\click_collision_component.cpp" />
     <ClCompile Include="components\motion_component.cpp" />
     <ClCompile Include="components\quad_component.cpp" />
@@ -172,7 +172,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="components\animated_sprite_component.h" />
-    <ClInclude Include="components\camera_component.h" />
+    <ClInclude Include="components\view_component.h" />
     <ClInclude Include="components\click_collision_component.h" />
     <ClInclude Include="components\motion_component.h" />
     <ClInclude Include="components\quad_component.h" />

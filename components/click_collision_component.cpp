@@ -2,7 +2,7 @@
 #include <GLFW/glfw3.h>
 #include "click_collision_component.h"
 #include "transform_component.h"
-#include "camera_component.h"
+#include "view_component.h"
 #include "../entities/camera.h"
 #include <iostream>
 
@@ -42,19 +42,19 @@ namespace aoe_engine {
 		void* p_transform = camera->findComponent("transform");
 		TransformComponent* camera_transform = static_cast<TransformComponent*>(p_transform);
 
-		void* p_camera = camera->findComponent("camera");
-		CameraComponent* camera_cmp = static_cast<CameraComponent*>(p_camera);
+		void* p_view = camera->findComponent("view");
+		ViewComponent* view_cmp = static_cast<ViewComponent*>(p_view);
 
-		glm::vec2 camera_pos = camera_transform->translation;
-		glm::vec2 camera_scaling = camera_transform->scaling;
-		float ar = camera_cmp->getAspectRatio();
+		glm::vec2 view_pos = camera_transform->translation;
+		glm::vec2 view_scaling = camera_transform->scaling;
+		float ar = view_cmp->getAspectRatio();
 
 		struct {
 			double x, y;
 		} mouse_world_pos;
 
-		mouse_world_pos.x = (event.x / event.screen_width - 0.5f) * camera_scaling.x * 2 + (camera_pos.x * camera_scaling.x);
-		mouse_world_pos.y = (event.y / event.screen_height - 0.5f) * camera_scaling.y / ar * 2 - (camera_pos.y * camera_scaling.y / ar);
+		mouse_world_pos.x = (event.x / event.screen_width - 0.5f) * view_scaling.x * 2 + (view_pos.x * view_scaling.x);
+		mouse_world_pos.y = (event.y / event.screen_height - 0.5f) * view_scaling.y / ar * 2 - (view_pos.y * view_scaling.y / ar);
 
 		if (mouse_world_pos.x < aabb.left) {
 			return;

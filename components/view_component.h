@@ -6,10 +6,10 @@ namespace aoe_engine {
 
 	class ShaderProgram;
 
-	class CameraComponent : public Component {
+	class ViewComponent : public Component {
 	public:
-		CameraComponent(std::vector<std::string> programNames);
-		virtual ~CameraComponent();
+		ViewComponent(std::vector<std::string> programNames);
+		virtual ~ViewComponent();
 
 		virtual bool onInit() override;
 		virtual void onRender() override;

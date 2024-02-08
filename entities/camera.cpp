@@ -2,7 +2,7 @@
 #include "../components/wasd_component.h"
 #include "../components/motion_component.h"
 #include "../components/transform_component.h"
-#include "../components/camera_component.h"
+#include "../components/view_component.h"
 
 namespace aoe_engine {
 
@@ -13,7 +13,7 @@ namespace aoe_engine {
 		this->registerComponent(tc);
 		this->registerComponent(new MotionComponent());
 		this->registerComponent(new WASDComponent());
-		this->registerComponent(new CameraComponent({ "transform", "texture", "animated_texture" }));
+		this->registerComponent(new ViewComponent({ "transform", "texture", "animated_texture" }));
 		this->activate();
 	}
 
@@ -25,7 +25,7 @@ namespace aoe_engine {
 		this->registerComponent(tc);
 		this->registerComponent(new MotionComponent());
 		this->registerComponent(new WASDComponent());
-		this->registerComponent(new CameraComponent({ "transform", "texture", "animated_texture" }));
+		this->registerComponent(new ViewComponent({ "transform", "texture", "animated_texture" }));
 		this->activate();
 	}
 

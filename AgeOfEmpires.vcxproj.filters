@@ -45,7 +45,7 @@
     <ClCompile Include="graphics\shader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="components\camera_component.cpp">
+    <ClCompile Include="components\view_component.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="components\motion_component.cpp">
@@ -152,7 +152,7 @@
     <ClInclude Include="graphics\shader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="components\camera_component.h">
+    <ClInclude Include="components\view_component.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="components\motion_component.h">
