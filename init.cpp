@@ -6,7 +6,7 @@
 #include "graphics/map_vao.h"
 #include "core/game.h"
 #include "entity_factory.h"
-#include "entities/camera.h"
+#include "camera/camera.h"
 
 namespace aoe {
 

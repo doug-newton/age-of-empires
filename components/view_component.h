@@ -1,4 +1,5 @@
 #include "../core/component.h"
+#include "../subjects/view_subject.h"
 #include <vector>
 #include <glm/glm.hpp>
 
@@ -6,11 +7,12 @@ namespace aoe_engine {
 
 	class ShaderProgram;
 
-	class CameraComponent : public Component {
+	class ViewComponent : public Component, public ViewSubject {
 	public:
-		CameraComponent(std::vector<std::string> programNames);
-		virtual ~CameraComponent();
+		ViewComponent(std::vector<std::string> programNames);
+		virtual ~ViewComponent();
 
+		void onEntityRegistration() override;
 		virtual bool onInit() override;
 		virtual void onRender() override;
 		virtual void onWindowResize(int width, int height);
@@ -20,7 +22,6 @@ namespace aoe_engine {
 	private:
 		std::vector<std::string> m_program_names;
 		std::vector<ShaderProgram*> m_shader_programs;
-		float m_aspect_ratio;
 		glm::mat4 m_view;
 	};
 

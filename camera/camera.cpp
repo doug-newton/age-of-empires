@@ -2,7 +2,8 @@
 #include "../components/wasd_component.h"
 #include "../components/motion_component.h"
 #include "../components/transform_component.h"
-#include "../components/camera_component.h"
+#include "../components/view_component.h"
+#include "camera_system.h"
 
 namespace aoe_engine {
 
@@ -13,7 +14,8 @@ namespace aoe_engine {
 		this->registerComponent(tc);
 		this->registerComponent(new MotionComponent());
 		this->registerComponent(new WASDComponent());
-		this->registerComponent(new CameraComponent({ "transform", "texture", "animated_texture" }));
+		this->registerComponent(new ViewComponent({ "transform", "texture", "animated_texture" }));
+		CameraSystem::registerCamera(this);
 		this->activate();
 	}
 
@@ -25,7 +27,8 @@ namespace aoe_engine {
 		this->registerComponent(tc);
 		this->registerComponent(new MotionComponent());
 		this->registerComponent(new WASDComponent());
-		this->registerComponent(new CameraComponent({ "transform", "texture", "animated_texture" }));
+		this->registerComponent(new ViewComponent({ "transform", "texture", "animated_texture" }));
+		CameraSystem::registerCamera(this);
 		this->activate();
 	}
 
@@ -40,17 +43,11 @@ namespace aoe_engine {
 	}
 
 	void Camera::activate() {
-		s_current_camera = this;
+		CameraSystem::s_active_camera = this;
 	}
 
 	bool Camera::isActive() {
-		return this == s_current_camera;
+		return this == CameraSystem::s_active_camera;
 	}
-
-	Camera* Camera::getActiveCamera() {
-		return s_current_camera;
-	}
-
-	Camera* Camera::s_current_camera = nullptr;
 
 }

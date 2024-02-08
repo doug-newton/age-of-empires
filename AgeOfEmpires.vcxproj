@@ -132,8 +132,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="camera\camera_info_relay.cpp" />
+    <ClCompile Include="camera\camera_system.cpp" />
     <ClCompile Include="components\animated_sprite_component.cpp" />
-    <ClCompile Include="components\camera_component.cpp" />
+    <ClCompile Include="components\view_component.cpp" />
     <ClCompile Include="components\click_collision_component.cpp" />
     <ClCompile Include="components\motion_component.cpp" />
     <ClCompile Include="components\quad_component.cpp" />
@@ -146,7 +148,7 @@
     <ClCompile Include="core\entity.cpp" />
     <ClCompile Include="core\subject.cpp" />
     <ClCompile Include="core\subscriber.cpp" />
-    <ClCompile Include="entities\camera.cpp" />
+    <ClCompile Include="camera\camera.cpp" />
     <ClCompile Include="core\message.cpp" />
     <ClCompile Include="init.cpp" />
     <ClCompile Include="entity_factory.cpp" />
@@ -165,14 +167,18 @@
     <ClCompile Include="graphics\vao.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="stb_image.cpp" />
+    <ClCompile Include="subjects\camera_info_subject.cpp" />
     <ClCompile Include="subjects\motion_subject.cpp" />
     <ClCompile Include="subjects\movement_subject.cpp" />
     <ClCompile Include="subjects\transform_subject.cpp" />
+    <ClCompile Include="subjects\view_subject.cpp" />
     <ClCompile Include="util\file_util.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="camera\camera_info_relay.h" />
+    <ClInclude Include="camera\camera_system.h" />
     <ClInclude Include="components\animated_sprite_component.h" />
-    <ClInclude Include="components\camera_component.h" />
+    <ClInclude Include="components\view_component.h" />
     <ClInclude Include="components\click_collision_component.h" />
     <ClInclude Include="components\motion_component.h" />
     <ClInclude Include="components\quad_component.h" />
@@ -186,7 +192,7 @@
     <ClInclude Include="core\subject.h" />
     <ClInclude Include="core\subject_registry.h" />
     <ClInclude Include="core\subscriber.h" />
-    <ClInclude Include="entities\camera.h" />
+    <ClInclude Include="camera\camera.h" />
     <ClInclude Include="core\message.h" />
     <ClInclude Include="events\mouse_button_event.h" />
     <ClInclude Include="init.h" />
@@ -205,9 +211,11 @@
     <ClInclude Include="graphics\texture.h" />
     <ClInclude Include="graphics\vao.h" />
     <ClInclude Include="stb_image.h" />
+    <ClInclude Include="subjects\camera_info_subject.h" />
     <ClInclude Include="subjects\motion_subject.h" />
     <ClInclude Include="subjects\movement_subject.h" />
     <ClInclude Include="subjects\transform_subject.h" />
+    <ClInclude Include="subjects\view_subject.h" />
     <ClInclude Include="util\file_util.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
