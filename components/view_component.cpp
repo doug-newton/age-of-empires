@@ -44,6 +44,7 @@ namespace aoe_engine {
 
 	void ViewComponent::onWindowResize(int width, int height) {
 		aspect_ratio = ((float)width) / height;
+		updateView();
 		publish();
 	}
 
@@ -52,16 +53,18 @@ namespace aoe_engine {
 		this->translation.y = subject->translation.y;
 		this->scaling.x = subject->scaling.x;
 		this->scaling.y = subject->scaling.y;
-
-		this->m_view = glm::mat4(1.0);
-		this->m_view = glm::translate(this->m_view, glm::vec3(-this->translation.x, -this->translation.y, 0.0f));
-		this->m_view = glm::scale(this->m_view, glm::vec3((1/this->scaling.x), (1 / this->scaling.y)*aspect_ratio, 0.0f));
-
+		updateView();
 		publish();
 	}
 
 	float ViewComponent::getAspectRatio() {
 		return this->aspect_ratio;
+	}
+
+	void ViewComponent::updateView() {
+		this->m_view = glm::mat4(1.0);
+		this->m_view = glm::translate(this->m_view, glm::vec3(-this->translation.x, -this->translation.y, 0.0f));
+		this->m_view = glm::scale(this->m_view, glm::vec3((1/this->scaling.x), (1 / this->scaling.y)*aspect_ratio, 0.0f));
 	}
 
 }

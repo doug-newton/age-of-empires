@@ -23,8 +23,20 @@ namespace aoe_engine {
 	}
 
 	void TransformComponent::onMotionUpdate(const MotionSubject* subject) {
-		this->translation.x += subject->velocity.x * subject->delta;
-		this->translation.y += subject->velocity.y * subject->delta;
+		bool update = false;
+
+		if (subject->velocity.x != 0) {
+			update = true;
+			this->translation.x += subject->velocity.x * subject->delta;
+		}
+
+		if (subject->velocity.y != 0) {
+			update = true;
+			this->translation.y += subject->velocity.y * subject->delta;
+		}
+
+		if (!update) return;
+
 		publish();
 	}
 

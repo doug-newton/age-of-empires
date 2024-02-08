@@ -14,6 +14,7 @@ namespace aoe_engine {
 
 	void Subject::addSubscriber(Subscriber* subscriber) {
 		this->m_subscribers.push_back(subscriber);
+		notify(subscriber);
 	}
 
 	void Subject::publish() {

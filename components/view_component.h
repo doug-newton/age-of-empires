@@ -23,6 +23,8 @@ namespace aoe_engine {
 		std::vector<std::string> m_program_names;
 		std::vector<ShaderProgram*> m_shader_programs;
 		glm::mat4 m_view;
+
+		void updateView();
 	};
 
 }

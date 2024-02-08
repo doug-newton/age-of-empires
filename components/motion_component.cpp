@@ -23,7 +23,12 @@ namespace aoe_engine {
 	}
 
 	void MotionComponent::onUpdate(float delta) {
+		if (this->velocity.x == 0 && this->velocity.y == 0) {
+			return;
+		}
+
 		this->delta = delta;
+
 		publish();
 	}
 
