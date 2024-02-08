@@ -1,3 +1,3 @@
-# (not) Age of Empires
+# Age of Empires
 
-Creating a simplified Age of Empires clone in C++ and OpenGL, using an entity-component system.
+Simplified Age of Empires clone in C++ and OpenGL.
