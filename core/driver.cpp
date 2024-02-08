@@ -59,6 +59,8 @@ namespace aoe_engine {
 
 	void Driver::onWindowResize(GLFWwindow* window, int width, int height) {
 		glViewport(0, 0, width, height);
+		s_window_width = width;
+		s_window_height = height;
 		s_game.onWindowResize(width, height);
 	}
 
