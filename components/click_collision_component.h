@@ -26,6 +26,16 @@ namespace aoe_engine {
 		glm::vec2 m_camera_scaling;
 		float m_camera_aspect_ratio;
 
+		struct aabb {
+			double left, right, top, bottom;
+		};
+
+		struct click_pos {
+			double x, y;
+		};
+
+		bool aabbClicked(const aabb& aabb, const click_pos& click_pos);
+
 	};
 
 }
