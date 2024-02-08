@@ -16,5 +16,6 @@ namespace aoe_engine {
 	void Subscriber::onMotionUpdate(const MotionSubject* subject) {}
 	void Subscriber::onMovementUpdate(const MovementSubject* subject) {}
 	void Subscriber::onTransformUpdate(const TransformSubject* subject) {}
+	void Subscriber::onViewUpdate(const ViewSubject* subject) {}
 
 }

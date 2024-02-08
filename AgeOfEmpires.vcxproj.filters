@@ -126,6 +126,9 @@
     <ClCompile Include="subjects\transform_subject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="subjects\view_subject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core\component.h">
@@ -240,6 +243,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="subjects\transform_subject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="subjects\view_subject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
