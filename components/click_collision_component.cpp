@@ -5,6 +5,7 @@
 #include "view_component.h"
 #include "../camera/camera.h"
 #include <iostream>
+#include "../camera/camera_system.h"
 
 namespace aoe_engine {
 
@@ -37,7 +38,7 @@ namespace aoe_engine {
 		aabb.top = this->m_position.y - this->m_size.y / 2;
 		aabb.bottom = this->m_position.y + this->m_size.y / 2;
 
-		Camera* camera = Camera::getActiveCamera();
+		Camera* camera = CameraSystem::getActiveCamera();
 
 		void* p_transform = camera->findComponent("transform");
 		TransformComponent* camera_transform = static_cast<TransformComponent*>(p_transform);

@@ -1,5 +1,6 @@
 #include "camera_info_relay.h"
 #include "../subjects/view_subject.h"
+#include "camera_system.h"
 
 namespace aoe_engine {
 
@@ -15,7 +16,7 @@ namespace aoe_engine {
 	}
 
 	void CameraInfoRelay::onViewUpdate(const ViewSubject* subject) {
-		if (subject->camera != Camera::getActiveCamera()) {
+		if (subject->camera != CameraSystem::getActiveCamera()) {
 			return;
 		}
 

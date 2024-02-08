@@ -133,6 +133,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="camera\camera_info_relay.cpp" />
+    <ClCompile Include="camera\camera_system.cpp" />
     <ClCompile Include="components\animated_sprite_component.cpp" />
     <ClCompile Include="components\view_component.cpp" />
     <ClCompile Include="components\click_collision_component.cpp" />
@@ -175,6 +176,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="camera\camera_info_relay.h" />
+    <ClInclude Include="camera\camera_system.h" />
     <ClInclude Include="components\animated_sprite_component.h" />
     <ClInclude Include="components\view_component.h" />
     <ClInclude Include="components\click_collision_component.h" />

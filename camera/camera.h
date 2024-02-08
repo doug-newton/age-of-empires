@@ -18,12 +18,6 @@ namespace aoe_engine {
 
 		void activate();
 		inline bool isActive();
-
-		static Camera* getActiveCamera();
-
-	private:
-
-		static Camera* s_current_camera;
 		
 	};
 
