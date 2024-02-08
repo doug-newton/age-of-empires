@@ -45,30 +45,26 @@ namespace aoe_engine {
 		aabb.top = this->m_position.y - this->m_size.y / 2;
 		aabb.bottom = this->m_position.y + this->m_size.y / 2;
 
-		float ar = this->m_camera_aspect_ratio;
-
 		struct {
 			double x, y;
-		} mouse_world_pos;
+		} click_pos;
 
-		mouse_world_pos.x = (event.x / event.screen_width - 0.5f) * this->m_camera_scaling.x * 2 + (this->m_camera_pos.x * this->m_camera_scaling.x);
-		mouse_world_pos.y = (event.y / event.screen_height - 0.5f) * this->m_camera_scaling.y / ar * 2 - (this->m_camera_pos.y * this->m_camera_scaling.y / ar);
+		float ar = this->m_camera_aspect_ratio;
 
-		if (mouse_world_pos.x < aabb.left) {
-			return;
-		}
+		click_pos.x = (event.x - event.screen_width / 2) / event.screen_width;
+		click_pos.y = (event.y - event.screen_height / 2) / event.screen_height;
 
-		if (mouse_world_pos.x > aabb.right) {
-			return;
-		}
+		click_pos.x *= this->m_camera_scaling.x * 2;
+		click_pos.y *= this->m_camera_scaling.y * 2;
+		click_pos.y /= ar;
 
-		if (mouse_world_pos.y < aabb.top) {
-			return;
-		}
+		click_pos.x += this->m_camera_pos.x;
+		click_pos.y -= this->m_camera_pos.y;
 
-		if (mouse_world_pos.y > aabb.bottom) {
-			return;
-		}
+		if (click_pos.x < aabb.left) return;
+		if (click_pos.x > aabb.right) return;
+		if (click_pos.y < aabb.top) return;
+		if (click_pos.y > aabb.bottom) return;
 
 		std::cout << "click collision detected" << std::endl;
 	}
