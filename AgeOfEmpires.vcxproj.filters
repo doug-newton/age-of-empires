@@ -129,6 +129,12 @@
     <ClCompile Include="subjects\view_subject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="camera\camera_info_relay.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="subjects\camera_info_subject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core\component.h">
@@ -246,6 +252,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="subjects\view_subject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="camera\camera_info_relay.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="subjects\camera_info_subject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

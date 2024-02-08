@@ -132,6 +132,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="camera\camera_info_relay.cpp" />
     <ClCompile Include="components\animated_sprite_component.cpp" />
     <ClCompile Include="components\view_component.cpp" />
     <ClCompile Include="components\click_collision_component.cpp" />
@@ -165,6 +166,7 @@
     <ClCompile Include="graphics\vao.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="stb_image.cpp" />
+    <ClCompile Include="subjects\camera_info_subject.cpp" />
     <ClCompile Include="subjects\motion_subject.cpp" />
     <ClCompile Include="subjects\movement_subject.cpp" />
     <ClCompile Include="subjects\transform_subject.cpp" />
@@ -172,6 +174,7 @@
     <ClCompile Include="util\file_util.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="camera\camera_info_relay.h" />
     <ClInclude Include="components\animated_sprite_component.h" />
     <ClInclude Include="components\view_component.h" />
     <ClInclude Include="components\click_collision_component.h" />
@@ -206,6 +209,7 @@
     <ClInclude Include="graphics\texture.h" />
     <ClInclude Include="graphics\vao.h" />
     <ClInclude Include="stb_image.h" />
+    <ClInclude Include="subjects\camera_info_subject.h" />
     <ClInclude Include="subjects\motion_subject.h" />
     <ClInclude Include="subjects\movement_subject.h" />
     <ClInclude Include="subjects\transform_subject.h" />
