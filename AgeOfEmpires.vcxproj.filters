@@ -138,6 +138,24 @@
     <ClCompile Include="camera\camera_system.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="components\selection_component.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="subjects\click_subject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="subjects\selection_subject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="components\click_mover_component.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="subjects\set_transform_subject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="components\cursor_pos_binder_component.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core\component.h">
@@ -264,6 +282,27 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="camera\camera_system.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="components\selection_component.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="subjects\click_subject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="subjects\selection_subject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="components\click_mover_component.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="subjects\set_transform_subject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="components\cursor_pos_binder_component.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="events\mouse_move_event.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

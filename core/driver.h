@@ -3,6 +3,7 @@
 #include "game.h"
 #include "fps.h"
 #include "../events/mouse_button_event.h"
+#include "../events/mouse_move_event.h"
 
 struct GLFWwindow;
 
@@ -26,6 +27,7 @@ namespace aoe_engine {
 		static void onWindowResize(GLFWwindow* window, int width, int height);
 		static void onKeyEvent(GLFWwindow* window, int key, int scanCode, int action, int mods);
 		static void onMouseButtonEvent(GLFWwindow* window, int button, int action, int mods);
+		static void onMouseMove(GLFWwindow* window, double x, double y);
 
 		static void setResourceLoaderCallback(bool (*callback)(ResourceManager*));
 		static void setEntityLoaderCallback(bool (*callback)(Game*));

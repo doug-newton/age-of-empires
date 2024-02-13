@@ -1,5 +1,6 @@
 #include "transform_component.h"
 #include "../subjects/motion_subject.h"
+#include "../subjects/set_transform_subject.h"
 #include "../core/entity.h"
 
 namespace aoe_engine {
@@ -19,6 +20,7 @@ namespace aoe_engine {
 
 	bool TransformComponent::onInit() {
 		subscribe("motion");
+		subscribe("set_transform");
 		return true;
 	}
 
@@ -37,6 +39,14 @@ namespace aoe_engine {
 
 		if (!update) return;
 
+		publish();
+	}
+
+	void TransformComponent::onSetTransformUpdate(const SetTransformSubject* subject) {
+		this->translation.x = subject->translation.x;
+		this->translation.y = subject->translation.y;
+		this->scaling.x = subject->scaling.x;
+		this->scaling.y = subject->scaling.y;
 		publish();
 	}
 

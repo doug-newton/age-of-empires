@@ -55,6 +55,12 @@ namespace aoe_engine {
 		}
 	}
 
+	void Game::onMouseMoveEvent(const MouseMoveEvent& event) {
+		for (auto it = entities.begin(); it != entities.end(); ++it) {
+			(*it)->onMouseMoveEvent(event);
+		}
+	}
+
 	void Game::addEntity(Entity* entity) {
 		entity->setGame(this);
 		this->entities.push_back(entity);

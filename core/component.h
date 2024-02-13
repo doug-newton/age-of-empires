@@ -3,6 +3,7 @@
 #include <string>
 #include "resource_manager.h"
 #include "../events/mouse_button_event.h"
+#include "../events/mouse_move_event.h"
 #include "subscriber.h"
 
 namespace aoe_engine {
@@ -24,6 +25,7 @@ namespace aoe_engine {
 		virtual void onWindowResize(int width, int height);
 		virtual void onKeyEvent(int key, int scancode, int action, int mods);
 		virtual void onMouseButtonEvent(const MouseButtonEvent& event);
+		virtual void onMouseMoveEvent(const MouseMoveEvent& event);
 
 		const std::string& getName();
 		void setParent(Entity* parent);

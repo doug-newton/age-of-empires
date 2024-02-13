@@ -35,6 +35,9 @@ namespace aoe_engine {
 	void Component::onMouseButtonEvent(const MouseButtonEvent& event) {
 	}
 
+	void Component::onMouseMoveEvent(const MouseMoveEvent& event) {
+	}
+
 	const std::string& Component::getName() {
 		return this->m_name;
 	}

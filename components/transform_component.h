@@ -20,6 +20,7 @@ namespace aoe_engine {
 		bool onInit() override;
 
 		void onMotionUpdate(const MotionSubject* subject) override;
+		void onSetTransformUpdate(const SetTransformSubject* subject) override;
 
 		void setTranslation(float x, float y);
 		void setScaling(float x, float y);

@@ -84,6 +84,17 @@ namespace aoe_engine {
 		s_game.onMouseButtonEvent(event);
 	}
 
+	void Driver::onMouseMove(GLFWwindow* window, double x, double y) {
+		MouseMoveEvent event;
+
+		event.x = x;
+		event.y = y;
+		event.screen_width = s_window_width;
+		event.screen_height = s_window_height;
+
+		s_game.onMouseMoveEvent(event);
+	}
+
 	void Driver::onCleanUp() {
 		glfwTerminate();
 	}
@@ -124,6 +135,7 @@ namespace aoe_engine {
 
 		glfwSetKeyCallback(s_window, onKeyEvent);
 		glfwSetMouseButtonCallback(s_window, onMouseButtonEvent);
+		glfwSetCursorPosCallback(s_window, onMouseMove);
 
 		return true;
 	}

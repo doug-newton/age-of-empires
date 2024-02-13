@@ -1,7 +1,6 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include "click_collision_component.h"
-#include <iostream>
 #include "../camera/camera_system.h"
 
 namespace aoe_engine {
@@ -44,22 +43,22 @@ namespace aoe_engine {
 
 		aabb.left = this->m_position.x - this->m_size.x / 2;
 		aabb.right = this->m_position.x + this->m_size.x / 2;
-		aabb.top = this->m_position.y - this->m_size.y / 2;
-		aabb.bottom = this->m_position.y + this->m_size.y / 2;
+		aabb.top = this->m_position.y + this->m_size.y / 2;
+		aabb.bottom = this->m_position.y - this->m_size.y / 2;
 
 		click_pos click_pos;
 
 		float ar = this->m_camera_aspect_ratio;
 
 		click_pos.x = (event.x - event.screen_width / 2) / event.screen_width;
-		click_pos.y = (event.y - event.screen_height / 2) / event.screen_height;
+		click_pos.y = (event.screen_height / 2 - event.y) / event.screen_height;
 
 		click_pos.x *= this->m_camera_scaling.x * 2;
 		click_pos.y *= this->m_camera_scaling.y * 2;
 		click_pos.y /= ar;
 
 		click_pos.x += this->m_camera_pos.x;
-		click_pos.y -= this->m_camera_pos.y;
+		click_pos.y += this->m_camera_pos.y;
 
 		this->aabb_clicked = aabbClicked(aabb, click_pos);
 		this->button = event.button;
@@ -74,8 +73,8 @@ namespace aoe_engine {
 	bool ClickCollisionComponent::aabbClicked(const aabb& aabb, const click_pos& click_pos) {
 		if (click_pos.x < aabb.left) return false;
 		if (click_pos.x > aabb.right) return false;
-		if (click_pos.y < aabb.top) return false;
-		if (click_pos.y > aabb.bottom) return false;
+		if (click_pos.y > aabb.top) return false;
+		if (click_pos.y < aabb.bottom) return false;
 		return true;
 	}
 

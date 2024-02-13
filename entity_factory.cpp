@@ -6,6 +6,8 @@
 #include "components/wasd_component.h"
 #include "components/view_component.h"
 #include "components/click_collision_component.h"
+#include "components/selection_component.h"
+#include "components/click_mover_component.h"
 
 namespace aoe {
 
@@ -25,11 +27,13 @@ namespace aoe {
 	Entity* EntityFactory::createVillager() {
 		Entity* villager = new Entity();
 
-		TransformComponent* tc = new TransformComponent();
-		villager->registerComponent(tc);
-
+		villager->registerComponent(new TransformComponent());
 		villager->registerComponent(new AnimatedSpriteComponent("villager", "sprite"));
 		villager->registerComponent(new ClickCollisionComponent());
+		villager->registerComponent(new SelectionComponent());
+		villager->registerComponent(new ClickMoverComponent());
+		villager->registerComponent(new WASDComponent());
+		villager->registerComponent(new MotionComponent());
 
 		return villager;
 	}

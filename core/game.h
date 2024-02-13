@@ -2,8 +2,9 @@
 
 #include <vector>
 #include "resource_manager.h"
-#include "../events/mouse_button_event.h"
-
+#include "../events/mouse_button_event.h" 
+#include "../events/mouse_move_event.h" 
+                                          
 namespace aoe_engine {
 
 	class Entity;
@@ -21,6 +22,7 @@ namespace aoe_engine {
 		void onWindowResize(int width, int height);
 		void onKeyEvent(int key, int scanCode, int action, int mods);
 		void onMouseButtonEvent(const MouseButtonEvent& event);
+		void onMouseMoveEvent(const MouseMoveEvent& event);
 
 		void addEntity(Entity* entity);
 

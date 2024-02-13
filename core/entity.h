@@ -24,6 +24,7 @@ namespace aoe_engine {
 		virtual void onWindowResize(int width, int height);
 		virtual void onKeyEvent(int key, int scanCode, int action, int mods);
 		virtual void onMouseButtonEvent(const MouseButtonEvent& event);
+		virtual void onMouseMoveEvent(const MouseMoveEvent& event);
 
 		void registerComponent(Component* component);
 		Component* findComponent(const std::string& name);
