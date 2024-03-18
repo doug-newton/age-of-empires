@@ -17,7 +17,8 @@ namespace aoe_engine {
 
 		bool onInit() override;
 		void onRender() override;
-		void onTransformUpdate(const TransformSubject* subject);
+		void onTransformUpdate(const TransformSubject* subject) override;
+		void onMovementUpdate(const MovementSubject* subject) override;
 
 	private:
 
@@ -28,6 +29,9 @@ namespace aoe_engine {
 		Texture* m_texture;
 		Vao* m_vao;
 		glm::mat4 m_model;
+
+		float m_sprite_x;
+		float m_sprite_y;
 
 	};
 
