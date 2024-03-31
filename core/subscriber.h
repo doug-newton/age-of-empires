@@ -11,6 +11,7 @@ namespace aoe_engine {
 	class ClickSubject;
 	class SelectionSubject;
 	class SetTransformSubject;
+	class CardinalMovementSubject;
 
 	class Subscriber {
 
@@ -26,6 +27,7 @@ namespace aoe_engine {
 		virtual void onClickUpdate(const ClickSubject* subject);
 		virtual void onSelectionUpdate(const SelectionSubject* subject);
 		virtual void onSetTransformUpdate(const SetTransformSubject* subject);
+		virtual void onCardinalMovementUpdate(const CardinalMovementSubject* subject);
 
 	protected:
 		void subscribe(Subject* subject);

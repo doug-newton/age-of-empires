@@ -1,13 +1,13 @@
 #pragma once
 
 #include "../core/component.h"
-#include "../subjects/movement_subject.h"
+#include "../subjects/cardinal_movement_subject.h"
 
 namespace aoe_engine {
 
 	class ChangeMotionMessage;
 
-	class WASDComponent : public Component, public MovementSubject {
+	class WASDComponent : public Component, public CardinalMovementSubject {
 	public:
 		WASDComponent();
 		virtual ~WASDComponent();

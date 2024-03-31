@@ -39,10 +39,31 @@ namespace aoe_engine {
 		if (subject->button != GLFW_MOUSE_BUTTON_RIGHT) return;
 		if (subject->action != GLFW_RELEASE) return;
 
-		moving_right = subject->world_x > this->m_position.x;
-		moving_left = subject->world_x < this->m_position.x;
-		moving_up = subject->world_y > this->m_position.y;
-		moving_down = subject->world_y < this->m_position.y;
+		double y_diff = subject->world_y - this->m_position.y;
+		double x_diff = subject->world_x - this->m_position.x;
+
+		moving = true;
+
+		if (x_diff == 0) {
+			if (y_diff < 0) {
+				direction = 90.0;
+			}
+			else if (y_diff > 0) {
+				direction = 270.0;
+			}
+			else {
+				direction = 0;
+				moving = false;
+			}
+			publish();
+			return;
+		}
+
+		this->direction = glm::degrees(glm::atan(y_diff / x_diff));
+		
+		if (x_diff < 0) {
+			direction += 180.0;
+		}
 
 		publish();
 	}

@@ -21,5 +21,6 @@ namespace aoe_engine {
 	void Subscriber::onClickUpdate(const ClickSubject* subject) {}
 	void Subscriber::onSelectionUpdate(const SelectionSubject* subject) {}
 	void Subscriber::onSetTransformUpdate(const SetTransformSubject* subject) {}
+	void Subscriber::onCardinalMovementUpdate(const CardinalMovementSubject* subject) {}
 
 }

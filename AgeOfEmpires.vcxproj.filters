@@ -156,6 +156,9 @@
     <ClCompile Include="components\cursor_pos_binder_component.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="subjects\cardinal_movement_subject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core\component.h">
@@ -303,6 +306,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="events\mouse_move_event.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="subjects\cardinal_movement_subject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

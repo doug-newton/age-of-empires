@@ -7,7 +7,7 @@ namespace aoe_engine {
 
 	WASDComponent::WASDComponent() :
 		Component("WASD"),
-		MovementSubject(),
+		CardinalMovementSubject(),
 		m_speed(0.5f) {
 	}
 

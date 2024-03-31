@@ -3,6 +3,7 @@
 #include "../core/component.h"
 #include <glm/glm.hpp>
 #include "../subjects/motion_subject.h"
+#include "../subjects/cardinal_movement_subject.h"
 
 namespace aoe_engine {
 
@@ -17,6 +18,7 @@ namespace aoe_engine {
 		void onEntityRegistration() override;
 
 		void onMovementUpdate(const MovementSubject* subject) override;
+		void onCardinalMovementUpdate(const CardinalMovementSubject* subject) override;
 
 	private:
 		float m_speed;

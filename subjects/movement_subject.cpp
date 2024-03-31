@@ -8,7 +8,9 @@ namespace aoe_engine {
 		moving_left(false),
 		moving_right(false),
 		moving_up(false),
-		moving_down(false) {
+		moving_down(false),
+		moving(false),
+		direction(0.0f) {
 	}
 
 	MovementSubject::~MovementSubject() {

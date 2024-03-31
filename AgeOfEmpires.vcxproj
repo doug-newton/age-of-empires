@@ -171,6 +171,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="stb_image.cpp" />
     <ClCompile Include="subjects\camera_info_subject.cpp" />
+    <ClCompile Include="subjects\cardinal_movement_subject.cpp" />
     <ClCompile Include="subjects\click_subject.cpp" />
     <ClCompile Include="subjects\motion_subject.cpp" />
     <ClCompile Include="subjects\movement_subject.cpp" />
@@ -222,6 +223,7 @@
     <ClInclude Include="graphics\vao.h" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="subjects\camera_info_subject.h" />
+    <ClInclude Include="subjects\cardinal_movement_subject.h" />
     <ClInclude Include="subjects\click_subject.h" />
     <ClInclude Include="subjects\motion_subject.h" />
     <ClInclude Include="subjects\movement_subject.h" />

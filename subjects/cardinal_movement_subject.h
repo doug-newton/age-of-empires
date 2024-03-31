@@ -4,12 +4,12 @@
 
 namespace aoe_engine {
 
-	class MovementSubject : public Subject {
+	class CardinalMovementSubject : public Subject {
 
 	public:
 
-		MovementSubject();
-		virtual ~MovementSubject();
+		CardinalMovementSubject();
+		virtual ~CardinalMovementSubject();
 
 		void notify(Subscriber* subscriber) override;
 
@@ -17,10 +17,6 @@ namespace aoe_engine {
 		bool moving_right;
 		bool moving_up;
 		bool moving_down;
-
-		bool moving = false;
-
-		float direction;
 
 	};
 

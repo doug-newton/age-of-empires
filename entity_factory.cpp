@@ -32,7 +32,6 @@ namespace aoe {
 		villager->registerComponent(new ClickCollisionComponent());
 		villager->registerComponent(new SelectionComponent());
 		villager->registerComponent(new ClickMoverComponent());
-		villager->registerComponent(new WASDComponent());
 		villager->registerComponent(new MotionComponent());
 
 		return villager;

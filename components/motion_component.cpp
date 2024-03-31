@@ -1,6 +1,7 @@
 #include "motion_component.h"
 #include "../core/entity.h"
 #include "../subjects/movement_subject.h"
+#include <glm/common.hpp>
 
 namespace aoe_engine {
 
@@ -15,6 +16,7 @@ namespace aoe_engine {
 
 	bool MotionComponent::onInit() {
 		subscribe("movement");
+		subscribe("cardinal_movement");
 		return true;
 	}
 
@@ -33,6 +35,15 @@ namespace aoe_engine {
 	}
 
 	void MotionComponent::onMovementUpdate(const MovementSubject* subject) {
+		this->velocity.x = this->velocity.y = 0;
+
+		if (!subject->moving) return;
+
+		this->velocity.x = glm::cos(glm::radians(subject->direction)) * this->m_speed;
+		this->velocity.y = glm::sin(glm::radians(subject->direction)) * this->m_speed;
+	}
+
+	void MotionComponent::onCardinalMovementUpdate(const CardinalMovementSubject* subject) {
 		this->velocity.x = this->velocity.y = 0;
 
 		if (subject->moving_left) {
