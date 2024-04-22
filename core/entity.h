@@ -7,12 +7,13 @@
 #include "component_exists_exception.h"
 #include "../events/mouse_button_event.h"
 #include "subject_registry.h"
+#include "game_object.h"
 
 namespace aoe_engine {
 
 	class Game;
 
-	class Entity: public SubjectRegistry {
+	class Entity: public GameObject, public SubjectRegistry {
 	public:
 
 		Entity();
@@ -28,8 +29,6 @@ namespace aoe_engine {
 
 		void registerComponent(Component* component);
 		Component* findComponent(const std::string& name);
-		void setGame(Game* game);
-		Game* getGame();
 
 		void sendMessage(Message*);
 

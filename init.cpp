@@ -30,13 +30,13 @@ namespace aoe {
 
 	bool load_entities(Game* game) {
 		Camera* camera1 = new Camera(16, { 0.0f, 0.0f });
-		game->addEntity(camera1);
+		game->addGameObject(camera1);
 
 		Entity* map = aoe::EntityFactory::createMap();
-		game->addEntity(map);
+		game->addGameObject(map);
 
 		Entity* villager = aoe::EntityFactory::createVillager();
-		game->addEntity(villager);
+		game->addGameObject(villager);
 
 		return true;
 	}

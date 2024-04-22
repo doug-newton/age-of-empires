@@ -80,14 +80,6 @@ namespace aoe_engine {
 		return (*result).second;
 	}
 
-	void Entity::setGame(Game* game) {
-		this->m_game = game;
-	}
-
-	Game* Entity::getGame() {
-		return this->m_game;
-	}
-
 	void Entity::sendMessage(Message* message) {
 		for (auto it = m_components.begin(); it != m_components.end(); ++it) {
 			Component* component = (*it).second;

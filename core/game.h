@@ -7,7 +7,7 @@
                                           
 namespace aoe_engine {
 
-	class Entity;
+	class GameObject;
 
 	class Game {
 
@@ -24,12 +24,12 @@ namespace aoe_engine {
 		void onMouseButtonEvent(const MouseButtonEvent& event);
 		void onMouseMoveEvent(const MouseMoveEvent& event);
 
-		void addEntity(Entity* entity);
+		void addGameObject(GameObject* entity);
 
 		ResourceManager* getResourceManager();
 
 	private:
-		std::vector<Entity*> entities;
+		std::vector<GameObject*> entities;
 		ResourceManager m_resource_manager;
 	};
 

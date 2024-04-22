@@ -61,7 +61,7 @@ namespace aoe_engine {
 		}
 	}
 
-	void Game::addEntity(Entity* entity) {
+	void Game::addGameObject(GameObject* entity) {
 		entity->setGame(this);
 		this->entities.push_back(entity);
 	}
