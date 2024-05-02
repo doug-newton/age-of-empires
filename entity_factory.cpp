@@ -9,19 +9,23 @@
 #include "components/selection_component.h"
 #include "components/click_mover_component.h"
 
+#include "core/game.h"
+#include "entities/world_map.h"
+
 namespace aoe {
 
 	using namespace aoe_engine;
 
-	GameObject* EntityFactory::createMap() {
-		Entity* entity = new Entity();
+	GameObject* EntityFactory::createMap(Game* game) {
+		
+		ResourceManager* manager = game->getResourceManager();
+		ShaderProgram* shader_program = manager->getShaderProgram("texture");
+		Texture* texture = manager->getTexture("tilesheet");
+		Vao* vao = manager->getVao("map");
 
-		entity->registerComponent(new SpriteComponent("tilesheet", "map"));
+		WorldMap* world_map = new WorldMap(shader_program, texture, vao);
 
-		TransformComponent* transform = new TransformComponent();
-		entity->registerComponent(transform);
-
-		return entity;
+		return world_map;
 	}
 
 	Entity* EntityFactory::createVillager() {
