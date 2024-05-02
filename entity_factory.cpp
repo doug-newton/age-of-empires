@@ -19,11 +19,9 @@ namespace aoe {
 	GameObject* EntityFactory::createMap(Game* game) {
 		
 		ResourceManager* manager = game->getResourceManager();
-		ShaderProgram* shader_program = manager->getShaderProgram("texture");
-		Texture* texture = manager->getTexture("tilesheet");
 		Vao* vao = manager->getVao("map");
 
-		WorldMap* world_map = new WorldMap(shader_program, texture, vao);
+		WorldMap* world_map = new WorldMap(vao);
 
 		return world_map;
 	}

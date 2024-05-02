@@ -16,13 +16,12 @@ namespace aoe_engine {
 	public:
 
 		WorldMap(
-			ShaderProgram* shader_program,
-			Texture* texture,
 			Vao* vao
 		);
 
 		~WorldMap();
 
+		virtual bool onInit() override;
 		virtual void onRender() override;
 
 	private:

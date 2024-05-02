@@ -1,20 +1,30 @@
 #include "world_map.h"
+#include "../core/game.h"
+#include "../core/resource_manager.h"
 
 namespace aoe_engine {
 
 	WorldMap::WorldMap(
-		ShaderProgram* shader_program,
-		Texture* texture,
 		Vao* vao
 	) :
-		m_shader_program(shader_program),
-		m_texture(texture),
+		m_shader_program(nullptr),
+		m_texture(nullptr),
 		m_vao(vao),
 		m_model(1.0f)
 	{
 	}
 
 	WorldMap::~WorldMap() {
+	}
+
+	bool WorldMap::onInit() {
+		Game* game = getGame();
+		ResourceManager* manager = game->getResourceManager();
+
+		m_shader_program = manager->getShaderProgram("texture");
+		m_texture = manager->getTexture("tilesheet");
+
+		return true;
 	}
 
 	void WorldMap::onRender() {
