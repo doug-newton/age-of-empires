@@ -33,7 +33,7 @@ namespace aoe {
 		Camera* camera1 = new Camera(16, { 0.0f, 0.0f });
 		game->addGameObject(camera1);
 
-		Entity* map = aoe::EntityFactory::createMap();
+		GameObject* map = aoe::EntityFactory::createMap();
 		game->addGameObject(map);
 
 		Entity* villager = aoe::EntityFactory::createVillager();

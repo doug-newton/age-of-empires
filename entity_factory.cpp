@@ -13,7 +13,7 @@ namespace aoe {
 
 	using namespace aoe_engine;
 
-	Entity* EntityFactory::createMap() {
+	GameObject* EntityFactory::createMap() {
 		Entity* entity = new Entity();
 
 		entity->registerComponent(new SpriteComponent("tilesheet", "map"));
