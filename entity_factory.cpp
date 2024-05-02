@@ -16,12 +16,9 @@ namespace aoe {
 
 	using namespace aoe_engine;
 
-	GameObject* EntityFactory::createMap(Game* game) {
-		
-		ResourceManager* manager = game->getResourceManager();
-		Vao* vao = manager->getVao("map");
+	GameObject* EntityFactory::createMap() {
 
-		WorldMap* world_map = new WorldMap(vao);
+		WorldMap* world_map = new WorldMap();
 
 		return world_map;
 	}

@@ -21,7 +21,6 @@ namespace aoe {
 
 		manager->registerVao("quad", new QuadVao());
 		manager->registerVao("sprite", new SpriteVao());
-		manager->registerVao("map", new MapVao("res/maps/map.txt"));
 
 		manager->registerTexture("tilesheet", new Texture("res/images/tilesheet.png"));
 		manager->registerTexture("villager", new Texture("res/images/villager.png"));
@@ -33,7 +32,7 @@ namespace aoe {
 		Camera* camera1 = new Camera(16, { 0.0f, 0.0f });
 		game->addGameObject(camera1);
 
-		GameObject* map = aoe::EntityFactory::createMap(game);
+		GameObject* map = aoe::EntityFactory::createMap();
 		game->addGameObject(map);
 
 		Entity* villager = aoe::EntityFactory::createVillager();
