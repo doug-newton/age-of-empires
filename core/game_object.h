@@ -12,15 +12,15 @@ namespace aoe_engine {
 	public:
 
 		GameObject();
-		virtual ~GameObject() = 0;
-		virtual bool onInit() = 0;
-		virtual void onUpdate(float delta) = 0;
-		virtual void onRender() = 0;
+		virtual ~GameObject();
+		virtual bool onInit();
+		virtual void onUpdate(float delta);
+		virtual void onRender();
 
-		virtual void onWindowResize(int width, int height) = 0;
-		virtual void onKeyEvent(int key, int scanCode, int action, int mods) = 0;
-		virtual void onMouseButtonEvent(const MouseButtonEvent& event) = 0;
-		virtual void onMouseMoveEvent(const MouseMoveEvent& event) = 0;
+		virtual void onWindowResize(int width, int height);
+		virtual void onKeyEvent(int key, int scanCode, int action, int mods);
+		virtual void onMouseButtonEvent(const MouseButtonEvent& event);
+		virtual void onMouseMoveEvent(const MouseMoveEvent& event);
 
 		void setGame(Game* game);
 		Game* getGame();
