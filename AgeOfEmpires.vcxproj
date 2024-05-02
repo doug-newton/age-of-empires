@@ -154,6 +154,7 @@
     <ClCompile Include="core\subscriber.cpp" />
     <ClCompile Include="camera\camera.cpp" />
     <ClCompile Include="core\message.cpp" />
+    <ClCompile Include="entities\villager.cpp" />
     <ClCompile Include="init.cpp" />
     <ClCompile Include="entity_factory.cpp" />
     <ClCompile Include="core\fps.cpp" />
@@ -206,6 +207,7 @@
     <ClInclude Include="core\subscriber.h" />
     <ClInclude Include="camera\camera.h" />
     <ClInclude Include="core\message.h" />
+    <ClInclude Include="entities\villager.h" />
     <ClInclude Include="events\mouse_button_event.h" />
     <ClInclude Include="events\mouse_move_event.h" />
     <ClInclude Include="init.h" />

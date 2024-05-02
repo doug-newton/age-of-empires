@@ -7,6 +7,7 @@
 #include "core/game.h"
 #include "entity_factory.h"
 #include "camera/camera.h"
+#include "entities/villager.h"
 
 namespace aoe {
 
@@ -37,6 +38,9 @@ namespace aoe {
 
 		Entity* villager = aoe::EntityFactory::createVillager();
 		game->addGameObject(villager);
+
+		Villager* v2 = new Villager();
+		game->addGameObject(v2);
 
 		return true;
 	}
