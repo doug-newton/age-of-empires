@@ -1,7 +1,6 @@
 #include "init.h"
 #include "core/resource_manager.h"
 #include "graphics/shader_program.h"
-#include "graphics/quad_vao.h"
 #include "graphics/sprite_vao.h"
 #include "graphics/map_vao.h"
 #include "core/game.h"
@@ -20,7 +19,6 @@ namespace aoe {
 		manager->registerShaderProgram("texture", new ShaderProgram("res/shaders/texture.vert", "res/shaders/texture.frag"));
 		manager->registerShaderProgram("animated_texture", new ShaderProgram("res/shaders/animated_texture.vert", "res/shaders/animated_texture.frag"));
 
-		manager->registerVao("quad", new QuadVao());
 		manager->registerVao("sprite", new SpriteVao());
 
 		manager->registerTexture("tilesheet", new Texture("res/images/tilesheet.png"));

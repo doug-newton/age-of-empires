@@ -165,7 +165,6 @@
     <ClCompile Include="core\resource_map.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="graphics\map_vao.cpp" />
-    <ClCompile Include="graphics\quad_vao.cpp" />
     <ClCompile Include="graphics\shader.cpp" />
     <ClCompile Include="graphics\shader_program.cpp" />
     <ClCompile Include="graphics\sprite_vao.cpp" />
@@ -220,7 +219,6 @@
     <ClInclude Include="core\resource_exists_exception.h" />
     <ClInclude Include="core\resource_manager.h" />
     <ClInclude Include="graphics\map_vao.h" />
-    <ClInclude Include="graphics\quad_vao.h" />
     <ClInclude Include="graphics\resource.h" />
     <ClInclude Include="graphics\shader.h" />
     <ClInclude Include="graphics\shader_program.h" />
