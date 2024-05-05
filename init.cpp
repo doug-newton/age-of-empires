@@ -8,6 +8,7 @@
 #include "entity_factory.h"
 #include "camera/camera.h"
 #include "entities/villager.h"
+#include "entities/world_map.h"
 
 namespace aoe {
 
@@ -32,7 +33,7 @@ namespace aoe {
 		Camera* camera1 = new Camera(16, { 0.0f, 0.0f });
 		game->addGameObject(camera1);
 
-		GameObject* map = aoe::EntityFactory::createMap();
+		GameObject* map = new WorldMap("res/maps/map.txt");
 		game->addGameObject(map);
 
 		Entity* villager = aoe::EntityFactory::createVillager();

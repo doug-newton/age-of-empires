@@ -5,8 +5,9 @@
 namespace aoe_engine {
 
 	WorldMap::WorldMap(
+		const std::string& mapFile
 	) :
-		m_map_vao("res/maps/map.txt"),
+		m_map_vao(mapFile),
 		m_shader_program(nullptr),
 		m_texture(nullptr),
 		m_model(1.0f)

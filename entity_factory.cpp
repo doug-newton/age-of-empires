@@ -16,13 +16,6 @@ namespace aoe {
 
 	using namespace aoe_engine;
 
-	GameObject* EntityFactory::createMap() {
-
-		WorldMap* world_map = new WorldMap();
-
-		return world_map;
-	}
-
 	Entity* EntityFactory::createVillager() {
 		Entity* villager = new Entity();
 

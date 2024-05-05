@@ -17,7 +17,7 @@ namespace aoe_engine {
 
 	public:
 
-		WorldMap();
+		WorldMap(const std::string& mapFile);
 
 		~WorldMap();
 
