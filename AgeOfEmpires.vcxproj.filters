@@ -81,7 +81,7 @@
     <ClCompile Include="components\sprite_component.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\sprite_vao.cpp">
+    <ClCompile Include="graphics\custom_vao.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="graphics\map_vao.cpp">
@@ -227,7 +227,7 @@
     <ClInclude Include="components\sprite_component.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="graphics\sprite_vao.h">
+    <ClInclude Include="graphics\custom_vao.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="graphics\map_vao.h">

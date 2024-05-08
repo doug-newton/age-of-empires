@@ -1,7 +1,7 @@
 #include "init.h"
 #include "core/resource_manager.h"
 #include "graphics/shader_program.h"
-#include "graphics/sprite_vao.h"
+#include "graphics/custom_vao.h"
 #include "graphics/map_vao.h"
 #include "core/game.h"
 #include "entity_factory.h"
@@ -14,16 +14,6 @@ namespace aoe {
 	using namespace aoe_engine;
 
 	bool load_resources(ResourceManager* manager) {
-
-		manager->registerShaderProgram("basic", new ShaderProgram("basic"));
-		manager->registerShaderProgram("transform", new ShaderProgram("transform"));
-		manager->registerShaderProgram("texture", new ShaderProgram("texture"));
-		manager->registerShaderProgram("animated_texture", new ShaderProgram("animated_texture"));
-
-		manager->registerVao("sprite", new SpriteVao("sprite"));
-
-		manager->registerTexture("tilesheet", new Texture("tilesheet"));
-		manager->registerTexture("villager", new Texture("villager"));
 
 		return true;
 	}

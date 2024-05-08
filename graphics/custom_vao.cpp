@@ -1,16 +1,16 @@
-#include "sprite_vao.h"
+#include "custom_vao.h"
 #include <sstream>
 #include <fstream>
 
 namespace aoe_engine {
 
-	SpriteVao::SpriteVao(const std::string& name)
+	CustomVao::CustomVao(const std::string& name)
 		:
 		m_name(name)
 	{
 	}
 
-	SpriteVao::~SpriteVao() {
+	CustomVao::~CustomVao() {
 	}
 
 	template<typename T>
@@ -22,7 +22,7 @@ namespace aoe_engine {
 		}
 	}
 
-	bool SpriteVao::onInit() {
+	bool CustomVao::onInit() {
 
 		std::ifstream file("res/vaos/" + m_name + ".vao");
 
@@ -79,7 +79,7 @@ namespace aoe_engine {
 		return true;
 	}
 
-	void SpriteVao::create(std::vector<int>& attributes, std::vector<GLfloat>& vertices, std::vector<GLuint>& elements) {
+	void CustomVao::create(std::vector<int>& attributes, std::vector<GLfloat>& vertices, std::vector<GLuint>& elements) {
 		glGenVertexArrays(1, &this->m_id);
 		glBindVertexArray(this->m_id);
 

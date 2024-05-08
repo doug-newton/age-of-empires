@@ -6,11 +6,11 @@
 
 namespace aoe_engine {
 
-	class SpriteVao : public Vao {
+	class CustomVao : public Vao {
 	public:
 
-		SpriteVao(const std::string& name);
-		virtual ~SpriteVao();
+		CustomVao(const std::string& name);
+		virtual ~CustomVao();
 		virtual bool onInit() override;
 
 	private:

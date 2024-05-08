@@ -7,50 +7,73 @@ namespace aoe_engine {
 	}
 
 	ResourceManager::~ResourceManager() {
+		for (auto it = m_shader_programs.begin(); it != m_shader_programs.end(); ++it) {
+			delete (*it).second;
+		}
+		for (auto it = m_custom_vaos.begin(); it != m_custom_vaos.end(); ++it) {
+			delete (*it).second;
+		}
+		for (auto it = m_textures.begin(); it != m_textures.end(); ++it) {
+			delete (*it).second;
+		}
 	}
 
 	bool ResourceManager::onInit() {
-		bool success = true;
-
-		success = success && this->m_shader_program_manager.onInit();
-		success = success && this->m_vao_manager.onInit();
-		success = success && this->m_texture_manager.onInit();
-
-		return success;
-	}
-
-	void ResourceManager::registerShaderProgram(const std::string& name, ShaderProgram* shaderProgram) {
-		this->m_shader_program_manager.registerResource(name, shaderProgram);
+		return true;
 	}
 
 	ShaderProgram* ResourceManager::getShaderProgram(const std::string& name) {
-		return getResource<ShaderProgram>(&this->m_shader_program_manager, name);
+		auto result = m_shader_programs.find(name);
+
+		if (result != m_shader_programs.end()) {
+			return (*result).second;
+		}
+
+		ShaderProgram* shader_program = new ShaderProgram(name);
+
+		if (!shader_program->onInit()) {
+			delete shader_program;
+			return nullptr;
+		}
+
+		m_shader_programs[name] = shader_program;
+		return shader_program;
 	}
 
-	void ResourceManager::registerVao(const std::string& name, Vao* vao) {
-		this->m_vao_manager.registerResource(name, vao);
-	}
+	CustomVao* ResourceManager::getCustomVao(const std::string& name) {
+		auto result = m_custom_vaos.find(name);
 
-	Vao* ResourceManager::getVao(const std::string& name) {
-		return getResource<Vao>(&this->m_vao_manager, name);
-	}
+		if (result != m_custom_vaos.end()) {
+			return (*result).second;
+		}
 
-	void ResourceManager::registerTexture(const std::string& name, Texture* texture) {
-		this->m_texture_manager.registerResource(name, texture);
+		CustomVao* vao = new CustomVao(name);
+
+		if (!vao->onInit()) {
+			delete vao;
+			return nullptr;
+		}
+
+		m_custom_vaos[name] = vao;
+		return vao;
 	}
 
 	Texture* ResourceManager::getTexture(const std::string& name) {
-		return getResource<Texture>(&this->m_texture_manager, name);
-	}
+		auto result = m_textures.find(name);
 
-	template <class ResourceType>
-	ResourceType* ResourceManager::getResource(ResourceMap* map, const std::string& name) {
-		static_assert(std::is_base_of<Resource, ResourceType>::value, "ResourceType must be derived from Resource");
-		Resource* resource = map->getResource(name);
-		if (resource == nullptr) {
+		if (result != m_textures.end()) {
+			return (*result).second;
+		}
+
+		Texture* texture = new Texture(name);
+
+		if (!texture->onInit()) {
+			delete texture;
 			return nullptr;
 		}
-		return static_cast<ResourceType*>(resource);
+
+		m_textures[name] = texture;
+		return texture;
 	}
 
 }

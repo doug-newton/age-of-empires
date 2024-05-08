@@ -74,7 +74,7 @@ namespace aoe_engine {
 			return nullptr;
 		}
 
-		return mgr->getVao(name);
+		return mgr->getCustomVao(name);
 	}
 
 	Texture* Component::getTexture(const std::string& name) {
