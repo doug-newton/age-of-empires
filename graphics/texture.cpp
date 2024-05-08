@@ -3,9 +3,9 @@
 
 namespace aoe_engine {
 
-	Texture::Texture(const std::string& path) :
+	Texture::Texture(const std::string& name) :
 		m_id(0),
-		m_path(path) {
+		m_name(name) {
 	}
 
 	Texture::~Texture() {
@@ -22,8 +22,10 @@ namespace aoe_engine {
 	bool Texture::onInit() {
 		int width, height, numChannels;
 
+		std::string path("res/images/" + this->m_name + ".png");
+
 		stbi_set_flip_vertically_on_load(true);
-		unsigned char* data = stbi_load(this->m_path.c_str(), &width, &height, &numChannels, 0);
+		unsigned char* data = stbi_load(path.c_str(), &width, &height, &numChannels, 0);
 
 		glGenTextures(1, &this->m_id);
 		glBindTexture(GL_TEXTURE_2D, this->m_id);

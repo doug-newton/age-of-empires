@@ -12,7 +12,7 @@ namespace aoe_engine {
 
 	public:
 
-		Texture(const std::string& path);
+		Texture(const std::string& name);
 		~Texture();
 
 		GLuint getID();
@@ -21,7 +21,7 @@ namespace aoe_engine {
 	private:
 
 		GLuint m_id;
-		std::string m_path;
+		std::string m_name;
 
 	};
 

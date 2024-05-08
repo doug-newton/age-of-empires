@@ -22,8 +22,8 @@ namespace aoe {
 
 		manager->registerVao("sprite", new SpriteVao("sprite"));
 
-		manager->registerTexture("tilesheet", new Texture("res/images/tilesheet.png"));
-		manager->registerTexture("villager", new Texture("res/images/villager.png"));
+		manager->registerTexture("tilesheet", new Texture("tilesheet"));
+		manager->registerTexture("villager", new Texture("villager"));
 
 		return true;
 	}
