@@ -13,11 +13,6 @@ namespace aoe {
 
 	using namespace aoe_engine;
 
-	bool load_resources(ResourceManager* manager) {
-
-		return true;
-	}
-
 	bool load_entities(Game* game) {
 		Camera* camera1 = new Camera(16, { 0.0f, 0.0f });
 		game->addGameObject(camera1);

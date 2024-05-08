@@ -7,7 +7,6 @@ using namespace aoe;
 int main(int argc, char** argv)
 {
 	Driver::setWindowDetails("Age of Empires", 1280, 960);
-	Driver::setResourceLoaderCallback(load_resources);
 	Driver::setEntityLoaderCallback(load_entities);
 
 	bool init_success = Driver::onInit();

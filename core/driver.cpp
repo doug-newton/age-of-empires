@@ -26,12 +26,6 @@ namespace aoe_engine {
 			return false;
 		}
 
-		if (s_resource_loader_callback != nullptr) {
-			if (!s_resource_loader_callback(s_game.getResourceManager())) {
-				return false;
-			}
-		}
-
 		if (s_entity_loader_callback != nullptr) {
 			if (!s_entity_loader_callback(&s_game)) {
 				return false;
@@ -103,10 +97,6 @@ namespace aoe_engine {
 		s_entity_loader_callback = callback;
 	}
 
-	void Driver::setResourceLoaderCallback(bool (*callback)(ResourceManager*)) {
-		s_resource_loader_callback = callback;
-	}
-
 	bool Driver::initGL() {
 		glfwInit();
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
@@ -143,7 +133,6 @@ namespace aoe_engine {
 	Game Driver::s_game;
 	GLFWwindow* Driver::s_window = nullptr;
 	FPS Driver::s_fps;
-	bool (*Driver::s_resource_loader_callback)(ResourceManager*) = nullptr;
 	bool (*Driver::s_entity_loader_callback)(Game*) = nullptr;
 
 	std::string Driver::s_window_title = "Unnamed Window";

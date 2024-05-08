@@ -29,7 +29,6 @@ namespace aoe_engine {
 		static void onMouseButtonEvent(GLFWwindow* window, int button, int action, int mods);
 		static void onMouseMove(GLFWwindow* window, double x, double y);
 
-		static void setResourceLoaderCallback(bool (*callback)(ResourceManager*));
 		static void setEntityLoaderCallback(bool (*callback)(Game*));
 
 	private:
@@ -42,7 +41,6 @@ namespace aoe_engine {
 		static FPS s_fps;
 
 		static bool initGL();
-		static bool (*s_resource_loader_callback)(ResourceManager*);
 		static bool (*s_entity_loader_callback)(Game*);
 	};
 
