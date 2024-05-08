@@ -20,7 +20,7 @@ namespace aoe {
 		manager->registerShaderProgram("texture", new ShaderProgram("texture"));
 		manager->registerShaderProgram("animated_texture", new ShaderProgram("animated_texture"));
 
-		manager->registerVao("sprite", new SpriteVao());
+		manager->registerVao("sprite", new SpriteVao("sprite"));
 
 		manager->registerTexture("tilesheet", new Texture("res/images/tilesheet.png"));
 		manager->registerTexture("villager", new Texture("res/images/villager.png"));
