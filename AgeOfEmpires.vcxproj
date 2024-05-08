@@ -162,7 +162,6 @@
     <ClCompile Include="core\game.cpp" />
     <ClCompile Include="core\resource_exists_exception.cpp" />
     <ClCompile Include="core\resource_manager.cpp" />
-    <ClCompile Include="core\resource_map.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="graphics\map_vao.cpp" />
     <ClCompile Include="graphics\shader.cpp" />
@@ -215,11 +214,9 @@
     <ClInclude Include="entity_factory.h" />
     <ClInclude Include="core\fps.h" />
     <ClInclude Include="core\game.h" />
-    <ClInclude Include="core\resource_map.h" />
     <ClInclude Include="core\resource_exists_exception.h" />
     <ClInclude Include="core\resource_manager.h" />
     <ClInclude Include="graphics\map_vao.h" />
-    <ClInclude Include="graphics\resource.h" />
     <ClInclude Include="graphics\shader.h" />
     <ClInclude Include="graphics\shader_program.h" />
     <ClInclude Include="graphics\custom_vao.h" />

@@ -3,15 +3,15 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
-#include "resource.h"
-
 namespace aoe_engine {
 
-	class Vao: public Resource {
+	class Vao {
 	public:
 
 		Vao();
 		virtual ~Vao();
+
+		virtual bool onInit() = 0;
 
 		GLuint getID();
 

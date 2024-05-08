@@ -6,7 +6,6 @@
 #include "../graphics/custom_vao.h"
 #include "../graphics/texture.h"
 #include "resource_exists_exception.h"
-#include "resource_map.h"
 
 namespace aoe_engine {
 
