@@ -16,7 +16,7 @@ namespace aoe_engine {
 
 	public:
 
-		ShaderProgram(const std::string& vertexPath, const std::string& fragmentPath);
+		ShaderProgram(const std::string& name);
 		~ShaderProgram();
 
 		virtual bool onInit() override;
@@ -31,8 +31,8 @@ namespace aoe_engine {
 	private:
 
 		GLuint m_id;
-		std::string m_vertex_path;
-		std::string m_fragment_path;
+
+		std::string m_name;
 
 		bool attachAndLinkShaders(const Shader& vertex_shader, const Shader& fragment_shader);
 

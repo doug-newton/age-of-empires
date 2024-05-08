@@ -4,10 +4,10 @@
 
 namespace aoe_engine {
 
-	ShaderProgram::ShaderProgram(const std::string& vertexPath, const std::string& fragmentPath) :
+	ShaderProgram::ShaderProgram(const std::string& name) :
 		m_id(0),
-		m_vertex_path(vertexPath),
-		m_fragment_path(fragmentPath) {
+		m_name(name)
+	{
 	}
 
 	ShaderProgram::~ShaderProgram() {
@@ -21,10 +21,13 @@ namespace aoe_engine {
 	bool ShaderProgram::onInit() {
 		bool success = true;
 
-		Shader vertex_shader(GL_VERTEX_SHADER, this->m_vertex_path);
+		std::string m_vertex_path("res/shaders/" + m_name + ".vert");
+		std::string m_fragment_path("res/shaders/" + m_name + ".frag");
+
+		Shader vertex_shader(GL_VERTEX_SHADER, m_vertex_path);
 		success = success && vertex_shader.loadAndCompile();
 
-		Shader fragment_shader(GL_FRAGMENT_SHADER, this->m_fragment_path);
+		Shader fragment_shader(GL_FRAGMENT_SHADER, m_fragment_path);
 		success = success && fragment_shader.loadAndCompile();
 
 		success = success && attachAndLinkShaders(vertex_shader, fragment_shader);

@@ -14,10 +14,11 @@ namespace aoe {
 	using namespace aoe_engine;
 
 	bool load_resources(ResourceManager* manager) {
-		manager->registerShaderProgram("basic", new ShaderProgram("res/shaders/basic.vert", "res/shaders/basic.frag"));
-		manager->registerShaderProgram("transform", new ShaderProgram("res/shaders/transform.vert", "res/shaders/transform.frag"));
-		manager->registerShaderProgram("texture", new ShaderProgram("res/shaders/texture.vert", "res/shaders/texture.frag"));
-		manager->registerShaderProgram("animated_texture", new ShaderProgram("res/shaders/animated_texture.vert", "res/shaders/animated_texture.frag"));
+
+		manager->registerShaderProgram("basic", new ShaderProgram("basic"));
+		manager->registerShaderProgram("transform", new ShaderProgram("transform"));
+		manager->registerShaderProgram("texture", new ShaderProgram("texture"));
+		manager->registerShaderProgram("animated_texture", new ShaderProgram("animated_texture"));
 
 		manager->registerVao("sprite", new SpriteVao());
 
